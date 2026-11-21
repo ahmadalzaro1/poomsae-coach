@@ -16,6 +16,12 @@ NEW_MP_Data/
 # Generated site (built in CI from out/ by scripts/build_site.py)
 site/
 
+# Rebuildable intermediate output
+out/pose3d/
+out/uncertainty/
+out/demo_*.mp4
+out/poomsae_widget.html
+
 # Rebuildable pose caches
 out/elbow_signal/
 *.npz

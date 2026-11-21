@@ -81,7 +81,7 @@ win". The 0.1276 shuffled control is what stops the 0.98 from being self-congrat
 | refusal | number | file |
 |---|---|---|
 | 3D realignment | deviation range **0.867×** of 2D, SNR **6.59 vs 8.65**, analytic-vs-realignment agreement 0.933 | `out/crossview_3d.json` |
-| learned gate | AUC **0.712**, FPR **86.5%** | `out/eight_class.json` |
+| learned gate | AUC **0.7066**; FPR at matched TPR **91.67%**, rule arm **88.46%** | `out/learned_gate.json` |
 | view-bias calibration as the fix | calibrated flag rate 0.833 vs 0.885 raw; recall at 10° injection **0.389**, at 20° **0.903** | `out/view_calibration.json` |
 | Jev (LLM) as authoriser | blind AUC **0.6125**, single-reading AUC **0.4781**, Spearman −0.031 | `out/jev_gate.json` |
 | subtle-fault families | the limit is the tolerance grid, not the measurement (jitter σ ≤ 0.615°): 50% detection at **15°** arm height, **20°** elbow extension — 3° and 2° above each family's own tolerance | `out/subtle_faults.json` |

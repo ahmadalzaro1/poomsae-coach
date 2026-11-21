@@ -93,7 +93,7 @@ that camera geometry**, and the card labels them that way instead of blaming the
 ## Certified behaviour, not claimed behaviour
 
 Every row below is re-derived from committed artifacts by `python3 scripts/verify_claims.py`
-(73/73 checks; no dataset, no models, no network).
+(76/76 checks; no dataset, no models, no network).
 
 | arm | old gate (raw `|delta| > tol`) | self-referenced layer |
 |---|---:|---|
@@ -129,8 +129,9 @@ to linearly separable, and the report says so instead of claiming a model win.
 - **3D did not help.** Realigning a frontal reference against a lateral take reduced the deviation
   range to 0.867× of the 2D case with no gain in signal-to-noise; `out/crossview_3d.json` returns
   the verdict "no benefit".
-- **The learned gate was refused.** A classifier on the same features reached AUC 0.712 at an 86.5%
-  false-positive rate; a threshold without meaning is worse than a stated one.
+- **The learned gate was refused.** A classifier on the same features reached AUC **0.7066**, and at a
+  matched true-positive rate its false-positive rate is **91.67%** (rule-based arm 88.46%): a threshold
+  without a meaning is worse than a stated one. `out/learned_gate.json`.
 
 ## Reproduce it
 
@@ -141,7 +142,7 @@ Two levels, and the cheap one is the one that matters for trust.
 ```bash
 git clone https://github.com/ahmadalzaro1/poomsae-coach && cd poomsae-coach
 python3 scripts/verify_claims.py --show
-# -> 73/73 README claims re-derived from committed artifacts
+# -> 76/76 README claims re-derived from committed artifacts
 ```
 
 **2. Re-run the whole pipeline (dataset + pose models):**
@@ -158,6 +159,21 @@ result, and every one of the 23 steps prints its own banner. Step 1 dominates a 
 re-derives poses for all 16 clips with **both** estimators (that pairwise disagreement *is* the
 tolerance), and caches them to `out/elbow_signal/`, so a second run is orders of magnitude
 cheaper.
+
+## It reproduces, and it says which part reproduces
+
+A full `run_all.sh` from this tree completed **23/23 steps, 0 failures**. Comparing that fresh run
+against the committed artifacts, with only run-timing fields removed:
+
+```
+python3 scripts/check_reproducible.py
+22/22 artifacts reproduce (5 run-timing fields ignored)
+```
+
+Ignored as run timing — a measurement of the machine, not of the athlete: `extraction_ms_per_frame`
+(20.8 → 22.6 ms/frame on the second run), `generated_at`, `runtime_s`, `latency_ms`, `release_ms`.
+Everything else is byte-identical: every delta, every residual, every gate, every verdict. If a
+number ever differs, the check fails and names the file instead of quietly tolerating it.
 
 ## Guardrails that fail loudly
 

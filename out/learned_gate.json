@@ -1,0 +1,93 @@
+{
+ "rule": {
+  "tpr_by_magnitude": {
+   "10deg": 0.9302,
+   "15deg": 0.9573,
+   "20deg": 0.9765,
+   "25deg": 0.9879,
+   "35deg": 0.9957
+  },
+  "fpr": 0.8846
+ },
+ "magnitude_only": {
+  "threshold": 0.32,
+  "fpr_at_matched_tpr": 0.9167,
+  "tpr_by_magnitude": {
+   "10deg": 0.9494,
+   "15deg": 0.9658,
+   "20deg": 0.9801,
+   "25deg": 0.9886,
+   "35deg": 0.9943
+  }
+ },
+ "structure_only": {
+  "threshold": 0.216,
+  "fpr_at_matched_tpr": 0.9551,
+  "tpr_by_magnitude": {
+   "10deg": 0.9679,
+   "15deg": 0.9779,
+   "20deg": 0.9829,
+   "25deg": 0.9886,
+   "35deg": 0.9943
+  }
+ },
+ "full": {
+  "threshold": 0.227,
+  "fpr_at_matched_tpr": 0.9167,
+  "tpr_by_magnitude": {
+   "10deg": 0.9509,
+   "15deg": 0.9701,
+   "20deg": 0.9793,
+   "25deg": 0.9886,
+   "35deg": 0.9943
+  }
+ },
+ "auc": {
+  "magnitude_only": 0.687,
+  "structure_only": 0.7055,
+  "full": 0.7066
+ },
+ "coefficients_full": {
+  "a_max": 0.575,
+  "a_mean": -0.592,
+  "a_count_half": 0.25,
+  "concentration": 0.653,
+  "a_2nd_over_max": -0.041,
+  "arm_energy": -0.111,
+  "leg_energy": 0.604,
+  "torso_energy": 1.589,
+  "torso_share": -0.666,
+  "elbow_sym_min": 0.032,
+  "elbow_sym_max": -0.173,
+  "knee_sym_min": -0.15,
+  "knee_sym_max": -0.474,
+  "elbow_same_sign": -0.006,
+  "knee_same_sign": -0.051,
+  "hip_same_sign": 0.063,
+  "arm_signed_sum": 0.237,
+  "n_joints_above_1tol": 0.304
+ },
+ "features": [
+  "a_max",
+  "a_mean",
+  "a_count_half",
+  "concentration",
+  "a_2nd_over_max",
+  "arm_energy",
+  "leg_energy",
+  "torso_energy",
+  "torso_share",
+  "elbow_sym_min",
+  "elbow_sym_max",
+  "knee_sym_min",
+  "knee_sym_max",
+  "elbow_same_sign",
+  "knee_same_sign",
+  "hip_same_sign",
+  "arm_signed_sum",
+  "n_joints_above_1tol"
+ ],
+ "n_negatives": 156,
+ "n_positives": 7020,
+ "split": "leave-one-form-out over 8 forms"
+}

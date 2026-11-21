@@ -172,6 +172,12 @@ def main(show=False):
     check_eq("release: soften", rel["soften"], 6)
     check_eq("release: withhold", rel["withhold"], 1)
 
+    # --- learned gate: the refusal, from its own artifact ---------------------
+    lg = load("learned_gate.json")
+    check("learned gate AUC (best arm, full feature set)", lg["auc"]["full"], 0.7066, tol=0.001)
+    check("learned gate FPR at matched TPR", lg["full"]["fpr_at_matched_tpr"], 0.9167, tol=0.001)
+    check("learned gate rule FPR", lg["rule"]["fpr"], 0.8846, tol=0.001)
+
     if show:
         for label, ok, detail in CHECKS:
             print(f"{'OK  ' if ok else 'FAIL'} {label:52s} {detail}")

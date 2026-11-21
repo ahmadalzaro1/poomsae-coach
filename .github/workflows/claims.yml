@@ -17,6 +17,8 @@ jobs:
           python-version: ${{ matrix.python }}
       - name: Every number in the README, re-derived from committed JSON
         run: python scripts/verify_claims.py --show
+      - name: Artifacts reproduce (run timing ignored, numbers not)
+        run: python scripts/check_reproducible.py
       - name: Every local link resolves to a committed file
         run: python scripts/check_links.py
       - name: No unlicensed corpora or model weights committed

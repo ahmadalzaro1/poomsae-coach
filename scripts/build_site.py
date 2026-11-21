@@ -38,6 +38,7 @@ def main() -> int:
     eight = load("eight_class.json")
     c3d = load("crossview_3d.json")
     jev = load("jev_gate.json")
+    lg = load("learned_gate.json")
 
     sb, cb = sr["cards"]["sameview"], sr["cards"]["crossview"]
     bench = sr["benchmark"]
@@ -71,6 +72,8 @@ def main() -> int:
     portal = 100 * clean["faults"] / cells
     jev_blind = jev["experiment_a_blind"]["auc_p_withhold_vs_opposite_side"]
     jev_single = jev["experiment_b_single_reading"]["auc_p_reject_vs_gap10"]
+    lg_auc = lg["auc"]["full"]
+    lg_fpr = lg["full"]["fpr_at_matched_tpr"]
     eight_mean = eight["eight_class"]["mean"]
     c1 = eight["controls"]["one_nearest_neighbour"]["mean"]
     c2 = eight["controls"]["single_frame_only"]["mean"]
@@ -241,10 +244,9 @@ footer a{{color:var(--acc);text-decoration:none}}
     <li><b>3D realignment.</b> Deviation range {c3d['range_ratio_3d_over_2d']:.3f}× the 2D case,
       signal-to-noise {c3d['signal_noise']['snr_3d']:.2f} vs {c3d['signal_noise']['snr_2d']:.2f} —
       it deviates less because it responds less.</li>
-    <li><b>A learned gate.</b> The classifier's decision boundary could not be given a meaning at an
-      acceptable false-positive rate, so a stated threshold was kept instead.
-      <span class="warn">(Dev-log measurement; unlike every other figure on this page it is not
-      re-derivable from a committed artifact, and it is not claimed as certified.)</span></li>
+    <li><b>A learned gate.</b> AUC {lg_auc:.4f}; at a matched true-positive rate the false-positive
+      rate is {lg_fpr:.2%} — the boundary exists, but there is no meaning to state, so a stated
+      threshold was kept instead. <span style="color:#6b7280;font-family:ui-monospace,monospace;font-size:12px">out/learned_gate.json</span></li>
     <li><b>An LLM as the authoriser.</b> Blind AUC {jev_blind:.4f}, single-reading AUC
       {jev_single:.4f} — advice only, never authorisation.</li>
     <li><b>Sensitivity measured on a measured base.</b> {sweepm['1.05x']['detection_rate_judgeable']:.4f}

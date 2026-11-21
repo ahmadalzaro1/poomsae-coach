@@ -1,0 +1,38 @@
+{
+ "10deg": {
+  "trials": 1323,
+  "top1_move": 99.8,
+  "flagged_move": 0.0,
+  "right_joint": 0.0,
+  "mean_collateral_flags": 0.0
+ },
+ "15deg": {
+  "trials": 1323,
+  "top1_move": 99.8,
+  "flagged_move": 20.7,
+  "right_joint": 20.6,
+  "mean_collateral_flags": 0.0
+ },
+ "20deg": {
+  "trials": 1323,
+  "top1_move": 99.9,
+  "flagged_move": 99.8,
+  "right_joint": 99.7,
+  "mean_collateral_flags": 0.0
+ },
+ "25deg": {
+  "trials": 1323,
+  "top1_move": 100.0,
+  "flagged_move": 100.0,
+  "right_joint": 100.0,
+  "mean_collateral_flags": 0.0
+ },
+ "35deg": {
+  "trials": 1323,
+  "top1_move": 100.0,
+  "flagged_move": 100.0,
+  "right_joint": 100.0,
+  "mean_collateral_flags": 0.01
+ },
+ "control_unmodified_flags": 0
+}

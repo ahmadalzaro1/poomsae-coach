@@ -1,0 +1,44 @@
+[
+ {
+  "arm_gate": 0.5,
+  "elbow_mae_deg": 16.5,
+  "all_feature_mae_deg": 5.7,
+  "leg_mae_deg": 1.63
+ },
+ {
+  "arm_gate": 0.7,
+  "elbow_mae_deg": 20.8,
+  "all_feature_mae_deg": 7.23,
+  "leg_mae_deg": 1.63
+ },
+ {
+  "arm_gate": 0.8,
+  "elbow_mae_deg": 21.8,
+  "all_feature_mae_deg": 7.72,
+  "leg_mae_deg": 1.63
+ },
+ {
+  "arm_gate": 0.85,
+  "elbow_mae_deg": 26.3,
+  "all_feature_mae_deg": 8.86,
+  "leg_mae_deg": 1.63
+ },
+ {
+  "arm_gate": 0.9,
+  "elbow_mae_deg": 28.4,
+  "all_feature_mae_deg": 10.11,
+  "leg_mae_deg": 1.63
+ },
+ {
+  "arm_gate": 0.95,
+  "elbow_mae_deg": 35.8,
+  "all_feature_mae_deg": 12.49,
+  "leg_mae_deg": 1.63
+ },
+ {
+  "gate": 0.5,
+  "same_view_mean_delta": 3.4,
+  "same_view_flags": 9,
+  "moves": 19
+ }
+]

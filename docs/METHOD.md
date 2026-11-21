@@ -111,7 +111,7 @@ Each refusal is a committed artifact, not a paragraph:
 
 | refused | why | artifact |
 |---|---|---|
-| learned gate | AUC 0.712 at 86.5% false-positive rate: a threshold without a meaning | `docs/RESULTS.md`, `out/eight_class.json` |
+| learned gate | AUC **0.7066**; at matched TPR the false-positive rate is **91.67%** (rule arm 88.46%): a threshold without a meaning | `out/learned_gate.json` |
 | 3D realignment | 0.867× the deviation range, SNR **6.59 vs 8.65** — responds less, so it looks "better" | `out/crossview_3d.json` |
 | view-bias calibration as the fix | a fault committed on every move is absorbed into the bias; recall at 10° injection collapses to **0.389** | `out/view_calibration.json` |
 | an LLM (Jev) as the gate | blind AUC 0.6125, single-reading AUC 0.4781 — advice only, never authorisation | `out/jev_gate.json` |
