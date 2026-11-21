@@ -25,10 +25,10 @@ permits this derivative; attribution is provided here and in the README.
 
 ## Method and prior art
 
-Discussed and cited in [docs/PRIOR-ART.md](PRIOR-ART.md). No third-party code was vendored: the
+Discussed and cited in [docs/PRIOR-ART.md](docs/PRIOR-ART.md). No third-party code was vendored: the
 pipeline is written against MediaPipe's public Python API, numpy, pandas and OpenCV.
 
 ## Not included
 
 The 94-athlete labelled dataset used for the 8-class result is **not** redistributed — see
-[docs/DATA.md](DATA.md) §3. Only the numbers derived from it are published.
+[docs/DATA.md](docs/DATA.md) §3. Only the numbers derived from it are published.
