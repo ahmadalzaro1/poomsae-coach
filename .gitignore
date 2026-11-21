@@ -13,6 +13,9 @@ labelled/
 NEW_MP_Data/
 *.npy
 
+# Generated site (built in CI from out/ by scripts/build_site.py)
+site/
+
 # Rebuildable pose caches
 out/elbow_signal/
 *.npz
