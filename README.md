@@ -15,6 +15,8 @@ coach card is generated from, so the video cannot drift from the card.
 
 ---
 
+**Live page:** <https://ahmadalzaro1.github.io/poomsae-coach/> — the same evidence rendered from the committed artifacts by `scripts/build_site.py`; CI deploys it, so it cannot drift.
+
 ## The problem this repo actually solves
 
 An angle tolerance has two completely different jobs, and they need two different numbers:
