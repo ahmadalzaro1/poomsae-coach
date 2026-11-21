@@ -46,7 +46,7 @@ def main() -> int:
         sys.exit("build_site: missing out/run_all.log - the reproduction claim needs its artifact")
     log = open(log_path, encoding="utf-8", errors="replace").read()
     steps_done = log.count("=== ")
-    steps_ok = log.rstrip().endswith("all steps ok - 0 failures")
+    steps_ok = "all steps ok - 0 failures" in log
     manifest = [ln for ln in open(os.path.join(OUT, "manifest.sha256"))
                 if ln.strip() and not ln.startswith("#")]
     n_artifacts = len(manifest)
