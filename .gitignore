@@ -1,8 +1,9 @@
 # Generated data, weights, environments
-data/
-models/
-.venv/
-venv/
+# bare names so symlinked copies are ignored too
+data
+models
+.venv
+venv
 __pycache__/
 *.pyc
 .DS_Store
