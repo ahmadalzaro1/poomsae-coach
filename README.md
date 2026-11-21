@@ -137,12 +137,12 @@ Two levels, and the cheap one is the one that matters for trust.
 **1. Check the numbers (no dataset, no models, ~1 s):**
 
 ```bash
-git clone <this repo> && cd poomsae-coach
+git clone https://github.com/ahmadalzaro1/poomsae-coach && cd poomsae-coach
 python3 scripts/verify_claims.py --show
 # -> 73/73 README claims re-derived from committed artifacts
 ```
 
-**2. Re-run the whole pipeline (dataset + pose models, ~10 min on an M1 Max):**
+**2. Re-run the whole pipeline (dataset + pose models):**
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
@@ -152,7 +152,23 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 ```
 
 `run_all.sh` fails loudly when the data or models are missing rather than producing an empty
-result, and every one of the 23 steps prints its own banner.
+result, and every one of the 23 steps prints its own banner. Step 1 dominates a cold run: it
+re-derives poses for all 16 clips with **both** estimators (that pairwise disagreement *is* the
+tolerance), and caches them to `out/elbow_signal/`, so a second run is orders of magnitude
+cheaper.
+
+## Guardrails that fail loudly
+
+Two ways this pipeline could lie quietly, both closed:
+
+| failure | naive behaviour | this repo |
+|---|---|---|
+| `out/tolerance_override.json` missing, so the gate would run on the built-in 25° default instead of the measured 18° | prints a line, exits 0, publishes a different verdict | `core.TOLERANCE_MEASURED = False`; `self_reference` **refuses with exit 2** and names step 1. (Both branches are tested: the gate with the override, and the refusal without it.) |
+| dataset or model weights absent | writes an empty card | `run_all.sh` refuses before step 1 and points at the fetch script |
+
+The first one is not hypothetical — it is how this repo was broken once, by shipping the artifacts
+without the derived tolerance they depend on, and it was caught by re-running step 14 in the fresh
+checkout rather than by reading the code.
 
 ## Repo map
 
@@ -169,7 +185,8 @@ poomsae/            the pipeline — one module per claim, so every number has a
 out/                committed artifacts: cards, JSON, coach card, demo page, pose CSV
 media/              the two demo videos + stills
 docs/               METHOD, RESULTS, LIMITATIONS, DATA, PRIOR-ART
-scripts/            verify_claims.py (the trust gate), fetch_data.py, fetch_models.py
+scripts/            verify_claims.py (the trust gate), check_links.py, fetch_data.py, fetch_models.py
+.github/workflows/  CI: re-derive every claim, check every link, refuse committed corpora
 run_all.sh          23 steps, start to finish
 ```
 
