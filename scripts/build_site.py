@@ -91,9 +91,9 @@ h1{{font-size:clamp(30px,4.4vw,52px);line-height:1.08;margin:0 0 18px;letter-spa
 h1 em{{color:var(--acc);font-style:normal}}
 p.lede{{font-size:clamp(17px,1.6vw,20px);color:var(--dim);max-width:64ch;margin:0}}
 .meta{{margin-top:18px;color:var(--dim);font-size:13.5px}}
-.kpis{{display:flex;flex-wrap:wrap;gap:28px;margin:26px 0 22px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}}
+.kpis{{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:26px;margin:26px 0 20px;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}}
 .kpi .v{{font-size:30px;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1}}
-.kpi .k{{color:var(--dim);font-size:12.5px;margin-top:6px;max-width:22ch}}
+.kpi .k{{color:var(--dim);font-size:12.5px;line-height:1.45;margin-top:7px;text-wrap:pretty}}
 .kpi.bad .v{{color:var(--bad)}} .kpi.ok .v{{color:var(--ok)}}
 .meta a{{color:var(--acc);text-decoration:none;border-bottom:1px solid rgba(124,196,255,.3)}}
 section{{padding:52px 0;border-bottom:1px solid var(--line)}}
