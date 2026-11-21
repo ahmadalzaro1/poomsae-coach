@@ -1,0 +1,5 @@
+{
+ "L_elbow": 18.0,
+ "R_elbow": 18.0,
+ "source": "pooled per-move p95 of cross-estimator deviation on Taegeuk 1 = 17.6 deg; held-out 2-8 = 13.2 deg (out/elbow_signal.json)"
+}

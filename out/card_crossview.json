@@ -2620,6 +2620,7 @@
   "card_flag_cap_per_move": 3,
   "old_gate_flags": 50,
   "old_gate_flags_note": "raw cells with |delta| > tolerance; the card itself mints at most 3 per move by exceedance, so this number is larger than card_flag_count",
-  "flags_unchanged": true
+  "flags_unchanged": true,
+  "idempotent": true
  }
 }

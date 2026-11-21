@@ -70,7 +70,8 @@ BASELINE_TOLERANCE_DEG = dict(TOLERANCE_DEG)
 # A tolerance is a product decision, so an override is allowed but never silent: it
 # must come from a measured artifact on disk and is reported by name everywhere the
 # tolerances are used. Written by poomsae/elbow_signal.py.
-TOLERANCE_SOURCE = "built-in defaults"
+TOLERANCE_SOURCE = "built-in defaults (out/tolerance_override.json absent - step 1 has not run)"
+TOLERANCE_MEASURED = False
 _OVERRIDE_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                               "out", "tolerance_override.json")
 if os.path.exists(_OVERRIDE_PATH):
@@ -86,11 +87,19 @@ if os.path.exists(_OVERRIDE_PATH):
     except Exception as _exc:  # noqa: BLE001 - any corruption is the same case
         print(f"[core] ignoring unreadable tolerance override ({_exc}); "
               f"using built-in defaults")
+        TOLERANCE_SOURCE = "built-in defaults (override unreadable)"
     else:
         _src = _ov.get("source", "unstated source")
         TOLERANCE_DEG.update(_applied)
         TOLERANCE_SOURCE = f"{os.path.relpath(_OVERRIDE_PATH)} ({_src})"
+        TOLERANCE_MEASURED = True
         print(f"[core] tolerance override active: {TOLERANCE_SOURCE}")
+else:
+    # Absence is NOT the same case as corruption: it means the derivation never ran, so
+    # every downstream number would silently be computed against an unmeasured default.
+    # Consumers that publish a threshold must refuse - see self_reference.main().
+    print("[core] WARNING: no out/tolerance_override.json - using built-in defaults; "
+          "run step 1 (poomsae.elbow_signal) to derive the measured tolerance")
 
 
 # ---------------------------------------------------------------- loading

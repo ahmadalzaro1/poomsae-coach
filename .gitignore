@@ -13,6 +13,10 @@ labelled/
 NEW_MP_Data/
 *.npy
 
+# Rebuildable pose caches
+out/elbow_signal/
+*.npz
+
 # Local scratch
 tmp/
 *.log

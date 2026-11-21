@@ -39,8 +39,10 @@ Certification arms (known truth, so the gate can be wrong in a way we can see)
 """
 from __future__ import annotations
 
+import copy
 import json
 import os
+import sys
 
 import numpy as np
 
@@ -320,6 +322,15 @@ def benchmark(card: dict, tol: dict, floor: dict) -> dict:
 
 
 def main() -> int:
+    from . import core as C
+    if not getattr(C, "TOLERANCE_MEASURED", False):
+        print("REFUSING: the tolerance in force is not a measured artifact.\n"
+              f"  current source: {C.TOLERANCE_SOURCE}\n"
+              "  a gate must not be published against a built-in default, because the default\n"
+              "  (25 deg) and the derived value (18 deg) produce different verdicts.\n"
+              "  run step 1 first:  .venv/bin/python -m poomsae.elbow_signal",
+              file=sys.stderr)
+        return 2
     tol, tol_src = tolerances()
     floor, floor_src = floors()
     res = {"generated": "2026-11-21", "gate_k": GATE_K, "min_moves": MIN_MOVES,
@@ -329,16 +340,19 @@ def main() -> int:
     for tag in ("sameview", "crossview"):
         path = os.path.join(OUT, f"card_{tag}.json")
         card = json.load(open(path))
-        before = card.get("self_reference", {})
         fp = fingerprint(card)
         card = annotate_card(card, tol, floor)
         # the claim "flags unchanged" is checked, not asserted
-        card["self_reference"]["flags_unchanged"] = (fp == fingerprint(card))
+        block = card["self_reference"]
+        block["flags_unchanged"] = (fp == fingerprint(card))
+        # Idempotency must be a property of THIS run, not of whether an earlier run happened
+        # to leave a block behind. Annotate a DEEP COPY: annotate_card normalises its input,
+        # so re-annotating the live card would strip the flags_unchanged just written.
+        again = annotate_card(copy.deepcopy(card), tol, floor)["self_reference"]["verdict_counts"]
+        block["idempotent"] = (again == block["verdict_counts"])
         json.dump(card, open(path, "w"), indent=1)
-        res["cards"][tag] = card["self_reference"]
-        res["cards"][tag]["idempotent"] = (before.get("verdict_counts") ==
-                                           card["self_reference"]["verdict_counts"]) if before else None
-        sr = card["self_reference"]
+        res["cards"][tag] = dict(block)
+        sr = block
         print(f"[{tag}] card flags {sr['card_flag_count']} unchanged={sr['flags_unchanged']} -> "
               f"faults {sr['verdict_counts']['fault']}, "
               f"style {sr['verdict_counts']['style']}, "
