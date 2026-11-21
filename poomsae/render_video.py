@@ -68,6 +68,23 @@ def move_frames(card, n_frames):
     return ms
 
 
+def resolved_gates(_sr):
+    """feature/joint -> k * this athlete's own scale for that cell, i.e. the gate actually applied.
+
+    effective_threshold_deg is max(tolerance, k*floor) - a LOWER BOUND on the gate. Printing that
+    number as 'gate' while the adjudication uses k*scale is how a video ends up disagreeing with its
+    own card, which is the exact failure this repo exists to avoid.
+    """
+    k = float(_sr.get("gate_k") or 2.5)
+    scale = _sr.get("scale_deg") or {}
+    out = {}
+    for cell, sd in scale.items():
+        out[cell] = k * float(sd)
+        for feat in FEATURE_JOINTS.get(cell, []):
+            out[feat] = max(out.get(feat, 0.0), k * float(sd))
+    return out
+
+
 def severity(move, gates=None):
     """joint -> |delta| / gate, using the card's own per-joint numbers.
 
@@ -123,6 +140,7 @@ def render(card_path, out_path, title, subtitle, warn=None, progress_tag=""):
     # thresholds come from the card, never from a table in this file
     _sr = card.get("self_reference") or {}
     gates = _sr.get("effective_threshold_deg") or {}
+    resolved = resolved_gates(_sr) or dict(gates)
     meas = _sr.get("tolerance_deg") or {}
     n_faults = (_sr.get("verdict_counts") or {}).get("fault")
     W, H = 1280, 720
@@ -145,7 +163,7 @@ def render(card_path, out_path, title, subtitle, warn=None, progress_tag=""):
             img = cv2.resize(frame, (W, H), interpolation=cv2.INTER_AREA)
 
             mv = next((m for m in moves if m["_range"][0] <= f < m["_range"][1]), moves[-1])
-            sev = severity(mv, gates)
+            sev = severity(mv, resolved)
             pts = land.get(f) or land.get(min(land, key=lambda k: abs(k - f)))
             if pts:
                 overlay(img, pts, sev, W, H)
@@ -171,10 +189,13 @@ def render(card_path, out_path, title, subtitle, warn=None, progress_tag=""):
 
             if mv["flags"]:
                 fl = mv["flags"][0]
+                verdict = ((mv.get("attribution") or {}).get("per_joint") or {}).get(fl["key"], {}).get("verdict")
                 txt = f"{fl['joint']}: {abs(fl['delta']):.0f} deg {fl['msg'].split(' ', 1)[1]}"
+                if verdict and verdict != "fault":
+                    txt += f"  ({verdict})"
                 cv2.putText(img, txt, (18, panel_y + 100), cv2.FONT_HERSHEY_SIMPLEX, 0.62,
-                            RED, 2, cv2.LINE_AA)
-                cv2.putText(img, f"tol {meas.get(fl['key'], fl['tol']):.0f} / gate {gates.get(fl['key'], fl['tol']):.0f} deg", (18, panel_y + 126),
+                            RED if verdict == "fault" else AMBER, 2, cv2.LINE_AA)
+                cv2.putText(img, f"tol {meas.get(fl['key'], fl['tol']):.0f} / floor {gates.get(fl['key'], fl['tol']):.0f} / gate {resolved.get(fl['key'], gates.get(fl['key'], fl['tol'])):.0f} deg", (18, panel_y + 126),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.48, (170, 170, 180), 1, cv2.LINE_AA)
             else:
                 cv2.putText(img, "within tolerance", (18, panel_y + 100),
@@ -183,7 +204,7 @@ def render(card_path, out_path, title, subtitle, warn=None, progress_tag=""):
             # right side of panel: running tally + legend
             tally = f"{flagged_total} of {len(moves)} moves outside measurement tol"
             if n_faults is not None:
-                tally += f" | {n_faults} candidate faults"
+                tally += f" | {n_faults} cells past tolerance, offset, scale AND band"
             tw = cv2.getTextSize(tally, cv2.FONT_HERSHEY_SIMPLEX, 0.55, 1)[0][0]
             cv2.putText(img, tally, (W - tw - 18, panel_y + 40), cv2.FONT_HERSHEY_SIMPLEX,
                         0.55, (185, 185, 195), 1, cv2.LINE_AA)

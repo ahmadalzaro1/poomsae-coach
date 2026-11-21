@@ -62,22 +62,47 @@ def main() -> int:
     clean, style = bench["clean"], bench["style_only"]
     sweep0, sweepm = bench["sweep_zero_base"], bench["sweep_measured_base"]
 
-    faults = []
-    for tag, card in (("same side", same_card), ("opposite side", cross_card)):
+    K = float(sr.get("gate_k") or 2.5)
+    floor_of = lambda j: gate.get(j, tol.get(j, 15.0))
+    fault_rows, refused_rows = [], []
+    for tag, card, key in (("same side", same_card, "sameview"), ("opposite side", cross_card, "crossview")):
+        scale = sr["cards"][key]["scale_deg"]
         for mv in card["moves"]:
-            for fl in mv.get("flags", []):
-                voices = fl.get("self_reference") or {}
-                if voices.get("verdict") == "fault":
-                    faults.append((tag, mv["move"], mv.get("t"), mv.get("name"), fl["key"],
-                                   fl["delta"], voices.get("residual_deg"),
-                                   gate.get(fl["key"], tol.get(fl["key"]))))
-    faults.sort(key=lambda row: (row[0], row[1]))
-    fault_rows = "\n".join(
-        f"<tr><td>{t}</td><td class='num'>{m}</td><td class='num'>{tm}</td><td>{n}</td>"
-        f"<td><code>{k}</code></td><td class='num'>{d:.1f}°</td>"
-        f"<td class='num'>{r if r is None else f'{r:.1f}°'}</td><td class='num'>{g:.1f}°</td></tr>"
-        for (t, m, tm, n, k, d, r, g) in faults
-    )
+            for joint, cell in ((mv.get("attribution") or {}).get("per_joint") or {}).items():
+                residual = float(cell["residual"])
+                floor = floor_of(joint)
+                resolved = K * float(scale.get(joint) or 0.0) or floor
+                if cell["verdict"] == "fault":
+                    fault_rows.append((tag, mv["move"], mv.get("t"), joint, residual, floor, resolved,
+                                       cell["z"], cell["band"]))
+                elif abs(residual) >= floor - 0.2:
+                    refused_rows.append((tag, mv["move"], mv.get("t"), joint, residual, floor, resolved,
+                                         cell["z"], cell["verdict"]))
+    fault_rows.sort(key=lambda r: (r[0] != "same side", r[1], r[3]))
+    refused_rows.sort(key=lambda r: (r[0] != "same side", r[1], r[3]))
+    if not fault_rows:
+        sys.exit("build_site: no cell survives the gate - the findings table would render empty")
+
+    def num(v, suffix="°", nd=1):
+        try:
+            return f"{float(v):.{nd}f}{suffix}"
+        except (TypeError, ValueError):
+            return "—"
+
+    def rows(items, with_view=True):
+        out = []
+        for (tag, move, t, joint, residual, floor, resolved, z, extra) in items:
+            head = f"<td>{tag}</td>" if with_view else ""
+            out.append(
+                f"<tr>{head}<td class='num'>{move}</td><td class='num'>{num(t, '', 2)}</td>"
+                f"<td><code>{joint}</code></td><td class='num'>{num(residual)}</td>"
+                f"<td class='num'>{num(floor)}</td><td class='num'><b>{num(resolved)}</b></td>"
+                f"<td class='num'>{num(z, '', 1)}</td>"
+                f"<td class='num'>{num(extra)}</td></tr>")
+        return "\n".join(out)
+
+    fault_rows_html = rows(fault_rows)
+    refused_rows_html = rows(refused_rows)
 
     cells = bench["cells_with_band"]
     portal = 100 * clean["faults"] / cells
@@ -142,8 +167,9 @@ footer a{{color:var(--acc);text-decoration:none}}
   frame telling me the same thing? <b>Attribution</b>: did this athlete make a mistake? This repo
   gives each job its own number — and publishes the number below which a difference is not real.</p>
   <div class="kpis">
-    <div class="kpi"><div class="v num">{gate['R_elbow']:.1f}° / {gate['L_elbow']:.1f}°</div>
-      <div class="k">gate enforced, right / left elbow — from 18.0° tolerance and a measured floor</div></div>
+    <div class="kpi"><div class="v num">{gate['R_elbow']:.1f}° → {K * sb['scale_deg']['R_elbow']:.1f}°</div>
+      <div class="k">right-elbow floor → resolved gate: max(tolerance, 2.5 × floor) is a lower bound;
+      the gate adds this athlete's own spread</div></div>
     <div class="kpi bad"><div class="v num">{sb['verdict_counts']['fault']}</div>
       <div class="k">candidate faults out of {cells} cells, same-side video</div></div>
     <div class="kpi ok"><div class="v num">{sweep0['0.5x']['detection_rate']:.3f}</div>
@@ -163,14 +189,14 @@ footer a{{color:var(--acc);text-decoration:none}}
   <h2>The same take, two references</h2>
   <div class="grid two">
     <figure>
-      <video controls preload="metadata" poster="media/frame_move6_elbow_fault.png" playsinline>
+      <video controls preload="metadata" poster="media/frame_move6_elbow.png" playsinline>
         <source src="media/demo_sameview.mp4" type="video/mp4">
         Your browser cannot play this clip — <a href="media/demo_sameview.mp4">download it</a>.
       </video>
       <figcaption><b>Same side.</b> {sb['card_flag_count']} measurement flags →
         <b>{sb['verdict_counts']['fault']} candidate faults</b>, {sb['verdict_counts']['style']} style,
         {sb['verdict_counts']['noise']} within noise. The overlay prints both numbers it obeys:
-        <code>tol {tol['R_elbow']:.0f} / gate {gate['R_elbow']:.1f} deg</code>.</figcaption>
+        <code>tol {tol['R_elbow']:.0f} / floor {gate['R_elbow']:.1f} / gate {K * sb['scale_deg']['R_elbow']:.1f} deg</code>.</figcaption>
     </figure>
     <figure>
       <video controls preload="metadata" poster="media/frame_crossview.png" playsinline>
@@ -196,8 +222,8 @@ footer a{{color:var(--acc);text-decoration:none}}
     <div class="card"><div class="v num">{ba_traj['elbow_traj_sd_mean']:.1f}°</div>
       <div class="k">elbow sd across 94 players (worst {ba_traj['elbow_traj_sd_max']:.1f}°) — human spread</div>
       <div class="src">out/between_athlete.json</div></div>
-    <div class="card"><div class="v num">{gate['R_elbow']:.1f}°</div>
-      <div class="k">gate enforced: max(tolerance, 2.5 × measured floor)</div>
+    <div class="card"><div class="v num">{gate['R_elbow']:.1f}° floor</div>
+      <div class="k">lower bound on the gate; the gate itself is 2.5 × this athlete's own scale on the cell</div>
       <div class="src">out/self_reference.json</div></div>
   </div>
   <p class="lede" style="margin-top:24px">18° sits at <b>2.3×</b> the repeat spread and <b>0.55×</b> the
@@ -208,12 +234,28 @@ footer a{{color:var(--acc);text-decoration:none}}
 
 <section>
   <h2>The findings, with their margins</h2>
+  <p class="lede">Four conditions, and the fourth is the one that hurts: a cell is a fault only when
+  |residual| beats the <b>tolerance</b>, the athlete's <b>offset</b> has already been removed, |residual|
+  beats <b>2.5 × that cell's own scale</b> (the gate), <i>and</i> it beats the <b>estimator band</b>.
+  The first two tables below are the two elbow cells that pass the floor and fail the gate.</p>
+
+  <h3>Past the floor, refused by the gate</h3>
   <table>
-    <thead><tr><th>view</th><th>move</th><th>t</th><th>technique</th><th>cell</th><th>measured</th><th>own offset</th><th>gate</th></tr></thead>
-    <tbody>{fault_rows}</tbody>
+    <thead><tr><th>view</th><th>move</th><th>t (s)</th><th>cell</th><th>residual</th><th>floor</th>
+      <th>gate</th><th>z</th><th>band</th></tr></thead>
+    <tbody>{refused_rows_html}</tbody>
   </table>
-  <p class="lede" style="margin-top:18px">Move 6 clears its gate by <b>0.1°</b>. Stated, not smoothed:
-  read it as “check this one”, not “this is wrong”.</p>
+  <p class="lede">Move 6's right elbow clears the 21.0° floor by <b>0.1°</b> and still fails: the gate on
+  that cell is 28.2°, because this athlete's own elbow varies by ≈11°, and z = 1.9 is under 2.5. The
+  floor is a <b>lower bound on the gate</b>, never the gate — a page or a HUD that prints one as the
+  other will disagree with its own cards.</p>
+
+  <h3>What survives all four conditions</h3>
+  <table>
+    <thead><tr><th>view</th><th>move</th><th>t (s)</th><th>cell</th><th>residual</th><th>floor</th>
+      <th>gate</th><th>z</th><th>band</th></tr></thead>
+    <tbody>{fault_rows_html}</tbody>
+  </table>
 </section>
 
 <section>
@@ -306,7 +348,7 @@ footer a{{color:var(--acc);text-decoration:none}}
 """
 
     os.makedirs(os.path.join(SITE, "media"), exist_ok=True)
-    needed = ("demo_sameview.mp4", "demo_crossview.mp4", "frame_move6_elbow_fault.png", "frame_crossview.png")
+    needed = ("demo_sameview.mp4", "demo_crossview.mp4", "frame_move6_elbow.png", "frame_crossview.png")
     for name in needed:
         src = os.path.join(MEDIA, name)
         if not os.path.exists(src):

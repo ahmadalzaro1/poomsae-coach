@@ -172,6 +172,23 @@ def main(show=False):
     check_eq("release: soften", rel["soften"], 6)
     check_eq("release: withhold", rel["withhold"], 1)
 
+    # --- verdict words: the prose must match the artifact, not the other way round
+    def verdict_of(move_no, joint):
+        mv = [m for m in card["moves"] if m["move"] == move_no][0]
+        return mv["attribution"]["per_joint"][joint]["verdict"]
+
+    check_eq("move 6 right elbow verdict", verdict_of(6, "R_elbow"), "noise")
+    check_eq("move 13 left elbow verdict", verdict_of(13, "L_elbow"), "noise")
+    check_eq("same-side fault cells",
+             sorted((mv["move"], j) for mv in card["moves"]
+                    for j, v in mv["attribution"]["per_joint"].items() if v["verdict"] == "fault"),
+             [(15, "L_shoulder"), (15, "R_elbow"), (16, "L_shoulder")])
+    sr_cards = load("self_reference.json")
+    check("resolved gate, right elbow (2.5 x own scale)",
+          2.5 * sr_cards["cards"]["sameview"]["scale_deg"]["R_elbow"], 28.2, tol=0.05)
+    check("resolved gate, left elbow (2.5 x own scale)",
+          2.5 * sr_cards["cards"]["sameview"]["scale_deg"]["L_elbow"], 27.4, tol=0.05)
+
     # --- learned gate: the refusal, from its own artifact ---------------------
     lg = load("learned_gate.json")
     check("learned gate AUC (best arm, full feature set)", lg["auc"]["full"], 0.7066, tol=0.001)

@@ -7,7 +7,7 @@ It turns two camera views of the same form into numbered movement cards, each wi
 plain-language sentence a coach can read out loud — and it separates *this is your style*
 from *this is a mistake*, because those two things look identical to a naive angle threshold.
 
-[![Move 6, arae makki: right elbow 21.5° more bent than the reference — a candidate fault](media/frame_move6_elbow_fault.png)](media/demo_sameview.mp4)
+[![Move 6, arae makki: right elbow 21.5° more bent than the reference — past the floor, inside the athlete's own spread](media/frame_move6_elbow.png)](media/demo_sameview.mp4)
 
 ▶ [**demo_sameview.mp4**](media/demo_sameview.mp4) — 25.6 s, 768 frames, 6.0 MB. Click the still
 to play it on GitHub. Every number burned into that overlay is read from the same JSON the
@@ -71,15 +71,34 @@ The effective threshold is therefore reported, never hidden —
 `max(tolerance, 2.5 × floor)`: **21.0° for the right elbow**, 18.1° left, 10.0° knee/hip,
 12.0° shoulder, 5.0° torso.
 
-## What it found in the sample form (Taegeuk 1, same-view)
+## What it found in the sample form (Taegeuk 1, same-side reference)
 
-| move | t | technique | measurement flag | own offset | residual | gate | verdict |
-|---|---:|---|---:|---:|---:|---:|---|
-| 6 | 6.2 s | arae makki (low block) | right elbow **21.5°** | 0.4° | **21.1°** | 21.0° | candidate fault — clears by 0.1° |
-| 13 | 14.97 s | eolgul makki (high block) | left elbow **22.1°** | 0.1° | **22.0°** | 18.1° | candidate fault |
+The floor — `max(tolerance, 2.5 × measured floor)` — said "fault" twice. The **gate** said no: both
+cells are elbows, and this athlete's own elbow varies by ≈11° on them, so the gate is 28°, not 21°.
 
-The 0.1° margin on move 6 is stated, not smoothed: at that size the finding is real but fragile,
-and a coach should read it as "check this one", not "this is wrong".
+| move | t | technique | cell | measured | own offset | residual | floor | gate | z | verdict |
+|---|---:|---|---|---:|---:|---:|---:|---:|---:|---|
+| 6 | 6.20 s | arae makki (low block) | right elbow | 21.5° | 0.4° | 21.1° | 21.0° | **28.2°** | 1.9 | noise |
+| 13 | 14.97 s | eolgul makki (high block) | left elbow | 22.1° | 0.1° | 22.0° | 18.1° | **27.4°** | 2.0 | noise |
+
+What survives all four conditions — tolerance, this athlete's offset, `2.5 × their own scale`, **and**
+the per-move estimator band:
+
+| move | t | cell | measured | residual | gate | z | band | verdict |
+|---|---:|---|---:|---:|---:|---:|---:|---|
+| 15 | 20.37 s | right elbow | −32.4° | −32.8° | 28.2° | −2.9 | 24.1° | **fault** |
+| 15 | 20.37 s | left shoulder | −12.8° | −12.1° | 8.1° | −3.7 | 0.7° | **fault** |
+| 16 | 21.67 s | left shoulder | −13.6° | −12.9° | 8.1° | −4.0 | 1.9° | **fault** |
+
+Three cells, two moves, all in the last third of the form. Move 6 is the instructive near-miss: it
+clears the 21.0° floor by **0.1°** and still loses, because the gate on that cell is 28.2° and the
+residual is 1.9 of this athlete's own standard deviations. The floor is a lower bound on the gate,
+never the gate — print one as the other and the video disagrees with its own card, which is exactly
+what the renderer used to do (`tol 18 / gate 21`, now `tol 18 / floor 21 / gate 28`).
+
+The rejections are as informative as the acceptances: move 16's left elbow has a −74° residual and is
+still **noise**, because the pose estimators disagree by 79° on that frame — the measurement is worse
+than the deviation. That is why the band is one of the four conditions rather than a footnote.
 
 The opposite-camera pair shows why the split matters. Comparing the same take against a
 reference filmed from the other side of the room gives a mean deviation of 12.5° and flags every
@@ -93,7 +112,7 @@ that camera geometry**, and the card labels them that way instead of blaming the
 ## Certified behaviour, not claimed behaviour
 
 Every row below is re-derived from committed artifacts by `python3 scripts/verify_claims.py`
-(76/76 checks; no dataset, no models, no network).
+(81/81 checks; no dataset, no models, no network).
 
 | arm | old gate (raw `|delta| > tol`) | self-referenced layer |
 |---|---:|---|
@@ -142,7 +161,7 @@ Two levels, and the cheap one is the one that matters for trust.
 ```bash
 git clone https://github.com/ahmadalzaro1/poomsae-coach && cd poomsae-coach
 python3 scripts/verify_claims.py --show
-# -> 76/76 README claims re-derived from committed artifacts
+# -> 81/81 README claims re-derived from committed artifacts
 ```
 
 **2. Re-run the whole pipeline (dataset + pose models):**

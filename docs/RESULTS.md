@@ -39,12 +39,21 @@ in moves 15–16 where that disagreement reaches 74°.
 | within noise | 168 | 124 |
 | `flags_unchanged` | **true** | **true** |
 
-Headline faults, same-side:
+What the floor flags, and what survives the gate (`out/card_sameview.json`, `out/self_reference.json`):
 
-| move | t | technique | cell | delta | own offset | residual | gate | margin |
-|---|---:|---|---|---:|---:|---:|---:|---:|
-| 6 | 6.2 s | arae makki | R elbow | 21.5° | 0.4° | 21.1° | 21.0° | **+0.1°** |
-| 13 | 14.97 s | eolgul makki | L elbow | 22.1° | 0.1° | 22.0° | 18.1° | +3.9° |
+| move | t | technique | cell | delta | own offset | residual | floor | gate (2.5×scale) | z | verdict |
+|---|---:|---|---|---:|---:|---:|---:|---:|---:|---|
+| 6 | 6.20 s | arae makki | R elbow | 21.5° | 0.4° | 21.1° | 21.0° | 28.2° | 1.9 | noise |
+| 13 | 14.97 s | eolgul makki | L elbow | 22.1° | 0.1° | 22.0° | 18.1° | 27.4° | 2.0 | noise |
+| 15 | 20.37 s | ap chagi + jireugi | R elbow | −32.4° | 0.4° | **−32.8°** | 21.0° | 28.2° | −2.9 | fault |
+| 15 | 20.37 s | ap chagi + jireugi | L shoulder | −12.8° | −0.7° | **−12.1°** | 12.0° | 8.1° | −3.7 | fault |
+| 16 | 21.67 s | momtong an makki | L shoulder | −13.6° | −0.7° | **−12.9°** | 12.0° | 8.1° | −4.0 | fault |
+
+`floor` is `max(tolerance, k·floor_deg)` — a **lower bound** on the gate. The gate on a cell is
+`k · scale_deg`, where `scale_deg` is that athlete's own robust spread on the same cell (1.4826·MAD),
+so the enforced threshold is per-athlete, not per-joint. Two of the five rows above fail on exactly
+that distinction. Band-blindness still dominates the tail: a −74.0° residual on move 16 is classified
+`noise` because the estimator band on that cell is 78.9°.
 
 ## C. Noise floors
 
