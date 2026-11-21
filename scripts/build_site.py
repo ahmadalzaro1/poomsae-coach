@@ -40,6 +40,17 @@ def main() -> int:
     jev = load("jev_gate.json")
     lg = load("learned_gate.json")
 
+    # Evidence of the packaged tree actually running, parsed rather than asserted.
+    log_path = os.path.join(OUT, "run_all.log")
+    if not os.path.exists(log_path):
+        sys.exit("build_site: missing out/run_all.log - the reproduction claim needs its artifact")
+    log = open(log_path, encoding="utf-8", errors="replace").read()
+    steps_done = log.count("=== ")
+    steps_ok = log.rstrip().endswith("all steps ok - 0 failures")
+    manifest = [ln for ln in open(os.path.join(OUT, "manifest.sha256"))
+                if ln.strip() and not ln.startswith("#")]
+    n_artifacts = len(manifest)
+
     sb, cb = sr["cards"]["sameview"], sr["cards"]["crossview"]
     bench = sr["benchmark"]
     gate, tol = sb["effective_threshold_deg"], sb["tolerance_deg"]
@@ -274,6 +285,13 @@ footer a{{color:var(--acc);text-decoration:none}}
     <li><code>python3 scripts/build_site.py</code> — regenerates this page from the same artifacts, so
       the page cannot drift from them.</li>
     <li><code>python3 scripts/check_links.py</code> — fails if any local link or image is missing.</li>
+    <li><code>python3 scripts/check_reproducible.py</code> — compares a re-run against
+      <code>out/manifest.sha256</code> with an explicit list of run-timing fields ignored.
+      The packaged tree was run end to end: <b>{steps_done} steps
+      {'completed with 0 failures' if steps_ok else 'FAILED'}</b>, and
+      <b>{n_artifacts}/{n_artifacts} artifacts match</b> once
+      <code>extraction_ms_per_frame</code>, <code>generated_at</code> and <code>runtime_s</code> are
+      set aside. Log: <code>out/run_all.log</code>.</li>
   </ul>
 </section>
 
