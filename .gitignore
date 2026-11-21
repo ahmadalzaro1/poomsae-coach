@@ -29,4 +29,5 @@ out/elbow_signal/
 # Local scratch
 tmp/
 *.log
+!out/run_all.log
 .pytest_cache/
