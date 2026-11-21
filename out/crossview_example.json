@@ -1,0 +1,712 @@
+{
+ "ref": "Taegeuk_1st/Frontal",
+ "stu": "Taegeuk_1st/Lateral",
+ "cross_side": true,
+ "comparison": "opposite-side (camera geometry dominates)",
+ "frames": [
+  768,
+  768
+ ],
+ "dtw_cost_per_frame": 2.6842,
+ "path_len": 804,
+ "n_moves": 19,
+ "mean_abs_delta": 11.2,
+ "flagged_moves": 19,
+ "moves": [
+  {
+   "move": 1,
+   "t": 0.0,
+   "mean_abs_delta": 6.8,
+   "max_abs_delta": 19.5,
+   "max_exceedance": 1.62,
+   "flags": [
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": -19.5,
+     "tol": 12.0,
+     "msg": "19\u00b0 straighter than reference"
+    },
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": -13.2,
+     "tol": 12.0,
+     "msg": "13\u00b0 straighter than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": 13.1,
+    "R_elbow": 1.5,
+    "L_knee": -0.3,
+    "R_knee": -5.8,
+    "L_hip": 0.8,
+    "R_hip": 4.6,
+    "L_shoulder": -19.5,
+    "R_shoulder": -13.2,
+    "torso_tilt": -2.2
+   }
+  },
+  {
+   "move": 2,
+   "t": 0.33,
+   "mean_abs_delta": 6.6,
+   "max_abs_delta": 19.8,
+   "max_exceedance": 1.65,
+   "flags": [
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": -19.8,
+     "tol": 12.0,
+     "msg": "20\u00b0 straighter than reference"
+    },
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": -17.6,
+     "tol": 12.0,
+     "msg": "18\u00b0 straighter than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": 11.2,
+    "R_elbow": -0.4,
+    "L_knee": 0.5,
+    "R_knee": -1.8,
+    "L_hip": 2.6,
+    "R_hip": 4.7,
+    "L_shoulder": -17.6,
+    "R_shoulder": -19.8,
+    "torso_tilt": 0.9
+   }
+  },
+  {
+   "move": 3,
+   "t": 1.67,
+   "mean_abs_delta": 15.7,
+   "max_abs_delta": 39.8,
+   "max_exceedance": 3.31,
+   "flags": [
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": -39.8,
+     "tol": 12.0,
+     "msg": "40\u00b0 straighter than reference"
+    },
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": -26.2,
+     "tol": 12.0,
+     "msg": "26\u00b0 straighter than reference"
+    },
+    {
+     "joint": "right elbow",
+     "key": "R_elbow",
+     "delta": 27.6,
+     "tol": 18.0,
+     "msg": "28\u00b0 more bent than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": -9.4,
+    "R_elbow": 27.6,
+    "L_knee": 5.9,
+    "R_knee": 13.8,
+    "L_hip": 4.8,
+    "R_hip": 13.8,
+    "L_shoulder": -26.2,
+    "R_shoulder": -39.8,
+    "torso_tilt": 0.4
+   }
+  },
+  {
+   "move": 4,
+   "t": 2.67,
+   "mean_abs_delta": 9.6,
+   "max_abs_delta": 25.8,
+   "max_exceedance": 2.15,
+   "flags": [
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": -25.8,
+     "tol": 12.0,
+     "msg": "26\u00b0 straighter than reference"
+    },
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": -19.6,
+     "tol": 12.0,
+     "msg": "20\u00b0 straighter than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": 9.9,
+    "R_elbow": -6.0,
+    "L_knee": 5.8,
+    "R_knee": 3.9,
+    "L_hip": 6.4,
+    "R_hip": 8.9,
+    "L_shoulder": -25.8,
+    "R_shoulder": -19.6,
+    "torso_tilt": 0.4
+   }
+  },
+  {
+   "move": 5,
+   "t": 4.9,
+   "mean_abs_delta": 7.9,
+   "max_abs_delta": 25.4,
+   "max_exceedance": 1.44,
+   "flags": [
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": -17.2,
+     "tol": 12.0,
+     "msg": "17\u00b0 straighter than reference"
+    },
+    {
+     "joint": "left elbow",
+     "key": "L_elbow",
+     "delta": -25.4,
+     "tol": 18.0,
+     "msg": "25\u00b0 straighter than reference"
+    },
+    {
+     "joint": "left knee",
+     "key": "L_knee",
+     "delta": -11.2,
+     "tol": 10.0,
+     "msg": "11\u00b0 straighter than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": -25.4,
+    "R_elbow": 4.4,
+    "L_knee": -11.2,
+    "R_knee": 2.8,
+    "L_hip": -5.6,
+    "R_hip": 1.5,
+    "L_shoulder": -17.2,
+    "R_shoulder": -2.1,
+    "torso_tilt": -0.9
+   }
+  },
+  {
+   "move": 6,
+   "t": 6.2,
+   "mean_abs_delta": 23.6,
+   "max_abs_delta": 43.5,
+   "max_exceedance": 4.35,
+   "flags": [
+    {
+     "joint": "left knee",
+     "key": "L_knee",
+     "delta": -43.5,
+     "tol": 10.0,
+     "msg": "44\u00b0 straighter than reference"
+    },
+    {
+     "joint": "left hip",
+     "key": "L_hip",
+     "delta": -38.3,
+     "tol": 10.0,
+     "msg": "38\u00b0 straighter than reference"
+    },
+    {
+     "joint": "right hip",
+     "key": "R_hip",
+     "delta": -25.9,
+     "tol": 10.0,
+     "msg": "26\u00b0 straighter than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": -37.4,
+    "R_elbow": -7.7,
+    "L_knee": -43.5,
+    "R_knee": -4.8,
+    "L_hip": -38.3,
+    "R_hip": -25.9,
+    "L_shoulder": 26.2,
+    "R_shoulder": 27.6,
+    "torso_tilt": -1.4
+   }
+  },
+  {
+   "move": 7,
+   "t": 6.9,
+   "mean_abs_delta": 12.6,
+   "max_abs_delta": 48.1,
+   "max_exceedance": 2.67,
+   "flags": [
+    {
+     "joint": "left elbow",
+     "key": "L_elbow",
+     "delta": -48.1,
+     "tol": 18.0,
+     "msg": "48\u00b0 straighter than reference"
+    },
+    {
+     "joint": "left knee",
+     "key": "L_knee",
+     "delta": -23.7,
+     "tol": 10.0,
+     "msg": "24\u00b0 straighter than reference"
+    },
+    {
+     "joint": "left hip",
+     "key": "L_hip",
+     "delta": -18.0,
+     "tol": 10.0,
+     "msg": "18\u00b0 straighter than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": -48.1,
+    "R_elbow": -3.6,
+    "L_knee": -23.7,
+    "R_knee": 6.6,
+    "L_hip": -18.0,
+    "R_hip": 0.1,
+    "L_shoulder": -3.5,
+    "R_shoulder": -10.1,
+    "torso_tilt": -0.1
+   }
+  },
+  {
+   "move": 8,
+   "t": 8.13,
+   "mean_abs_delta": 17.3,
+   "max_abs_delta": 36.7,
+   "max_exceedance": 3.06,
+   "flags": [
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": -36.7,
+     "tol": 12.0,
+     "msg": "37\u00b0 straighter than reference"
+    },
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": -34.5,
+     "tol": 12.0,
+     "msg": "34\u00b0 straighter than reference"
+    },
+    {
+     "joint": "left elbow",
+     "key": "L_elbow",
+     "delta": -34.8,
+     "tol": 18.0,
+     "msg": "35\u00b0 straighter than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": -34.8,
+    "R_elbow": 13.8,
+    "L_knee": 14.3,
+    "R_knee": 6.8,
+    "L_hip": 8.4,
+    "R_hip": 5.5,
+    "L_shoulder": -36.7,
+    "R_shoulder": -34.5,
+    "torso_tilt": 0.8
+   }
+  },
+  {
+   "move": 9,
+   "t": 9.3,
+   "mean_abs_delta": 15.8,
+   "max_abs_delta": 48.6,
+   "max_exceedance": 3.63,
+   "flags": [
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": -43.6,
+     "tol": 12.0,
+     "msg": "44\u00b0 straighter than reference"
+    },
+    {
+     "joint": "right elbow",
+     "key": "R_elbow",
+     "delta": -48.6,
+     "tol": 18.0,
+     "msg": "49\u00b0 straighter than reference"
+    },
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": -24.8,
+     "tol": 12.0,
+     "msg": "25\u00b0 straighter than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": -5.3,
+    "R_elbow": -48.6,
+    "L_knee": 3.1,
+    "R_knee": 2.2,
+    "L_hip": 4.5,
+    "R_hip": 7.0,
+    "L_shoulder": -24.8,
+    "R_shoulder": -43.6,
+    "torso_tilt": 3.0
+   }
+  },
+  {
+   "move": 10,
+   "t": 10.67,
+   "mean_abs_delta": 12.6,
+   "max_abs_delta": 37.4,
+   "max_exceedance": 3.12,
+   "flags": [
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": -37.4,
+     "tol": 12.0,
+     "msg": "37\u00b0 straighter than reference"
+    },
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": -36.5,
+     "tol": 12.0,
+     "msg": "37\u00b0 straighter than reference"
+    },
+    {
+     "joint": "right knee",
+     "key": "R_knee",
+     "delta": 11.8,
+     "tol": 10.0,
+     "msg": "12\u00b0 more bent than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": -0.0,
+    "R_elbow": 4.8,
+    "L_knee": 3.9,
+    "R_knee": 11.8,
+    "L_hip": 6.5,
+    "R_hip": 9.5,
+    "L_shoulder": -36.5,
+    "R_shoulder": -37.4,
+    "torso_tilt": 3.1
+   }
+  },
+  {
+   "move": 11,
+   "t": 11.93,
+   "mean_abs_delta": 7.0,
+   "max_abs_delta": 24.0,
+   "max_exceedance": 1.57,
+   "flags": [
+    {
+     "joint": "right knee",
+     "key": "R_knee",
+     "delta": -15.7,
+     "tol": 10.0,
+     "msg": "16\u00b0 straighter than reference"
+    },
+    {
+     "joint": "left elbow",
+     "key": "L_elbow",
+     "delta": -24.0,
+     "tol": 18.0,
+     "msg": "24\u00b0 straighter than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": -24.0,
+    "R_elbow": 7.1,
+    "L_knee": 4.3,
+    "R_knee": -15.7,
+    "L_hip": -0.8,
+    "R_hip": -8.8,
+    "L_shoulder": 1.4,
+    "R_shoulder": 0.8,
+    "torso_tilt": -0.3
+   }
+  },
+  {
+   "move": 12,
+   "t": 13.9,
+   "mean_abs_delta": 8.7,
+   "max_abs_delta": 21.1,
+   "max_exceedance": 1.77,
+   "flags": [
+    {
+     "joint": "right knee",
+     "key": "R_knee",
+     "delta": -17.7,
+     "tol": 10.0,
+     "msg": "18\u00b0 straighter than reference"
+    },
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": 21.1,
+     "tol": 12.0,
+     "msg": "21\u00b0 more bent than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": 13.9,
+    "R_elbow": -0.9,
+    "L_knee": 1.7,
+    "R_knee": -17.7,
+    "L_hip": 8.0,
+    "R_hip": -7.5,
+    "L_shoulder": 21.1,
+    "R_shoulder": 4.4,
+    "torso_tilt": 2.8
+   }
+  },
+  {
+   "move": 13,
+   "t": 14.97,
+   "mean_abs_delta": 7.5,
+   "max_abs_delta": 23.8,
+   "max_exceedance": 1.32,
+   "flags": [
+    {
+     "joint": "left elbow",
+     "key": "L_elbow",
+     "delta": -23.8,
+     "tol": 18.0,
+     "msg": "24\u00b0 straighter than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": -23.8,
+    "R_elbow": 3.5,
+    "L_knee": 4.2,
+    "R_knee": 5.3,
+    "L_hip": -3.6,
+    "R_hip": 0.8,
+    "L_shoulder": 12.0,
+    "R_shoulder": -11.5,
+    "torso_tilt": 3.0
+   }
+  },
+  {
+   "move": 14,
+   "t": 17.13,
+   "mean_abs_delta": 7.2,
+   "max_abs_delta": 13.7,
+   "max_exceedance": 1.36,
+   "flags": [
+    {
+     "joint": "left hip",
+     "key": "L_hip",
+     "delta": -13.6,
+     "tol": 10.0,
+     "msg": "14\u00b0 straighter than reference"
+    },
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": -13.7,
+     "tol": 12.0,
+     "msg": "14\u00b0 straighter than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": -6.7,
+    "R_elbow": -12.9,
+    "L_knee": 0.2,
+    "R_knee": 4.4,
+    "L_hip": -13.6,
+    "R_hip": 6.8,
+    "L_shoulder": -13.7,
+    "R_shoulder": 6.1,
+    "torso_tilt": 0.6
+   }
+  },
+  {
+   "move": 15,
+   "t": 20.37,
+   "mean_abs_delta": 11.2,
+   "max_abs_delta": 49.9,
+   "max_exceedance": 2.77,
+   "flags": [
+    {
+     "joint": "left elbow",
+     "key": "L_elbow",
+     "delta": -49.9,
+     "tol": 18.0,
+     "msg": "50\u00b0 straighter than reference"
+    },
+    {
+     "joint": "right elbow",
+     "key": "R_elbow",
+     "delta": 22.6,
+     "tol": 18.0,
+     "msg": "23\u00b0 more bent than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": -49.9,
+    "R_elbow": 22.6,
+    "L_knee": -8.0,
+    "R_knee": -4.9,
+    "L_hip": 2.7,
+    "R_hip": 0.5,
+    "L_shoulder": -2.5,
+    "R_shoulder": -8.4,
+    "torso_tilt": -0.9
+   }
+  },
+  {
+   "move": 16,
+   "t": 21.67,
+   "mean_abs_delta": 19.2,
+   "max_abs_delta": 49.6,
+   "max_exceedance": 4.13,
+   "flags": [
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": 49.6,
+     "tol": 12.0,
+     "msg": "50\u00b0 more bent than reference"
+    },
+    {
+     "joint": "right knee",
+     "key": "R_knee",
+     "delta": -23.4,
+     "tol": 10.0,
+     "msg": "23\u00b0 straighter than reference"
+    },
+    {
+     "joint": "right hip",
+     "key": "R_hip",
+     "delta": -20.6,
+     "tol": 10.0,
+     "msg": "21\u00b0 straighter than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": -13.9,
+    "R_elbow": 13.4,
+    "L_knee": -11.1,
+    "R_knee": -23.4,
+    "L_hip": -17.6,
+    "R_hip": -20.6,
+    "L_shoulder": 23.5,
+    "R_shoulder": 49.6,
+    "torso_tilt": 0.2
+   }
+  },
+  {
+   "move": 17,
+   "t": 22.83,
+   "mean_abs_delta": 11.4,
+   "max_abs_delta": 22.3,
+   "max_exceedance": 1.86,
+   "flags": [
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": 22.3,
+     "tol": 12.0,
+     "msg": "22\u00b0 more bent than reference"
+    },
+    {
+     "joint": "right knee",
+     "key": "R_knee",
+     "delta": -15.9,
+     "tol": 10.0,
+     "msg": "16\u00b0 straighter than reference"
+    },
+    {
+     "joint": "left elbow",
+     "key": "L_elbow",
+     "delta": -22.3,
+     "tol": 18.0,
+     "msg": "22\u00b0 straighter than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": -22.3,
+    "R_elbow": 8.3,
+    "L_knee": 1.8,
+    "R_knee": -15.9,
+    "L_hip": -8.1,
+    "R_hip": -11.1,
+    "L_shoulder": 10.1,
+    "R_shoulder": 22.3,
+    "torso_tilt": 3.1
+   }
+  },
+  {
+   "move": 18,
+   "t": 24.87,
+   "mean_abs_delta": 5.2,
+   "max_abs_delta": 14.0,
+   "max_exceedance": 1.17,
+   "flags": [
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": -14.0,
+     "tol": 12.0,
+     "msg": "14\u00b0 straighter than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": 2.7,
+    "R_elbow": 2.2,
+    "L_knee": 0.6,
+    "R_knee": -5.3,
+    "L_hip": 6.1,
+    "R_hip": 4.0,
+    "L_shoulder": -10.9,
+    "R_shoulder": -14.0,
+    "torso_tilt": -1.1
+   }
+  },
+  {
+   "move": 19,
+   "t": 25.5,
+   "mean_abs_delta": 7.4,
+   "max_abs_delta": 21.5,
+   "max_exceedance": 1.2,
+   "flags": [
+    {
+     "joint": "right elbow",
+     "key": "R_elbow",
+     "delta": -21.5,
+     "tol": 18.0,
+     "msg": "22\u00b0 straighter than reference"
+    },
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": -12.1,
+     "tol": 12.0,
+     "msg": "12\u00b0 straighter than reference"
+    }
+   ],
+   "deltas": {
+    "L_elbow": 16.6,
+    "R_elbow": -21.5,
+    "L_knee": 0.2,
+    "R_knee": 0.5,
+    "L_hip": 6.8,
+    "R_hip": 1.4,
+    "L_shoulder": -12.1,
+    "R_shoulder": -7.6,
+    "torso_tilt": -0.1
+   }
+  }
+ ]
+}

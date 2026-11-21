@@ -1,0 +1,178 @@
+{
+ "generated_at": "2026-11-21T16:54:47",
+ "dataset": "Taekwondo Poomsae Taegeuk 1-8, dual-view, CC-BY 10.17632/bjy7vr4xkt.1",
+ "forms": [
+  {
+   "form": "Taegeuk_1st",
+   "frames": [
+    768,
+    768
+   ],
+   "moves_detected": [
+    19,
+    16
+   ],
+   "control_mean_abs_delta": 0.0,
+   "control_flags": 0,
+   "crossview_mean_abs_delta": 11.2,
+   "crossview_max_abs_delta": 49.9,
+   "crossview_dtw": 2.6842,
+   "crossview_flags_perjoint_tol": 19,
+   "crossview_flags_uniform15": 17,
+   "crossview_n_moves": 19
+  },
+  {
+   "form": "Taegeuk_2nd",
+   "frames": [
+    884,
+    884
+   ],
+   "moves_detected": [
+    20,
+    21
+   ],
+   "control_mean_abs_delta": 0.0,
+   "control_flags": 0,
+   "crossview_mean_abs_delta": 9.1,
+   "crossview_max_abs_delta": 46.7,
+   "crossview_dtw": 2.1668,
+   "crossview_flags_perjoint_tol": 17,
+   "crossview_flags_uniform15": 14,
+   "crossview_n_moves": 20
+  },
+  {
+   "form": "Taegeuk_3rd",
+   "frames": [
+    1064,
+    1064
+   ],
+   "moves_detected": [
+    22,
+    20
+   ],
+   "control_mean_abs_delta": 0.0,
+   "control_flags": 0,
+   "crossview_mean_abs_delta": 8.5,
+   "crossview_max_abs_delta": 42.7,
+   "crossview_dtw": 2.1514,
+   "crossview_flags_perjoint_tol": 19,
+   "crossview_flags_uniform15": 16,
+   "crossview_n_moves": 22
+  },
+  {
+   "form": "Taegeuk_4th",
+   "frames": [
+    1034,
+    1038
+   ],
+   "moves_detected": [
+    17,
+    16
+   ],
+   "control_mean_abs_delta": 0.0,
+   "control_flags": 0,
+   "crossview_mean_abs_delta": 8.1,
+   "crossview_max_abs_delta": 66.0,
+   "crossview_dtw": 1.9136,
+   "crossview_flags_perjoint_tol": 17,
+   "crossview_flags_uniform15": 14,
+   "crossview_n_moves": 17
+  },
+  {
+   "form": "Taegeuk_5th",
+   "frames": [
+    1053,
+    1013
+   ],
+   "moves_detected": [
+    19,
+    17
+   ],
+   "control_mean_abs_delta": 0.0,
+   "control_flags": 0,
+   "crossview_mean_abs_delta": 13.3,
+   "crossview_max_abs_delta": 117.8,
+   "crossview_dtw": 2.0837,
+   "crossview_flags_perjoint_tol": 19,
+   "crossview_flags_uniform15": 17,
+   "crossview_n_moves": 19
+  },
+  {
+   "form": "Taegeuk_6th",
+   "frames": [
+    1194,
+    1196
+   ],
+   "moves_detected": [
+    16,
+    16
+   ],
+   "control_mean_abs_delta": 0.0,
+   "control_flags": 0,
+   "crossview_mean_abs_delta": 7.2,
+   "crossview_max_abs_delta": 36.2,
+   "crossview_dtw": 2.1145,
+   "crossview_flags_perjoint_tol": 10,
+   "crossview_flags_uniform15": 9,
+   "crossview_n_moves": 16
+  },
+  {
+   "form": "Taegeuk_7th",
+   "frames": [
+    1203,
+    1206
+   ],
+   "moves_detected": [
+    23,
+    22
+   ],
+   "control_mean_abs_delta": 0.0,
+   "control_flags": 0,
+   "crossview_mean_abs_delta": 10.9,
+   "crossview_max_abs_delta": 60.5,
+   "crossview_dtw": 2.4514,
+   "crossview_flags_perjoint_tol": 19,
+   "crossview_flags_uniform15": 18,
+   "crossview_n_moves": 23
+  },
+  {
+   "form": "Taegeuk_8th",
+   "frames": [
+    1464,
+    1466
+   ],
+   "moves_detected": [
+    20,
+    23
+   ],
+   "control_mean_abs_delta": 0.0,
+   "control_flags": 0,
+   "crossview_mean_abs_delta": 13.1,
+   "crossview_max_abs_delta": 89.6,
+   "crossview_dtw": 2.6262,
+   "crossview_flags_perjoint_tol": 18,
+   "crossview_flags_uniform15": 14,
+   "crossview_n_moves": 20
+  }
+ ],
+ "aggregate": {
+  "mean_control_delta_deg": 0.0,
+  "mean_crossview_delta_deg": 10.18,
+  "control_flags_total": 0,
+  "crossview_flags_uniform15_total": 119,
+  "crossview_flags_perjoint_tol_total": 138,
+  "moves_total": 156,
+  "runtime_s": 27.0
+ },
+ "per_feature_crossview_delta_deg": {
+  "L_elbow": 15.2,
+  "R_elbow": 17.1,
+  "L_knee": 8.2,
+  "R_knee": 9.5,
+  "L_hip": 8.1,
+  "R_hip": 7.3,
+  "L_shoulder": 11.9,
+  "R_shoulder": 12.5,
+  "torso_tilt": 1.9
+ }
+}

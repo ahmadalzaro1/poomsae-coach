@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this code or its measured thresholds, cite the repository and the dataset it validates on."
+title: "Poomsae Coach: a self-referenced joint-angle form checker for Taekwondo poomsae"
+type: software
+license: MIT
+repository-code: "https://github.com/ahmadalzaro1/poomsae-coach"
+abstract: >-
+  A poomsae form checker that separates measurement tolerance from fault attribution: each
+  athlete is compared against their own median joint deviation, so a systematic style or camera
+  bias is reported as style rather than as a mistake. Includes a four-arm certification of the
+  resulting gate, the published detector floor, and machine-checked claims.
+keywords:
+  - taekwondo
+  - poomsae
+  - pose estimation
+  - DTW
+  - measurement uncertainty
+  - sports analytics
+authors:
+  - family-names: Alzaro
+    given-names: Ahmad
+references:
+  - type: dataset
+    title: "Taekwondo Poomsae (8 Forms) - Front & Side Videos with 12-Keypoint Pose Annotations (MediaPipe)"
+    authors:
+      - family-names: Zheng
+        given-names: QingWei
+    year: 2025
+    doi: 10.17632/bjy7vr4xkt.1
+    license: CC-BY-4.0
+  - type: article
+    title: "An Evaluation Method of Taekwondo Poomsae Performance"
+    year: 2023
+    notes: "Hoang & Ahn, JICCE 21(12)"

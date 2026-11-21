@@ -1,0 +1,28 @@
+name: claims
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Every number in the README, re-derived from committed JSON
+        run: python scripts/verify_claims.py --show
+      - name: No unlicensed corpora or model weights committed
+        run: |
+          set -e
+          if git ls-files | grep -Ei '\.npy$|NEW_MP_Data|\.task$'; then
+            echo "::error::dataset tensors or model weights are tracked in this repo"
+            exit 1
+          fi
+          test "$(git ls-files | grep -c '^media/.*\.mp4$')" -eq 2
+          echo "only the two attributed demo clips are tracked"

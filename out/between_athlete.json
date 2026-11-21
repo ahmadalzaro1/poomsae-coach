@@ -1,0 +1,270 @@
+{
+ "root": "<NEW_MP_Data>",
+ "generated": "2026-11-21",
+ "definition": "peak-frame joint angle per athlete, active limb, 2D xy",
+ "classes": {
+  "c1": {
+   "n_athletes": 94,
+   "elbow_peak": {
+    "n": 94,
+    "mean": 172.0,
+    "sd": 5.6,
+    "p5": 162.4,
+    "p95": 179.7,
+    "range": 23.8
+   },
+   "knee_peak": {
+    "n": 94,
+    "mean": 174.2,
+    "sd": 3.5,
+    "p5": 168.3,
+    "p95": 179.3,
+    "range": 15.9
+   },
+   "active_side_L": 94,
+   "active_side_R": 0
+  },
+  "c2": {
+   "n_athletes": 94,
+   "elbow_peak": {
+    "n": 94,
+    "mean": 172.1,
+    "sd": 5.1,
+    "p5": 163.3,
+    "p95": 179.1,
+    "range": 23.1
+   },
+   "knee_peak": {
+    "n": 94,
+    "mean": 176.0,
+    "sd": 3.6,
+    "p5": 170.9,
+    "p95": 179.7,
+    "range": 22.5
+   },
+   "active_side_L": 34,
+   "active_side_R": 60
+  },
+  "c3": {
+   "n_athletes": 94,
+   "elbow_peak": {
+    "n": 94,
+    "mean": 172.3,
+    "sd": 4.9,
+    "p5": 164.0,
+    "p95": 179.1,
+    "range": 19.6
+   },
+   "knee_peak": {
+    "n": 94,
+    "mean": 174.7,
+    "sd": 4.9,
+    "p5": 165.9,
+    "p95": 179.6,
+    "range": 26.8
+   },
+   "active_side_L": 10,
+   "active_side_R": 84
+  },
+  "c4": {
+   "n_athletes": 94,
+   "elbow_peak": {
+    "n": 94,
+    "mean": 170.4,
+    "sd": 5.3,
+    "p5": 160.9,
+    "p95": 178.2,
+    "range": 27.2
+   },
+   "knee_peak": {
+    "n": 94,
+    "mean": 176.8,
+    "sd": 3.5,
+    "p5": 171.5,
+    "p95": 179.8,
+    "range": 24.1
+   },
+   "active_side_L": 61,
+   "active_side_R": 33
+  },
+  "i1": {
+   "n_athletes": 94,
+   "elbow_peak": {
+    "n": 94,
+    "mean": 175.5,
+    "sd": 3.5,
+    "p5": 169.0,
+    "p95": 179.7,
+    "range": 16.4
+   },
+   "knee_peak": {
+    "n": 94,
+    "mean": 175.9,
+    "sd": 3.2,
+    "p5": 169.9,
+    "p95": 179.7,
+    "range": 11.9
+   },
+   "active_side_L": 89,
+   "active_side_R": 5
+  },
+  "i2": {
+   "n_athletes": 94,
+   "elbow_peak": {
+    "n": 94,
+    "mean": 172.4,
+    "sd": 6.1,
+    "p5": 162.8,
+    "p95": 179.8,
+    "range": 40.1
+   },
+   "knee_peak": {
+    "n": 94,
+    "mean": 176.4,
+    "sd": 3.2,
+    "p5": 169.0,
+    "p95": 179.7,
+    "range": 14.5
+   },
+   "active_side_L": 13,
+   "active_side_R": 81
+  },
+  "i3": {
+   "n_athletes": 94,
+   "elbow_peak": {
+    "n": 94,
+    "mean": 174.9,
+    "sd": 5.7,
+    "p5": 164.5,
+    "p95": 179.8,
+    "range": 34.2
+   },
+   "knee_peak": {
+    "n": 94,
+    "mean": 176.3,
+    "sd": 4.0,
+    "p5": 170.1,
+    "p95": 179.6,
+    "range": 20.8
+   },
+   "active_side_L": 22,
+   "active_side_R": 72
+  },
+  "i4": {
+   "n_athletes": 94,
+   "elbow_peak": {
+    "n": 94,
+    "mean": 173.6,
+    "sd": 6.5,
+    "p5": 158.7,
+    "p95": 179.9,
+    "range": 25.1
+   },
+   "knee_peak": {
+    "n": 94,
+    "mean": 173.0,
+    "sd": 6.2,
+    "p5": 160.7,
+    "p95": 179.2,
+    "range": 29.6
+   },
+   "active_side_L": 73,
+   "active_side_R": 21
+  }
+ },
+ "pooled": {
+  "elbow": {
+   "mean_within_class_sd": 5.4,
+   "max_within_class_sd": 6.5,
+   "classes": 8
+  },
+  "knee": {
+   "mean_within_class_sd": 4.0,
+   "max_within_class_sd": 6.2,
+   "classes": 8
+  }
+ },
+ "trajectory": {
+  "definition": "per-class joint-angle trajectory resampled to 100 phase points; sd computed across athletes at each phase point, then averaged",
+  "classes": {
+   "c1": {
+    "n_athletes": 94,
+    "elbow_traj_sd_mean": 39.9,
+    "elbow_traj_sd_max": 61.7,
+    "elbow_range_mean": 162.2,
+    "knee_traj_sd_mean": 2.3,
+    "knee_traj_sd_max": 3.7,
+    "knee_range_mean": 9.2
+   },
+   "c2": {
+    "n_athletes": 94,
+    "elbow_traj_sd_mean": 27.3,
+    "elbow_traj_sd_max": 37.3,
+    "elbow_range_mean": 91.8,
+    "knee_traj_sd_mean": 5.5,
+    "knee_traj_sd_max": 11.3,
+    "knee_range_mean": 23.8
+   },
+   "c3": {
+    "n_athletes": 94,
+    "elbow_traj_sd_mean": 31.9,
+    "elbow_traj_sd_max": 67.2,
+    "elbow_range_mean": 161.4,
+    "knee_traj_sd_mean": 3.4,
+    "knee_traj_sd_max": 5.6,
+    "knee_range_mean": 12.0
+   },
+   "c4": {
+    "n_athletes": 94,
+    "elbow_traj_sd_mean": 25.4,
+    "elbow_traj_sd_max": 35.6,
+    "elbow_range_mean": 95.3,
+    "knee_traj_sd_mean": 5.4,
+    "knee_traj_sd_max": 9.1,
+    "knee_range_mean": 21.2
+   },
+   "i1": {
+    "n_athletes": 94,
+    "elbow_traj_sd_mean": 44.3,
+    "elbow_traj_sd_max": 68.5,
+    "elbow_range_mean": 162.4,
+    "knee_traj_sd_mean": 2.8,
+    "knee_traj_sd_max": 3.7,
+    "knee_range_mean": 8.1
+   },
+   "i2": {
+    "n_athletes": 94,
+    "elbow_traj_sd_mean": 25.5,
+    "elbow_traj_sd_max": 44.5,
+    "elbow_range_mean": 99.5,
+    "knee_traj_sd_mean": 6.1,
+    "knee_traj_sd_max": 10.4,
+    "knee_range_mean": 27.0
+   },
+   "i3": {
+    "n_athletes": 94,
+    "elbow_traj_sd_mean": 41.4,
+    "elbow_traj_sd_max": 57.1,
+    "elbow_range_mean": 154.9,
+    "knee_traj_sd_mean": 4.9,
+    "knee_traj_sd_max": 8.9,
+    "knee_range_mean": 17.0
+   },
+   "i4": {
+    "n_athletes": 94,
+    "elbow_traj_sd_mean": 26.2,
+    "elbow_traj_sd_max": 42.2,
+    "elbow_range_mean": 99.7,
+    "knee_traj_sd_mean": 6.8,
+    "knee_traj_sd_max": 10.4,
+    "knee_range_mean": 27.2
+   }
+  },
+  "pooled": {
+   "elbow_traj_sd_mean": 32.7,
+   "elbow_traj_sd_max": 68.5,
+   "knee_traj_sd_mean": 4.7,
+   "knee_traj_sd_max": 11.3
+  }
+ }
+}

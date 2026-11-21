@@ -1,0 +1,95 @@
+{
+ "generated": "2026-11-21",
+ "video": "1st_Frontal.mp4",
+ "frames": 768,
+ "band_note": "|delta_full - delta_heavy| on identical frames: a LOWER BOUND on measurement uncertainty, not two takes of one athlete",
+ "tolerance_source": null,
+ "cards": {
+  "sameview": {
+   "uncertainty": {
+    "band_note": "|delta_full - delta_heavy| on identical frames: a LOWER BOUND on measurement uncertainty, not two takes of one athlete",
+    "per_joint_band_p50_deg": {
+     "L_elbow": 6.4,
+     "R_elbow": 8.4,
+     "L_knee": 1.4,
+     "R_knee": 1.5,
+     "L_hip": 2.0,
+     "R_hip": 1.4,
+     "L_shoulder": 1.5,
+     "R_shoulder": 2.8,
+     "torso_tilt": 0.3
+    },
+    "per_joint_band_p95_deg": {
+     "L_elbow": 69.3,
+     "R_elbow": 43.3,
+     "L_knee": 4.9,
+     "R_knee": 7.3,
+     "L_hip": 4.5,
+     "R_hip": 3.5,
+     "L_shoulder": 6.1,
+     "R_shoulder": 14.2,
+     "torso_tilt": 1.1
+    },
+    "moves_with_band": 19,
+    "moves_total": 19,
+    "paired_moves_disagreed": 0
+   },
+   "release_policy": {
+    "available": true,
+    "findings": 9,
+    "answered": 9,
+    "counts": {
+     "show": 2,
+     "soften": 6,
+     "withhold": 1
+    },
+    "model": "jev-latest",
+    "cached_decisions": 9,
+    "determinism": "decisions are cached by state hash: the same finding always gets the same release, so re-running the pipeline cannot change a card"
+   }
+  },
+  "crossview": {
+   "uncertainty": {
+    "band_note": "|delta_full - delta_heavy| on identical frames: a LOWER BOUND on measurement uncertainty, not two takes of one athlete",
+    "per_joint_band_p50_deg": {
+     "L_elbow": 5.9,
+     "R_elbow": 8.2,
+     "L_knee": 1.6,
+     "R_knee": 1.6,
+     "L_hip": 2.0,
+     "R_hip": 1.8,
+     "L_shoulder": 1.7,
+     "R_shoulder": 1.9,
+     "torso_tilt": 0.4
+    },
+    "per_joint_band_p95_deg": {
+     "L_elbow": 50.4,
+     "R_elbow": 34.2,
+     "L_knee": 5.9,
+     "R_knee": 6.7,
+     "L_hip": 4.8,
+     "R_hip": 3.3,
+     "L_shoulder": 5.2,
+     "R_shoulder": 16.4,
+     "torso_tilt": 1.0
+    },
+    "moves_with_band": 16,
+    "moves_total": 16,
+    "paired_moves_disagreed": 0
+   },
+   "release_policy": {
+    "available": true,
+    "findings": 40,
+    "answered": 40,
+    "counts": {
+     "show": 0,
+     "soften": 0,
+     "withhold": 40
+    },
+    "model": "jev-latest",
+    "cached_decisions": 40,
+    "determinism": "decisions are cached by state hash: the same finding always gets the same release, so re-running the pipeline cannot change a card"
+   }
+  }
+ }
+}

@@ -1,0 +1,176 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  .wrap{width:660px;max-width:100%;color:var(--foreground,#111);font-size:13px}
+  .bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .case{border:1px solid var(--border,#ccc);background:transparent;color:inherit;
+        padding:4px 9px;border-radius:6px;cursor:pointer;font-size:11.5px;font-family:inherit}
+  .case.on{border-color:var(--accent,#4a7);color:var(--accent,#4a7);font-weight:600}
+  .stats{color:var(--muted-foreground,#777);font-size:11.5px;margin-left:auto;
+         font-variant-numeric:tabular-nums}
+  .stage{display:flex;gap:10px;align-items:flex-start}
+  .pane{border:1px solid var(--border,#ccc);border-radius:8px;padding:5px;background:transparent}
+  .pane h4{margin:0 0 3px 2px;font-size:10px;font-weight:600;color:var(--muted-foreground,#777);
+           letter-spacing:.05em;text-transform:uppercase}
+  canvas{display:block;border-radius:4px;background:var(--card,rgba(127,127,127,.06))}
+  .mvgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 10px;margin-top:10px;
+          border:1px solid var(--border,#ccc);border-radius:8px;padding:2px 8px}
+  .mv{padding:3px 2px;border-bottom:1px solid var(--border,#eee);cursor:pointer;font-size:11px;
+      display:flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums}
+  .mv:nth-last-child(-n+2){border-bottom:none}
+  .mv:hover,.mv.on{background:var(--card,rgba(127,127,127,.10))}
+  .mv.on{box-shadow:inset 2px 0 0 var(--accent,#4a7)}
+  .mv .n{color:var(--muted-foreground,#777);width:18px;flex:none}
+  .mv .t{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .mv .b{height:4px;border-radius:2px;background:var(--border,#ddd);width:44px;flex:none;overflow:hidden}
+  .mv .b i{display:block;height:100%;background:var(--accent,#4a7)}
+  .mv .d{width:38px;text-align:right;flex:none}
+  .transport{display:flex;align-items:center;gap:10px;margin-top:9px}
+  input[type=range]{flex:1;accent-color:var(--accent,#4a7)}
+  .btn{border:1px solid var(--border,#ccc);background:transparent;color:inherit;
+       border-radius:6px;padding:3px 12px;cursor:pointer;font-size:11.5px;font-family:inherit}
+  .note{color:var(--muted-foreground,#777);font-size:11px;margin-top:7px;line-height:1.45}
+  .fb{margin-top:8px;min-height:18px;font-size:12px}
+  .fb b{color:var(--accent,#4a7)}
+  .tag{display:inline-block;font-size:10px;border:1px solid var(--border,#ccc);border-radius:4px;
+       padding:0 4px;color:var(--muted-foreground,#777);margin-left:6px}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="bar">
+    <strong>Taegeuk 1 Jang</strong><span class="tag">per-move joint-angle diff</span>
+    <span class="stats" id="stats"></span>
+  </div>
+  <div class="bar" id="cases"></div>
+  <div class="stage">
+    <div class="pane"><h4>Reference</h4><canvas id="c1" width="300" height="169"></canvas></div>
+    <div class="pane"><h4>Student</h4><canvas id="c2" width="300" height="169"></canvas></div>
+  </div>
+  <div class="fb" id="fb"></div>
+  <div class="transport">
+    <button class="btn" id="play">▶ play</button>
+    <input type="range" id="scrub" min="0" max="100" value="0">
+    <span id="tlabel" style="width:92px;text-align:right;color:var(--muted-foreground,#777);font-size:11px"></span>
+  </div>
+  <div class="mvgrid" id="moves"></div>
+  <div class="note" id="note"></div>
+</div>
+<script>
+const DATA = /*__DATA__*/null;
+const TRIP = {L_elbow:["L_shoulder","L_elbow","L_wrist"],R_elbow:["R_shoulder","R_elbow","R_wrist"],
+  L_knee:["L_hip","L_knee","L_ankle"],R_knee:["R_hip","R_knee","R_ankle"],
+  L_hip:["L_shoulder","L_hip","L_knee"],R_hip:["R_shoulder","R_hip","R_knee"],
+  L_shoulder:["L_hip","L_shoulder","L_elbow"],R_shoulder:["R_hip","R_shoulder","R_elbow"]};
+let caseIdx = 0, f = 0, playing = false, last = 0;
+const cv1 = document.getElementById('c1').getContext('2d');
+const cv2 = document.getElementById('c2').getContext('2d');
+
+function severity(moving){
+  const s = {};
+  DATA.joints.forEach(j => s[j] = 0);
+  if (!moving) return s;
+  const d = moving.deltas;
+  for (const [feat, trio] of Object.entries(TRIP)){
+    const v = Math.abs(d[feat] || 0), tol = DATA.tolerance[feat] || 15;
+    const r = v / tol;
+    trio.forEach(j => { s[j] = Math.max(s[j], r); });
+  }
+  return s;
+}
+function draw(ctx, pts, sevm, w, h, col){
+  ctx.clearRect(0,0,w,h);
+  ctx.strokeStyle = col.border; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0,h*0.95); ctx.lineTo(w,h*0.95); ctx.stroke();
+  if(!pts) return;
+  const P = i => [pts[i*2]*w, pts[i*2+1]*h];
+  DATA.bones.forEach(([a,b])=>{
+    const A=P(a), B=P(b);
+    const r = Math.max(sevm[DATA.joints[a]]||0, sevm[DATA.joints[b]]||0);
+    ctx.strokeStyle = r>1 ? col.bad : (r>0.75 ? col.warn : col.line);
+    ctx.lineWidth = r>1 ? 3 : 2;
+    ctx.beginPath(); ctx.moveTo(A[0],A[1]); ctx.lineTo(B[0],B[1]); ctx.stroke();
+  });
+  DATA.joints.forEach((j,i)=>{
+    const A=P(i), r = sevm[j]||0;
+    ctx.fillStyle = r>1 ? col.bad : (r>0.75 ? col.warn : col.dot);
+    ctx.beginPath(); ctx.arc(A[0],A[1], r>1?4.5:3, 0, 7); ctx.fill();
+    if(r>1){ ctx.strokeStyle=col.bad; ctx.lineWidth=1; ctx.beginPath();
+             ctx.arc(A[0],A[1],8,0,7); ctx.stroke(); }
+  });
+}
+const cur = () => DATA.cases[caseIdx];
+function curMove(){
+  const c = cur();
+  const hit = c.moves.find(m => f >= m.seg[0] && f <= m.seg[1]);
+  if (hit) return hit;
+  return c.moves.reduce((b,m)=> Math.abs(m.seg[0]-f) < Math.abs(b.seg[0]-f) ? m : b, c.moves[0]);
+}
+const shortTech = s => (s||'').replace(/\s*\(.*$/, '');
+function render(){
+  const c = cur(), cs = getComputedStyle(document.documentElement);
+  const g = (n,d) => cs.getPropertyValue(n).trim() || d;
+  const col = {line:g('--foreground','#888'), dot:g('--accent','#4a7'),
+               bad:'#e5484d', warn:'#f5a524', border:g('--border','#ccc')};
+  const mv = curMove(), sevm = severity(mv);
+  draw(cv1, c.ref[Math.min(f,c.ref.length-1)], sevm, 300, 169, col);
+  draw(cv2, c.stu[Math.min(f,c.stu.length-1)], sevm, 300, 169, col);
+  document.getElementById('scrub').value = f;
+  document.getElementById('tlabel').textContent = (f/15).toFixed(1)+'s / '+(c.frames/15).toFixed(1)+'s';
+  [...document.querySelectorAll('.mv')].forEach((el,i)=>el.classList.toggle('on', i===mv.move-1));
+  const fb = document.getElementById('fb');
+  const nm = shortTech(mv.tech);
+  const head = nm ? `move <b>${mv.move}</b> · <span style="opacity:.85">${nm}</span> — ` : `move <b>${mv.move}</b> · `;
+  if(mv.flags.length){
+    const t = mv.flags[0];
+    fb.innerHTML = `${head}${t.joint} ${t.msg} <span class="tag">tolerance ${t.tol}°</span>`;
+  } else {
+    fb.innerHTML = `${head}within tolerance <span class="tag">max ${mv.exceed}× tolerance</span>`;
+  }
+}
+function buildMoves(){
+  const c = cur(), box = document.getElementById('moves');
+  box.innerHTML = '';
+  const max = Math.max(...c.moves.map(m=>m.mean), 1);
+  c.moves.forEach(m=>{
+    const el = document.createElement('div');
+    el.className = 'mv';
+    el.innerHTML = `<span class="n">${m.move}</span>
+      <span class="t">${shortTech(m.tech)||'—'}</span>
+      <span class="b"><i style="width:${Math.min(100,100*m.mean/max)}%;${m.flags.length?'':'opacity:.35'}"></i></span>
+      <span class="d">${m.mean.toFixed(1)}°</span>`;
+    el.onclick = ()=>{ f = m.seg[0]; playing = false;
+      document.getElementById('play').textContent='▶ play'; render(); };
+    box.appendChild(el);
+  });
+  document.getElementById('scrub').max = c.frames-1;
+  document.getElementById('stats').textContent =
+    `mean |Δ| ${c.mean_delta}° · flagged ${c.flagged}/${c.n_moves}`;
+  document.getElementById('note').textContent = c.note;
+}
+function buildCases(){
+  const box = document.getElementById('cases');
+  DATA.cases.forEach((c,i)=>{
+    const b = document.createElement('button');
+    b.className = 'case' + (i===0?' on':'');
+    b.textContent = c.label;
+    b.onclick = ()=>{ caseIdx = i; f = 0;
+      [...box.children].forEach((x,k)=>x.classList.toggle('on', k===i));
+      buildMoves(); render(); };
+    box.appendChild(b);
+  });
+}
+document.getElementById('play').onclick = e=>{
+  playing = !playing; e.target.textContent = playing?'⏸ pause':'▶ play';
+  if(playing){ last = performance.now(); requestAnimationFrame(tick); }
+};
+document.getElementById('scrub').oninput = e=>{ f = +e.target.value; render(); };
+function tick(now){
+  if(!playing) return;
+  const dt = (now-last)/1000; last = now;
+  f += dt*15;
+  if(f >= cur().frames-1) f = 0;
+  render(); requestAnimationFrame(tick);
+}
+buildCases(); buildMoves(); render();
+</script>
+</body></html>

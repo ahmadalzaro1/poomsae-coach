@@ -1,0 +1,2248 @@
+{
+ "generated": "2026-11-21",
+ "endpoint": "https://api.typesafe.ai/v1/systemone",
+ "model": "jev-latest",
+ "experiment_a_card_findings": {
+  "n": 49,
+  "n_opposite": 40,
+  "n_same": 9,
+  "auc_p_withhold_vs_opposite_side": 1.0,
+  "auc_1m_attributable_vs_opposite_side": 1.0,
+  "policy_withhold": {
+   "opposite_suppressed": 40,
+   "opposite_shown": 0,
+   "same_kept": 8,
+   "same_suppressed": 1
+  },
+  "latency_ms": {
+   "median": 261.0,
+   "p95": 327.0
+  },
+  "by_release_choice": {
+   "show": 6,
+   "soften": 2,
+   "withhold": 41
+  },
+  "rows": [
+   {
+    "clip": "sameview",
+    "move": 6,
+    "joint": "right elbow",
+    "delta": 21.5,
+    "cross_side": false,
+    "choice": "show",
+    "p_show": 0.67,
+    "p_withhold": 0.17,
+    "p_attr": 0.45
+   },
+   {
+    "clip": "sameview",
+    "move": 8,
+    "joint": "right elbow",
+    "delta": -19.9,
+    "cross_side": false,
+    "choice": "show",
+    "p_show": 0.52,
+    "p_withhold": 0.28,
+    "p_attr": 0.35
+   },
+   {
+    "clip": "sameview",
+    "move": 11,
+    "joint": "right elbow",
+    "delta": 18.3,
+    "cross_side": false,
+    "choice": "withhold",
+    "p_show": 0.2,
+    "p_withhold": 0.5,
+    "p_attr": 0.29
+   },
+   {
+    "clip": "sameview",
+    "move": 13,
+    "joint": "left elbow",
+    "delta": 22.1,
+    "cross_side": false,
+    "choice": "show",
+    "p_show": 0.65,
+    "p_withhold": 0.22,
+    "p_attr": 0.49
+   },
+   {
+    "clip": "sameview",
+    "move": 15,
+    "joint": "left elbow",
+    "delta": -45.1,
+    "cross_side": false,
+    "choice": "show",
+    "p_show": 0.56,
+    "p_withhold": 0.32,
+    "p_attr": 0.44
+   },
+   {
+    "clip": "sameview",
+    "move": 15,
+    "joint": "right elbow",
+    "delta": -32.4,
+    "cross_side": false,
+    "choice": "show",
+    "p_show": 0.64,
+    "p_withhold": 0.25,
+    "p_attr": 0.43
+   },
+   {
+    "clip": "sameview",
+    "move": 15,
+    "joint": "left shoulder",
+    "delta": -12.8,
+    "cross_side": false,
+    "choice": "soften",
+    "p_show": 0.37,
+    "p_withhold": 0.14,
+    "p_attr": 0.44
+   },
+   {
+    "clip": "sameview",
+    "move": 16,
+    "joint": "left elbow",
+    "delta": -73.9,
+    "cross_side": false,
+    "choice": "show",
+    "p_show": 0.52,
+    "p_withhold": 0.36,
+    "p_attr": 0.38
+   },
+   {
+    "clip": "sameview",
+    "move": 16,
+    "joint": "left shoulder",
+    "delta": -13.6,
+    "cross_side": false,
+    "choice": "soften",
+    "p_show": 0.42,
+    "p_withhold": 0.14,
+    "p_attr": 0.48
+   },
+   {
+    "clip": "crossview",
+    "move": 1,
+    "joint": "left shoulder",
+    "delta": 14.8,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.96,
+    "p_attr": 0.05
+   },
+   {
+    "clip": "crossview",
+    "move": 1,
+    "joint": "right shoulder",
+    "delta": 13.3,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.94,
+    "p_attr": 0.05
+   },
+   {
+    "clip": "crossview",
+    "move": 2,
+    "joint": "right shoulder",
+    "delta": 28.0,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.98,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 2,
+    "joint": "left shoulder",
+    "delta": 17.7,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.98,
+    "p_attr": 0.05
+   },
+   {
+    "clip": "crossview",
+    "move": 3,
+    "joint": "right elbow",
+    "delta": 25.2,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.98,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 3,
+    "joint": "left elbow",
+    "delta": -21.7,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.99,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 3,
+    "joint": "right hip",
+    "delta": -10.4,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.92,
+    "p_attr": 0.05
+   },
+   {
+    "clip": "crossview",
+    "move": 4,
+    "joint": "left shoulder",
+    "delta": 44.3,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.99,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 4,
+    "joint": "right shoulder",
+    "delta": 29.8,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.98,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 5,
+    "joint": "left shoulder",
+    "delta": 20.0,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.97,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 5,
+    "joint": "left elbow",
+    "delta": 26.0,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.98,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 6,
+    "joint": "left knee",
+    "delta": 44.2,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.98,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 6,
+    "joint": "left hip",
+    "delta": 39.0,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.99,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 6,
+    "joint": "right hip",
+    "delta": 26.1,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.98,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 7,
+    "joint": "left elbow",
+    "delta": 43.2,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.98,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 7,
+    "joint": "right shoulder",
+    "delta": 18.5,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.94,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 7,
+    "joint": "left shoulder",
+    "delta": 18.0,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.97,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 8,
+    "joint": "right shoulder",
+    "delta": 41.3,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.99,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 8,
+    "joint": "right elbow",
+    "delta": 49.8,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.98,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 8,
+    "joint": "left shoulder",
+    "delta": 19.3,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.98,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 9,
+    "joint": "left shoulder",
+    "delta": 45.9,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.99,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 9,
+    "joint": "right shoulder",
+    "delta": 36.9,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.98,
+    "p_attr": 0.03
+   },
+   {
+    "clip": "crossview",
+    "move": 9,
+    "joint": "right elbow",
+    "delta": -22.8,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.98,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 10,
+    "joint": "left elbow",
+    "delta": 29.8,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.98,
+    "p_attr": 0.03
+   },
+   {
+    "clip": "crossview",
+    "move": 10,
+    "joint": "right shoulder",
+    "delta": 18.9,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.97,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 10,
+    "joint": "left shoulder",
+    "delta": 18.0,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.98,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 11,
+    "joint": "right knee",
+    "delta": 36.4,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.99,
+    "p_attr": 0.03
+   },
+   {
+    "clip": "crossview",
+    "move": 11,
+    "joint": "left shoulder",
+    "delta": -34.7,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.99,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 11,
+    "joint": "right elbow",
+    "delta": 45.1,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.99,
+    "p_attr": 0.03
+   },
+   {
+    "clip": "crossview",
+    "move": 12,
+    "joint": "left elbow",
+    "delta": 32.8,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.98,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 12,
+    "joint": "left shoulder",
+    "delta": -14.5,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.92,
+    "p_attr": 0.05
+   },
+   {
+    "clip": "crossview",
+    "move": 13,
+    "joint": "left hip",
+    "delta": 13.5,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.95,
+    "p_attr": 0.05
+   },
+   {
+    "clip": "crossview",
+    "move": 13,
+    "joint": "left shoulder",
+    "delta": 14.7,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.94,
+    "p_attr": 0.05
+   },
+   {
+    "clip": "crossview",
+    "move": 14,
+    "joint": "left shoulder",
+    "delta": -35.0,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.99,
+    "p_attr": 0.03
+   },
+   {
+    "clip": "crossview",
+    "move": 14,
+    "joint": "right shoulder",
+    "delta": -32.7,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.98,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 14,
+    "joint": "left elbow",
+    "delta": -37.0,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.99,
+    "p_attr": 0.04
+   },
+   {
+    "clip": "crossview",
+    "move": 15,
+    "joint": "right knee",
+    "delta": 16.7,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.95,
+    "p_attr": 0.05
+   },
+   {
+    "clip": "crossview",
+    "move": 15,
+    "joint": "right shoulder",
+    "delta": -15.5,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.95,
+    "p_attr": 0.05
+   },
+   {
+    "clip": "crossview",
+    "move": 15,
+    "joint": "right hip",
+    "delta": 12.1,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.93,
+    "p_attr": 0.05
+   },
+   {
+    "clip": "crossview",
+    "move": 16,
+    "joint": "right shoulder",
+    "delta": 13.9,
+    "cross_side": true,
+    "choice": "withhold",
+    "p_show": 0.0,
+    "p_withhold": 0.96,
+    "p_attr": 0.05
+   }
+  ]
+ },
+ "experiment_a_blind": {
+  "n": 49,
+  "n_opposite": 40,
+  "n_same": 9,
+  "auc_p_withhold_vs_opposite_side": 0.6125,
+  "auc_1m_attributable_vs_opposite_side": 0.4875,
+  "policy_withhold": {
+   "opposite_suppressed": 0,
+   "opposite_shown": 40,
+   "same_kept": 9,
+   "same_suppressed": 0
+  },
+  "latency_ms": {
+   "median": 260.0,
+   "p95": 299.8
+  },
+  "by_release_choice": {
+   "show": 31,
+   "soften": 18,
+   "withhold": 0
+  },
+  "rows": [
+   {
+    "clip": "sameview",
+    "move": 6,
+    "joint": "right elbow",
+    "delta": 21.5,
+    "cross_side": false,
+    "choice": "show",
+    "p_show": 0.57,
+    "p_withhold": 0.05,
+    "p_attr": 0.36
+   },
+   {
+    "clip": "sameview",
+    "move": 8,
+    "joint": "right elbow",
+    "delta": -19.9,
+    "cross_side": false,
+    "choice": "show",
+    "p_show": 0.67,
+    "p_withhold": 0.05,
+    "p_attr": 0.36
+   },
+   {
+    "clip": "sameview",
+    "move": 11,
+    "joint": "right elbow",
+    "delta": 18.3,
+    "cross_side": false,
+    "choice": "soften",
+    "p_show": 0.41,
+    "p_withhold": 0.15,
+    "p_attr": 0.32
+   },
+   {
+    "clip": "sameview",
+    "move": 13,
+    "joint": "left elbow",
+    "delta": 22.1,
+    "cross_side": false,
+    "choice": "show",
+    "p_show": 0.68,
+    "p_withhold": 0.04,
+    "p_attr": 0.35
+   },
+   {
+    "clip": "sameview",
+    "move": 15,
+    "joint": "left elbow",
+    "delta": -45.1,
+    "cross_side": false,
+    "choice": "show",
+    "p_show": 0.89,
+    "p_withhold": 0.04,
+    "p_attr": 0.38
+   },
+   {
+    "clip": "sameview",
+    "move": 15,
+    "joint": "right elbow",
+    "delta": -32.4,
+    "cross_side": false,
+    "choice": "show",
+    "p_show": 0.83,
+    "p_withhold": 0.05,
+    "p_attr": 0.34
+   },
+   {
+    "clip": "sameview",
+    "move": 15,
+    "joint": "left shoulder",
+    "delta": -12.8,
+    "cross_side": false,
+    "choice": "soften",
+    "p_show": 0.19,
+    "p_withhold": 0.2,
+    "p_attr": 0.34
+   },
+   {
+    "clip": "sameview",
+    "move": 16,
+    "joint": "left elbow",
+    "delta": -73.9,
+    "cross_side": false,
+    "choice": "show",
+    "p_show": 0.85,
+    "p_withhold": 0.07,
+    "p_attr": 0.37
+   },
+   {
+    "clip": "sameview",
+    "move": 16,
+    "joint": "left shoulder",
+    "delta": -13.6,
+    "cross_side": false,
+    "choice": "soften",
+    "p_show": 0.2,
+    "p_withhold": 0.16,
+    "p_attr": 0.34
+   },
+   {
+    "clip": "crossview",
+    "move": 1,
+    "joint": "left shoulder",
+    "delta": 14.8,
+    "cross_side": true,
+    "choice": "soften",
+    "p_show": 0.17,
+    "p_withhold": 0.22,
+    "p_attr": 0.32
+   },
+   {
+    "clip": "crossview",
+    "move": 1,
+    "joint": "right shoulder",
+    "delta": 13.3,
+    "cross_side": true,
+    "choice": "soften",
+    "p_show": 0.12,
+    "p_withhold": 0.31,
+    "p_attr": 0.33
+   },
+   {
+    "clip": "crossview",
+    "move": 2,
+    "joint": "right shoulder",
+    "delta": 28.0,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.79,
+    "p_withhold": 0.06,
+    "p_attr": 0.36
+   },
+   {
+    "clip": "crossview",
+    "move": 2,
+    "joint": "left shoulder",
+    "delta": 17.7,
+    "cross_side": true,
+    "choice": "soften",
+    "p_show": 0.18,
+    "p_withhold": 0.2,
+    "p_attr": 0.33
+   },
+   {
+    "clip": "crossview",
+    "move": 3,
+    "joint": "right elbow",
+    "delta": 25.2,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.74,
+    "p_withhold": 0.06,
+    "p_attr": 0.34
+   },
+   {
+    "clip": "crossview",
+    "move": 3,
+    "joint": "left elbow",
+    "delta": -21.7,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.75,
+    "p_withhold": 0.05,
+    "p_attr": 0.36
+   },
+   {
+    "clip": "crossview",
+    "move": 3,
+    "joint": "right hip",
+    "delta": -10.4,
+    "cross_side": true,
+    "choice": "soften",
+    "p_show": 0.09,
+    "p_withhold": 0.29,
+    "p_attr": 0.34
+   },
+   {
+    "clip": "crossview",
+    "move": 4,
+    "joint": "left shoulder",
+    "delta": 44.3,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.83,
+    "p_withhold": 0.07,
+    "p_attr": 0.35
+   },
+   {
+    "clip": "crossview",
+    "move": 4,
+    "joint": "right shoulder",
+    "delta": 29.8,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.8,
+    "p_withhold": 0.05,
+    "p_attr": 0.34
+   },
+   {
+    "clip": "crossview",
+    "move": 5,
+    "joint": "left shoulder",
+    "delta": 20.0,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.52,
+    "p_withhold": 0.05,
+    "p_attr": 0.37
+   },
+   {
+    "clip": "crossview",
+    "move": 5,
+    "joint": "left elbow",
+    "delta": 26.0,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.82,
+    "p_withhold": 0.03,
+    "p_attr": 0.37
+   },
+   {
+    "clip": "crossview",
+    "move": 6,
+    "joint": "left knee",
+    "delta": 44.2,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.83,
+    "p_withhold": 0.05,
+    "p_attr": 0.36
+   },
+   {
+    "clip": "crossview",
+    "move": 6,
+    "joint": "left hip",
+    "delta": 39.0,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.86,
+    "p_withhold": 0.04,
+    "p_attr": 0.4
+   },
+   {
+    "clip": "crossview",
+    "move": 6,
+    "joint": "right hip",
+    "delta": 26.1,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.77,
+    "p_withhold": 0.05,
+    "p_attr": 0.38
+   },
+   {
+    "clip": "crossview",
+    "move": 7,
+    "joint": "left elbow",
+    "delta": 43.2,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.86,
+    "p_withhold": 0.05,
+    "p_attr": 0.35
+   },
+   {
+    "clip": "crossview",
+    "move": 7,
+    "joint": "right shoulder",
+    "delta": 18.5,
+    "cross_side": true,
+    "choice": "soften",
+    "p_show": 0.33,
+    "p_withhold": 0.18,
+    "p_attr": 0.33
+   },
+   {
+    "clip": "crossview",
+    "move": 7,
+    "joint": "left shoulder",
+    "delta": 18.0,
+    "cross_side": true,
+    "choice": "soften",
+    "p_show": 0.29,
+    "p_withhold": 0.15,
+    "p_attr": 0.34
+   },
+   {
+    "clip": "crossview",
+    "move": 8,
+    "joint": "right shoulder",
+    "delta": 41.3,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.83,
+    "p_withhold": 0.06,
+    "p_attr": 0.37
+   },
+   {
+    "clip": "crossview",
+    "move": 8,
+    "joint": "right elbow",
+    "delta": 49.8,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.82,
+    "p_withhold": 0.08,
+    "p_attr": 0.34
+   },
+   {
+    "clip": "crossview",
+    "move": 8,
+    "joint": "left shoulder",
+    "delta": 19.3,
+    "cross_side": true,
+    "choice": "soften",
+    "p_show": 0.42,
+    "p_withhold": 0.04,
+    "p_attr": 0.32
+   },
+   {
+    "clip": "crossview",
+    "move": 9,
+    "joint": "left shoulder",
+    "delta": 45.9,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.85,
+    "p_withhold": 0.06,
+    "p_attr": 0.34
+   },
+   {
+    "clip": "crossview",
+    "move": 9,
+    "joint": "right shoulder",
+    "delta": 36.9,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.81,
+    "p_withhold": 0.06,
+    "p_attr": 0.36
+   },
+   {
+    "clip": "crossview",
+    "move": 9,
+    "joint": "right elbow",
+    "delta": -22.8,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.77,
+    "p_withhold": 0.07,
+    "p_attr": 0.39
+   },
+   {
+    "clip": "crossview",
+    "move": 10,
+    "joint": "left elbow",
+    "delta": 29.8,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.81,
+    "p_withhold": 0.05,
+    "p_attr": 0.37
+   },
+   {
+    "clip": "crossview",
+    "move": 10,
+    "joint": "right shoulder",
+    "delta": 18.9,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.48,
+    "p_withhold": 0.07,
+    "p_attr": 0.35
+   },
+   {
+    "clip": "crossview",
+    "move": 10,
+    "joint": "left shoulder",
+    "delta": 18.0,
+    "cross_side": true,
+    "choice": "soften",
+    "p_show": 0.22,
+    "p_withhold": 0.18,
+    "p_attr": 0.34
+   },
+   {
+    "clip": "crossview",
+    "move": 11,
+    "joint": "right knee",
+    "delta": 36.4,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.81,
+    "p_withhold": 0.05,
+    "p_attr": 0.36
+   },
+   {
+    "clip": "crossview",
+    "move": 11,
+    "joint": "left shoulder",
+    "delta": -34.7,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.8,
+    "p_withhold": 0.07,
+    "p_attr": 0.37
+   },
+   {
+    "clip": "crossview",
+    "move": 11,
+    "joint": "right elbow",
+    "delta": 45.1,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.9,
+    "p_withhold": 0.03,
+    "p_attr": 0.37
+   },
+   {
+    "clip": "crossview",
+    "move": 12,
+    "joint": "left elbow",
+    "delta": 32.8,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.81,
+    "p_withhold": 0.05,
+    "p_attr": 0.34
+   },
+   {
+    "clip": "crossview",
+    "move": 12,
+    "joint": "left shoulder",
+    "delta": -14.5,
+    "cross_side": true,
+    "choice": "soften",
+    "p_show": 0.12,
+    "p_withhold": 0.3,
+    "p_attr": 0.34
+   },
+   {
+    "clip": "crossview",
+    "move": 13,
+    "joint": "left hip",
+    "delta": 13.5,
+    "cross_side": true,
+    "choice": "soften",
+    "p_show": 0.14,
+    "p_withhold": 0.27,
+    "p_attr": 0.34
+   },
+   {
+    "clip": "crossview",
+    "move": 13,
+    "joint": "left shoulder",
+    "delta": 14.7,
+    "cross_side": true,
+    "choice": "soften",
+    "p_show": 0.12,
+    "p_withhold": 0.18,
+    "p_attr": 0.33
+   },
+   {
+    "clip": "crossview",
+    "move": 14,
+    "joint": "left shoulder",
+    "delta": -35.0,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.83,
+    "p_withhold": 0.07,
+    "p_attr": 0.37
+   },
+   {
+    "clip": "crossview",
+    "move": 14,
+    "joint": "right shoulder",
+    "delta": -32.7,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.83,
+    "p_withhold": 0.05,
+    "p_attr": 0.37
+   },
+   {
+    "clip": "crossview",
+    "move": 14,
+    "joint": "left elbow",
+    "delta": -37.0,
+    "cross_side": true,
+    "choice": "show",
+    "p_show": 0.85,
+    "p_withhold": 0.06,
+    "p_attr": 0.39
+   },
+   {
+    "clip": "crossview",
+    "move": 15,
+    "joint": "right knee",
+    "delta": 16.7,
+    "cross_side": true,
+    "choice": "soften",
+    "p_show": 0.15,
+    "p_withhold": 0.25,
+    "p_attr": 0.33
+   },
+   {
+    "clip": "crossview",
+    "move": 15,
+    "joint": "right shoulder",
+    "delta": -15.5,
+    "cross_side": true,
+    "choice": "soften",
+    "p_show": 0.19,
+    "p_withhold": 0.22,
+    "p_attr": 0.36
+   },
+   {
+    "clip": "crossview",
+    "move": 15,
+    "joint": "right hip",
+    "delta": 12.1,
+    "cross_side": true,
+    "choice": "soften",
+    "p_show": 0.11,
+    "p_withhold": 0.22,
+    "p_attr": 0.33
+   },
+   {
+    "clip": "crossview",
+    "move": 16,
+    "joint": "right shoulder",
+    "delta": 13.9,
+    "cross_side": true,
+    "choice": "soften",
+    "p_show": 0.15,
+    "p_withhold": 0.22,
+    "p_attr": 0.37
+   }
+  ]
+ },
+ "experiment_b_elbow_moves": {
+  "n": 60,
+  "gap_range_deg": [
+   0.3,
+   60.9
+  ],
+  "auc_p_reject_vs_gap10": 0.9966,
+  "auc_1m_stable_vs_gap10": 0.9949,
+  "spearman": 0.9868,
+  "share_flagged_unusable": 0.4833,
+  "latency_ms_median": 263.5,
+  "rows": [
+   {
+    "clip": "4th_Lateral",
+    "move": 0,
+    "side": "R",
+    "gap": 1.36,
+    "jitter": 0.84,
+    "p_reject": 0.04,
+    "p_stable": 0.69
+   },
+   {
+    "clip": "7th_Lateral",
+    "move": 18,
+    "side": "L",
+    "gap": 1.03,
+    "jitter": 3.864,
+    "p_reject": 0.05,
+    "p_stable": 0.66
+   },
+   {
+    "clip": "5th_Lateral",
+    "move": 3,
+    "side": "R",
+    "gap": 2.4,
+    "jitter": 8.029,
+    "p_reject": 0.05,
+    "p_stable": 0.62
+   },
+   {
+    "clip": "7th_Lateral",
+    "move": 15,
+    "side": "R",
+    "gap": 0.5,
+    "jitter": 1.145,
+    "p_reject": 0.03,
+    "p_stable": 0.67
+   },
+   {
+    "clip": "8th_Frontal",
+    "move": 18,
+    "side": "R",
+    "gap": 0.32,
+    "jitter": 3.865,
+    "p_reject": 0.04,
+    "p_stable": 0.69
+   },
+   {
+    "clip": "7th_Frontal",
+    "move": 17,
+    "side": "R",
+    "gap": 1.34,
+    "jitter": 3.868,
+    "p_reject": 0.05,
+    "p_stable": 0.7
+   },
+   {
+    "clip": "4th_Lateral",
+    "move": 9,
+    "side": "L",
+    "gap": 1.68,
+    "jitter": 8.343,
+    "p_reject": 0.05,
+    "p_stable": 0.67
+   },
+   {
+    "clip": "5th_Frontal",
+    "move": 3,
+    "side": "R",
+    "gap": 0.81,
+    "jitter": 8.776,
+    "p_reject": 0.06,
+    "p_stable": 0.68
+   },
+   {
+    "clip": "7th_Lateral",
+    "move": 13,
+    "side": "R",
+    "gap": 0.47,
+    "jitter": 4.626,
+    "p_reject": 0.04,
+    "p_stable": 0.66
+   },
+   {
+    "clip": "6th_Frontal",
+    "move": 1,
+    "side": "R",
+    "gap": 2.27,
+    "jitter": 1.444,
+    "p_reject": 0.05,
+    "p_stable": 0.69
+   },
+   {
+    "clip": "2nd_Frontal",
+    "move": 18,
+    "side": "R",
+    "gap": 2.82,
+    "jitter": 6.868,
+    "p_reject": 0.06,
+    "p_stable": 0.64
+   },
+   {
+    "clip": "2nd_Frontal",
+    "move": 18,
+    "side": "L",
+    "gap": 1.11,
+    "jitter": 2.89,
+    "p_reject": 0.03,
+    "p_stable": 0.73
+   },
+   {
+    "clip": "6th_Frontal",
+    "move": 6,
+    "side": "L",
+    "gap": 5.32,
+    "jitter": 1.093,
+    "p_reject": 0.19,
+    "p_stable": 0.54
+   },
+   {
+    "clip": "5th_Lateral",
+    "move": 13,
+    "side": "L",
+    "gap": 7.44,
+    "jitter": 5.336,
+    "p_reject": 0.33,
+    "p_stable": 0.34
+   },
+   {
+    "clip": "7th_Lateral",
+    "move": 3,
+    "side": "L",
+    "gap": 3.19,
+    "jitter": 4.382,
+    "p_reject": 0.08,
+    "p_stable": 0.61
+   },
+   {
+    "clip": "7th_Frontal",
+    "move": 16,
+    "side": "R",
+    "gap": 4.94,
+    "jitter": 3.639,
+    "p_reject": 0.18,
+    "p_stable": 0.47
+   },
+   {
+    "clip": "3rd_Frontal",
+    "move": 1,
+    "side": "L",
+    "gap": 3.26,
+    "jitter": 0.149,
+    "p_reject": 0.08,
+    "p_stable": 0.66
+   },
+   {
+    "clip": "2nd_Frontal",
+    "move": 6,
+    "side": "L",
+    "gap": 4.28,
+    "jitter": 1.454,
+    "p_reject": 0.16,
+    "p_stable": 0.54
+   },
+   {
+    "clip": "5th_Lateral",
+    "move": 2,
+    "side": "L",
+    "gap": 5.95,
+    "jitter": 5.799,
+    "p_reject": 0.18,
+    "p_stable": 0.47
+   },
+   {
+    "clip": "4th_Frontal",
+    "move": 4,
+    "side": "R",
+    "gap": 3.5,
+    "jitter": 12.788,
+    "p_reject": 0.08,
+    "p_stable": 0.58
+   },
+   {
+    "clip": "2nd_Lateral",
+    "move": 1,
+    "side": "R",
+    "gap": 7.26,
+    "jitter": 1.44,
+    "p_reject": 0.25,
+    "p_stable": 0.44
+   },
+   {
+    "clip": "2nd_Frontal",
+    "move": 5,
+    "side": "R",
+    "gap": 6.54,
+    "jitter": 6.193,
+    "p_reject": 0.19,
+    "p_stable": 0.43
+   },
+   {
+    "clip": "6th_Lateral",
+    "move": 2,
+    "side": "R",
+    "gap": 7.58,
+    "jitter": 4.774,
+    "p_reject": 0.27,
+    "p_stable": 0.38
+   },
+   {
+    "clip": "8th_Frontal",
+    "move": 2,
+    "side": "L",
+    "gap": 6.44,
+    "jitter": 3.573,
+    "p_reject": 0.32,
+    "p_stable": 0.31
+   },
+   {
+    "clip": "1st_Lateral",
+    "move": 7,
+    "side": "R",
+    "gap": 14.85,
+    "jitter": 2.352,
+    "p_reject": 0.57,
+    "p_stable": 0.2
+   },
+   {
+    "clip": "8th_Lateral",
+    "move": 3,
+    "side": "L",
+    "gap": 9.19,
+    "jitter": 4.941,
+    "p_reject": 0.43,
+    "p_stable": 0.29
+   },
+   {
+    "clip": "5th_Lateral",
+    "move": 10,
+    "side": "L",
+    "gap": 14.82,
+    "jitter": 6.788,
+    "p_reject": 0.54,
+    "p_stable": 0.21
+   },
+   {
+    "clip": "6th_Lateral",
+    "move": 7,
+    "side": "L",
+    "gap": 9.38,
+    "jitter": 6.44,
+    "p_reject": 0.47,
+    "p_stable": 0.3
+   },
+   {
+    "clip": "3rd_Frontal",
+    "move": 11,
+    "side": "L",
+    "gap": 10.43,
+    "jitter": 9.446,
+    "p_reject": 0.45,
+    "p_stable": 0.29
+   },
+   {
+    "clip": "1st_Frontal",
+    "move": 11,
+    "side": "R",
+    "gap": 8.14,
+    "jitter": 5.617,
+    "p_reject": 0.33,
+    "p_stable": 0.35
+   },
+   {
+    "clip": "7th_Lateral",
+    "move": 14,
+    "side": "L",
+    "gap": 13.13,
+    "jitter": 4.126,
+    "p_reject": 0.39,
+    "p_stable": 0.3
+   },
+   {
+    "clip": "2nd_Frontal",
+    "move": 10,
+    "side": "L",
+    "gap": 11.85,
+    "jitter": 5.357,
+    "p_reject": 0.52,
+    "p_stable": 0.21
+   },
+   {
+    "clip": "2nd_Frontal",
+    "move": 6,
+    "side": "R",
+    "gap": 14.84,
+    "jitter": 9.48,
+    "p_reject": 0.48,
+    "p_stable": 0.26
+   },
+   {
+    "clip": "1st_Lateral",
+    "move": 6,
+    "side": "L",
+    "gap": 14.72,
+    "jitter": 9.309,
+    "p_reject": 0.5,
+    "p_stable": 0.31
+   },
+   {
+    "clip": "3rd_Lateral",
+    "move": 1,
+    "side": "R",
+    "gap": 12.66,
+    "jitter": 3.335,
+    "p_reject": 0.56,
+    "p_stable": 0.19
+   },
+   {
+    "clip": "4th_Frontal",
+    "move": 2,
+    "side": "L",
+    "gap": 10.55,
+    "jitter": 3.072,
+    "p_reject": 0.59,
+    "p_stable": 0.21
+   },
+   {
+    "clip": "7th_Lateral",
+    "move": 17,
+    "side": "L",
+    "gap": 24.34,
+    "jitter": 1.906,
+    "p_reject": 0.74,
+    "p_stable": 0.14
+   },
+   {
+    "clip": "1st_Frontal",
+    "move": 16,
+    "side": "R",
+    "gap": 18.97,
+    "jitter": 4.057,
+    "p_reject": 0.7,
+    "p_stable": 0.17
+   },
+   {
+    "clip": "5th_Lateral",
+    "move": 9,
+    "side": "R",
+    "gap": 20.97,
+    "jitter": 2.583,
+    "p_reject": 0.73,
+    "p_stable": 0.13
+   },
+   {
+    "clip": "3rd_Lateral",
+    "move": 8,
+    "side": "L",
+    "gap": 23.7,
+    "jitter": 1.935,
+    "p_reject": 0.75,
+    "p_stable": 0.16
+   },
+   {
+    "clip": "5th_Lateral",
+    "move": 9,
+    "side": "L",
+    "gap": 18.38,
+    "jitter": 2.455,
+    "p_reject": 0.69,
+    "p_stable": 0.16
+   },
+   {
+    "clip": "7th_Lateral",
+    "move": 15,
+    "side": "L",
+    "gap": 15.89,
+    "jitter": 6.443,
+    "p_reject": 0.64,
+    "p_stable": 0.19
+   },
+   {
+    "clip": "2nd_Lateral",
+    "move": 12,
+    "side": "L",
+    "gap": 20.67,
+    "jitter": 10.083,
+    "p_reject": 0.65,
+    "p_stable": 0.2
+   },
+   {
+    "clip": "7th_Frontal",
+    "move": 16,
+    "side": "L",
+    "gap": 16.6,
+    "jitter": 2.828,
+    "p_reject": 0.68,
+    "p_stable": 0.18
+   },
+   {
+    "clip": "3rd_Frontal",
+    "move": 5,
+    "side": "R",
+    "gap": 22.91,
+    "jitter": 11.72,
+    "p_reject": 0.7,
+    "p_stable": 0.16
+   },
+   {
+    "clip": "3rd_Lateral",
+    "move": 2,
+    "side": "R",
+    "gap": 21.3,
+    "jitter": 5.338,
+    "p_reject": 0.7,
+    "p_stable": 0.17
+   },
+   {
+    "clip": "7th_Frontal",
+    "move": 11,
+    "side": "L",
+    "gap": 19.1,
+    "jitter": 5.123,
+    "p_reject": 0.7,
+    "p_stable": 0.17
+   },
+   {
+    "clip": "1st_Frontal",
+    "move": 16,
+    "side": "L",
+    "gap": 16.37,
+    "jitter": 1.882,
+    "p_reject": 0.55,
+    "p_stable": 0.22
+   },
+   {
+    "clip": "4th_Lateral",
+    "move": 7,
+    "side": "R",
+    "gap": 27.34,
+    "jitter": 4.511,
+    "p_reject": 0.74,
+    "p_stable": 0.14
+   },
+   {
+    "clip": "8th_Lateral",
+    "move": 8,
+    "side": "L",
+    "gap": 60.89,
+    "jitter": 6.632,
+    "p_reject": 0.93,
+    "p_stable": 0.07
+   },
+   {
+    "clip": "8th_Frontal",
+    "move": 13,
+    "side": "R",
+    "gap": 25.49,
+    "jitter": 6.851,
+    "p_reject": 0.77,
+    "p_stable": 0.13
+   },
+   {
+    "clip": "7th_Frontal",
+    "move": 7,
+    "side": "R",
+    "gap": 36.09,
+    "jitter": 2.297,
+    "p_reject": 0.84,
+    "p_stable": 0.1
+   },
+   {
+    "clip": "8th_Frontal",
+    "move": 4,
+    "side": "L",
+    "gap": 35.73,
+    "jitter": 0.997,
+    "p_reject": 0.92,
+    "p_stable": 0.08
+   },
+   {
+    "clip": "8th_Frontal",
+    "move": 5,
+    "side": "L",
+    "gap": 33.13,
+    "jitter": 1.078,
+    "p_reject": 0.9,
+    "p_stable": 0.08
+   },
+   {
+    "clip": "3rd_Lateral",
+    "move": 12,
+    "side": "R",
+    "gap": 31.08,
+    "jitter": 6.44,
+    "p_reject": 0.81,
+    "p_stable": 0.11
+   },
+   {
+    "clip": "8th_Lateral",
+    "move": 7,
+    "side": "L",
+    "gap": 41.03,
+    "jitter": 8.444,
+    "p_reject": 0.87,
+    "p_stable": 0.09
+   },
+   {
+    "clip": "8th_Frontal",
+    "move": 3,
+    "side": "R",
+    "gap": 41.45,
+    "jitter": 2.241,
+    "p_reject": 0.88,
+    "p_stable": 0.08
+   },
+   {
+    "clip": "5th_Lateral",
+    "move": 11,
+    "side": "L",
+    "gap": 27.78,
+    "jitter": 7.743,
+    "p_reject": 0.72,
+    "p_stable": 0.15
+   },
+   {
+    "clip": "8th_Frontal",
+    "move": 5,
+    "side": "R",
+    "gap": 25.97,
+    "jitter": 0.305,
+    "p_reject": 0.75,
+    "p_stable": 0.14
+   },
+   {
+    "clip": "8th_Lateral",
+    "move": 10,
+    "side": "L",
+    "gap": 43.25,
+    "jitter": 4.064,
+    "p_reject": 0.84,
+    "p_stable": 0.11
+   }
+  ]
+ },
+ "experiment_b_single_reading": {
+  "n": 60,
+  "gap_range_deg": [
+   0.3,
+   60.9
+  ],
+  "auc_p_reject_vs_gap10": 0.4781,
+  "auc_1m_stable_vs_gap10": 0.4366,
+  "spearman": -0.031,
+  "share_flagged_unusable": 0.0,
+  "latency_ms_median": 255.0,
+  "rows": [
+   {
+    "clip": "4th_Lateral",
+    "move": 0,
+    "side": "R",
+    "gap": 1.36,
+    "jitter": 0.84,
+    "p_reject": 0.19,
+    "p_stable": 0.38
+   },
+   {
+    "clip": "7th_Lateral",
+    "move": 18,
+    "side": "L",
+    "gap": 1.03,
+    "jitter": 3.864,
+    "p_reject": 0.21,
+    "p_stable": 0.34
+   },
+   {
+    "clip": "5th_Lateral",
+    "move": 3,
+    "side": "R",
+    "gap": 2.4,
+    "jitter": 8.029,
+    "p_reject": 0.23,
+    "p_stable": 0.36
+   },
+   {
+    "clip": "7th_Lateral",
+    "move": 15,
+    "side": "R",
+    "gap": 0.5,
+    "jitter": 1.145,
+    "p_reject": 0.15,
+    "p_stable": 0.39
+   },
+   {
+    "clip": "8th_Frontal",
+    "move": 18,
+    "side": "R",
+    "gap": 0.32,
+    "jitter": 3.865,
+    "p_reject": 0.17,
+    "p_stable": 0.37
+   },
+   {
+    "clip": "7th_Frontal",
+    "move": 17,
+    "side": "R",
+    "gap": 1.34,
+    "jitter": 3.868,
+    "p_reject": 0.22,
+    "p_stable": 0.36
+   },
+   {
+    "clip": "4th_Lateral",
+    "move": 9,
+    "side": "L",
+    "gap": 1.68,
+    "jitter": 8.343,
+    "p_reject": 0.23,
+    "p_stable": 0.35
+   },
+   {
+    "clip": "5th_Frontal",
+    "move": 3,
+    "side": "R",
+    "gap": 0.81,
+    "jitter": 8.776,
+    "p_reject": 0.21,
+    "p_stable": 0.34
+   },
+   {
+    "clip": "7th_Lateral",
+    "move": 13,
+    "side": "R",
+    "gap": 0.47,
+    "jitter": 4.626,
+    "p_reject": 0.2,
+    "p_stable": 0.34
+   },
+   {
+    "clip": "6th_Frontal",
+    "move": 1,
+    "side": "R",
+    "gap": 2.27,
+    "jitter": 1.444,
+    "p_reject": 0.22,
+    "p_stable": 0.3
+   },
+   {
+    "clip": "2nd_Frontal",
+    "move": 18,
+    "side": "R",
+    "gap": 2.82,
+    "jitter": 6.868,
+    "p_reject": 0.2,
+    "p_stable": 0.37
+   },
+   {
+    "clip": "2nd_Frontal",
+    "move": 18,
+    "side": "L",
+    "gap": 1.11,
+    "jitter": 2.89,
+    "p_reject": 0.21,
+    "p_stable": 0.36
+   },
+   {
+    "clip": "6th_Frontal",
+    "move": 6,
+    "side": "L",
+    "gap": 5.32,
+    "jitter": 1.093,
+    "p_reject": 0.23,
+    "p_stable": 0.33
+   },
+   {
+    "clip": "5th_Lateral",
+    "move": 13,
+    "side": "L",
+    "gap": 7.44,
+    "jitter": 5.336,
+    "p_reject": 0.19,
+    "p_stable": 0.35
+   },
+   {
+    "clip": "7th_Lateral",
+    "move": 3,
+    "side": "L",
+    "gap": 3.19,
+    "jitter": 4.382,
+    "p_reject": 0.22,
+    "p_stable": 0.33
+   },
+   {
+    "clip": "7th_Frontal",
+    "move": 16,
+    "side": "R",
+    "gap": 4.94,
+    "jitter": 3.639,
+    "p_reject": 0.21,
+    "p_stable": 0.37
+   },
+   {
+    "clip": "3rd_Frontal",
+    "move": 1,
+    "side": "L",
+    "gap": 3.26,
+    "jitter": 0.149,
+    "p_reject": 0.21,
+    "p_stable": 0.39
+   },
+   {
+    "clip": "2nd_Frontal",
+    "move": 6,
+    "side": "L",
+    "gap": 4.28,
+    "jitter": 1.454,
+    "p_reject": 0.2,
+    "p_stable": 0.37
+   },
+   {
+    "clip": "5th_Lateral",
+    "move": 2,
+    "side": "L",
+    "gap": 5.95,
+    "jitter": 5.799,
+    "p_reject": 0.2,
+    "p_stable": 0.36
+   },
+   {
+    "clip": "4th_Frontal",
+    "move": 4,
+    "side": "R",
+    "gap": 3.5,
+    "jitter": 12.788,
+    "p_reject": 0.22,
+    "p_stable": 0.37
+   },
+   {
+    "clip": "2nd_Lateral",
+    "move": 1,
+    "side": "R",
+    "gap": 7.26,
+    "jitter": 1.44,
+    "p_reject": 0.22,
+    "p_stable": 0.39
+   },
+   {
+    "clip": "2nd_Frontal",
+    "move": 5,
+    "side": "R",
+    "gap": 6.54,
+    "jitter": 6.193,
+    "p_reject": 0.21,
+    "p_stable": 0.36
+   },
+   {
+    "clip": "6th_Lateral",
+    "move": 2,
+    "side": "R",
+    "gap": 7.58,
+    "jitter": 4.774,
+    "p_reject": 0.21,
+    "p_stable": 0.35
+   },
+   {
+    "clip": "8th_Frontal",
+    "move": 2,
+    "side": "L",
+    "gap": 6.44,
+    "jitter": 3.573,
+    "p_reject": 0.22,
+    "p_stable": 0.34
+   },
+   {
+    "clip": "1st_Lateral",
+    "move": 7,
+    "side": "R",
+    "gap": 14.85,
+    "jitter": 2.352,
+    "p_reject": 0.26,
+    "p_stable": 0.37
+   },
+   {
+    "clip": "8th_Lateral",
+    "move": 3,
+    "side": "L",
+    "gap": 9.19,
+    "jitter": 4.941,
+    "p_reject": 0.23,
+    "p_stable": 0.33
+   },
+   {
+    "clip": "5th_Lateral",
+    "move": 10,
+    "side": "L",
+    "gap": 14.82,
+    "jitter": 6.788,
+    "p_reject": 0.19,
+    "p_stable": 0.35
+   },
+   {
+    "clip": "6th_Lateral",
+    "move": 7,
+    "side": "L",
+    "gap": 9.38,
+    "jitter": 6.44,
+    "p_reject": 0.26,
+    "p_stable": 0.33
+   },
+   {
+    "clip": "3rd_Frontal",
+    "move": 11,
+    "side": "L",
+    "gap": 10.43,
+    "jitter": 9.446,
+    "p_reject": 0.18,
+    "p_stable": 0.36
+   },
+   {
+    "clip": "1st_Frontal",
+    "move": 11,
+    "side": "R",
+    "gap": 8.14,
+    "jitter": 5.617,
+    "p_reject": 0.22,
+    "p_stable": 0.37
+   },
+   {
+    "clip": "7th_Lateral",
+    "move": 14,
+    "side": "L",
+    "gap": 13.13,
+    "jitter": 4.126,
+    "p_reject": 0.23,
+    "p_stable": 0.37
+   },
+   {
+    "clip": "2nd_Frontal",
+    "move": 10,
+    "side": "L",
+    "gap": 11.85,
+    "jitter": 5.357,
+    "p_reject": 0.2,
+    "p_stable": 0.36
+   },
+   {
+    "clip": "2nd_Frontal",
+    "move": 6,
+    "side": "R",
+    "gap": 14.84,
+    "jitter": 9.48,
+    "p_reject": 0.22,
+    "p_stable": 0.37
+   },
+   {
+    "clip": "1st_Lateral",
+    "move": 6,
+    "side": "L",
+    "gap": 14.72,
+    "jitter": 9.309,
+    "p_reject": 0.27,
+    "p_stable": 0.35
+   },
+   {
+    "clip": "3rd_Lateral",
+    "move": 1,
+    "side": "R",
+    "gap": 12.66,
+    "jitter": 3.335,
+    "p_reject": 0.21,
+    "p_stable": 0.36
+   },
+   {
+    "clip": "4th_Frontal",
+    "move": 2,
+    "side": "L",
+    "gap": 10.55,
+    "jitter": 3.072,
+    "p_reject": 0.22,
+    "p_stable": 0.34
+   },
+   {
+    "clip": "7th_Lateral",
+    "move": 17,
+    "side": "L",
+    "gap": 24.34,
+    "jitter": 1.906,
+    "p_reject": 0.2,
+    "p_stable": 0.37
+   },
+   {
+    "clip": "1st_Frontal",
+    "move": 16,
+    "side": "R",
+    "gap": 18.97,
+    "jitter": 4.057,
+    "p_reject": 0.19,
+    "p_stable": 0.36
+   },
+   {
+    "clip": "5th_Lateral",
+    "move": 9,
+    "side": "R",
+    "gap": 20.97,
+    "jitter": 2.583,
+    "p_reject": 0.2,
+    "p_stable": 0.35
+   },
+   {
+    "clip": "3rd_Lateral",
+    "move": 8,
+    "side": "L",
+    "gap": 23.7,
+    "jitter": 1.935,
+    "p_reject": 0.24,
+    "p_stable": 0.38
+   },
+   {
+    "clip": "5th_Lateral",
+    "move": 9,
+    "side": "L",
+    "gap": 18.38,
+    "jitter": 2.455,
+    "p_reject": 0.21,
+    "p_stable": 0.36
+   },
+   {
+    "clip": "7th_Lateral",
+    "move": 15,
+    "side": "L",
+    "gap": 15.89,
+    "jitter": 6.443,
+    "p_reject": 0.23,
+    "p_stable": 0.37
+   },
+   {
+    "clip": "2nd_Lateral",
+    "move": 12,
+    "side": "L",
+    "gap": 20.67,
+    "jitter": 10.083,
+    "p_reject": 0.2,
+    "p_stable": 0.31
+   },
+   {
+    "clip": "7th_Frontal",
+    "move": 16,
+    "side": "L",
+    "gap": 16.6,
+    "jitter": 2.828,
+    "p_reject": 0.18,
+    "p_stable": 0.39
+   },
+   {
+    "clip": "3rd_Frontal",
+    "move": 5,
+    "side": "R",
+    "gap": 22.91,
+    "jitter": 11.72,
+    "p_reject": 0.2,
+    "p_stable": 0.39
+   },
+   {
+    "clip": "3rd_Lateral",
+    "move": 2,
+    "side": "R",
+    "gap": 21.3,
+    "jitter": 5.338,
+    "p_reject": 0.25,
+    "p_stable": 0.34
+   },
+   {
+    "clip": "7th_Frontal",
+    "move": 11,
+    "side": "L",
+    "gap": 19.1,
+    "jitter": 5.123,
+    "p_reject": 0.19,
+    "p_stable": 0.36
+   },
+   {
+    "clip": "1st_Frontal",
+    "move": 16,
+    "side": "L",
+    "gap": 16.37,
+    "jitter": 1.882,
+    "p_reject": 0.22,
+    "p_stable": 0.37
+   },
+   {
+    "clip": "4th_Lateral",
+    "move": 7,
+    "side": "R",
+    "gap": 27.34,
+    "jitter": 4.511,
+    "p_reject": 0.23,
+    "p_stable": 0.34
+   },
+   {
+    "clip": "8th_Lateral",
+    "move": 8,
+    "side": "L",
+    "gap": 60.89,
+    "jitter": 6.632,
+    "p_reject": 0.2,
+    "p_stable": 0.4
+   },
+   {
+    "clip": "8th_Frontal",
+    "move": 13,
+    "side": "R",
+    "gap": 25.49,
+    "jitter": 6.851,
+    "p_reject": 0.24,
+    "p_stable": 0.34
+   },
+   {
+    "clip": "7th_Frontal",
+    "move": 7,
+    "side": "R",
+    "gap": 36.09,
+    "jitter": 2.297,
+    "p_reject": 0.2,
+    "p_stable": 0.37
+   },
+   {
+    "clip": "8th_Frontal",
+    "move": 4,
+    "side": "L",
+    "gap": 35.73,
+    "jitter": 0.997,
+    "p_reject": 0.24,
+    "p_stable": 0.34
+   },
+   {
+    "clip": "8th_Frontal",
+    "move": 5,
+    "side": "L",
+    "gap": 33.13,
+    "jitter": 1.078,
+    "p_reject": 0.24,
+    "p_stable": 0.33
+   },
+   {
+    "clip": "3rd_Lateral",
+    "move": 12,
+    "side": "R",
+    "gap": 31.08,
+    "jitter": 6.44,
+    "p_reject": 0.19,
+    "p_stable": 0.36
+   },
+   {
+    "clip": "8th_Lateral",
+    "move": 7,
+    "side": "L",
+    "gap": 41.03,
+    "jitter": 8.444,
+    "p_reject": 0.21,
+    "p_stable": 0.37
+   },
+   {
+    "clip": "8th_Frontal",
+    "move": 3,
+    "side": "R",
+    "gap": 41.45,
+    "jitter": 2.241,
+    "p_reject": 0.2,
+    "p_stable": 0.38
+   },
+   {
+    "clip": "5th_Lateral",
+    "move": 11,
+    "side": "L",
+    "gap": 27.78,
+    "jitter": 7.743,
+    "p_reject": 0.21,
+    "p_stable": 0.36
+   },
+   {
+    "clip": "8th_Frontal",
+    "move": 5,
+    "side": "R",
+    "gap": 25.97,
+    "jitter": 0.305,
+    "p_reject": 0.19,
+    "p_stable": 0.37
+   },
+   {
+    "clip": "8th_Lateral",
+    "move": 10,
+    "side": "L",
+    "gap": 43.25,
+    "jitter": 4.064,
+    "p_reject": 0.18,
+    "p_stable": 0.35
+   }
+  ]
+ },
+ "usage": {
+  "input": 116144,
+  "output": 12747,
+  "requests": 218,
+  "cost_usd": 0.004878
+ },
+ "wall_s": 7.9,
+ "note": "Jev is asked for advice on release, never authorisation: the number and the tolerance stay with the scorer.",
+ "leak_disclosure": "The first arm of A named the answer in state (the side label plus a sentence explaining that opposite-side filming produces large deviations) and the first arm of B supplied both readings before asking whether they agree, so those AUCs measure faithfulness to supplied state and arithmetic, not insight. The blind and single-reading arms are the honest arms."
+}

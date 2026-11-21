@@ -1,0 +1,254 @@
+{
+ "generated": "2026-11-21",
+ "kind": "between-repeat spread (same athlete, same take, same camera)",
+ "not": "between-session: cannot see fatigue, clothing, camera move or a new room",
+ "side_rule": "mirrored pairs contribute the active side only (max of |L|,|R|)",
+ "cards": {
+  "sameview": {
+   "n_moves": 19,
+   "pairs": {
+    "elbow": {
+     "groups": {
+      "arae makki": {
+       "n": 6,
+       "mean": 12.1,
+       "sd": 6.5,
+       "range": 16.8
+      },
+      "momtong jireugi": {
+       "n": 7,
+       "mean": 10.8,
+       "sd": 8.0,
+       "range": 19.4
+      },
+      "abchagi + momtong jireugi": {
+       "n": 2,
+       "mean": 23.5,
+       "sd": 30.5,
+       "range": 43.2
+      },
+      "momtong an makki": {
+       "n": 2,
+       "mean": 45.2,
+       "sd": 40.6,
+       "range": 57.4
+      }
+     },
+     "pooled": {
+      "n": 17,
+      "mean": 16.8,
+      "sd": 18.2,
+      "range": 73.4
+     },
+     "tolerance_deg": 18.0
+    },
+    "knee": {
+     "groups": {
+      "arae makki": {
+       "n": 6,
+       "mean": 1.1,
+       "sd": 0.5,
+       "range": 1.2
+      },
+      "momtong jireugi": {
+       "n": 7,
+       "mean": 0.9,
+       "sd": 0.7,
+       "range": 2.0
+      },
+      "abchagi + momtong jireugi": {
+       "n": 2,
+       "mean": 1.5,
+       "sd": 1.8,
+       "range": 2.6
+      },
+      "momtong an makki": {
+       "n": 2,
+       "mean": 0.7,
+       "sd": 0.3,
+       "range": 0.4
+      }
+     },
+     "pooled": {
+      "n": 17,
+      "mean": 1.0,
+      "sd": 0.7,
+      "range": 2.6
+     },
+     "tolerance_deg": 10.0
+    },
+    "torso_tilt": {
+     "groups": {
+      "arae makki": {
+       "n": 6,
+       "mean": 0.5,
+       "sd": 0.4,
+       "range": 1.2
+      },
+      "momtong jireugi": {
+       "n": 7,
+       "mean": 0.2,
+       "sd": 0.2,
+       "range": 0.7
+      },
+      "abchagi + momtong jireugi": {
+       "n": 2,
+       "mean": 0.2,
+       "sd": 0.1,
+       "range": 0.2
+      },
+      "momtong an makki": {
+       "n": 2,
+       "mean": 0.2,
+       "sd": 0.1,
+       "range": 0.1
+      }
+     },
+     "pooled": {
+      "n": 17,
+      "mean": 0.3,
+      "sd": 0.3,
+      "range": 1.2
+     },
+     "tolerance_deg": 5.0
+    }
+   },
+   "estimator_swap_band_p50_deg": {
+    "L_elbow": 6.4,
+    "R_elbow": 8.4,
+    "L_knee": 1.4,
+    "R_knee": 1.5,
+    "L_hip": 2.0,
+    "R_hip": 1.4,
+    "L_shoulder": 1.5,
+    "R_shoulder": 2.8,
+    "torso_tilt": 0.3
+   },
+   "estimator_swap_band_p95_deg": {
+    "L_elbow": 69.3,
+    "R_elbow": 43.3,
+    "L_knee": 4.9,
+    "R_knee": 7.3,
+    "L_hip": 4.5,
+    "R_hip": 3.5,
+    "L_shoulder": 6.1,
+    "R_shoulder": 14.2,
+    "torso_tilt": 1.1
+   }
+  },
+  "crossview": {
+   "n_moves": 16,
+   "pairs": {
+    "elbow": {
+     "groups": {
+      "arae makki": {
+       "n": 7,
+       "mean": 21.6,
+       "sd": 15.7,
+       "range": 41.3
+      },
+      "momtong jireugi": {
+       "n": 6,
+       "mean": 32.8,
+       "sd": 11.0,
+       "range": 27.0
+      },
+      "abchagi + momtong jireugi": {
+       "n": 2,
+       "mean": 25.0,
+       "sd": 17.0,
+       "range": 24.0
+      }
+     },
+     "pooled": {
+      "n": 15,
+      "mean": 26.5,
+      "sd": 14.1,
+      "range": 46.0
+     },
+     "tolerance_deg": 18.0
+    },
+    "knee": {
+     "groups": {
+      "arae makki": {
+       "n": 7,
+       "mean": 15.0,
+       "sd": 17.5,
+       "range": 40.5
+      },
+      "momtong jireugi": {
+       "n": 6,
+       "mean": 7.9,
+       "sd": 1.9,
+       "range": 4.3
+      },
+      "abchagi + momtong jireugi": {
+       "n": 2,
+       "mean": 10.4,
+       "sd": 5.2,
+       "range": 7.4
+      }
+     },
+     "pooled": {
+      "n": 15,
+      "mean": 11.5,
+      "sd": 12.1,
+      "range": 40.5
+     },
+     "tolerance_deg": 10.0
+    },
+    "torso_tilt": {
+     "groups": {
+      "arae makki": {
+       "n": 7,
+       "mean": 1.5,
+       "sd": 1.3,
+       "range": 3.1
+      },
+      "momtong jireugi": {
+       "n": 6,
+       "mean": 1.2,
+       "sd": 1.3,
+       "range": 3.0
+      },
+      "abchagi + momtong jireugi": {
+       "n": 2,
+       "mean": 0.3,
+       "sd": 0.1,
+       "range": 0.1
+      }
+     },
+     "pooled": {
+      "n": 15,
+      "mean": 1.2,
+      "sd": 1.2,
+      "range": 3.1
+     },
+     "tolerance_deg": 5.0
+    }
+   },
+   "estimator_swap_band_p50_deg": {
+    "L_elbow": 5.9,
+    "R_elbow": 8.2,
+    "L_knee": 1.6,
+    "R_knee": 1.6,
+    "L_hip": 2.0,
+    "R_hip": 1.8,
+    "L_shoulder": 1.7,
+    "R_shoulder": 1.9,
+    "torso_tilt": 0.4
+   },
+   "estimator_swap_band_p95_deg": {
+    "L_elbow": 50.4,
+    "R_elbow": 34.2,
+    "L_knee": 5.9,
+    "R_knee": 6.7,
+    "L_hip": 4.8,
+    "R_hip": 3.3,
+    "L_shoulder": 5.2,
+    "R_shoulder": 16.4,
+    "torso_tilt": 1.0
+   }
+  }
+ }
+}

@@ -1,0 +1,183 @@
+{
+ "per_form": [
+  {
+   "form": "Taegeuk_1st",
+   "moves": 19,
+   "raw_flags": 19,
+   "calibrated_flags": 18,
+   "mean_abs_raw": 11.24,
+   "mean_abs_calibrated": 10.39,
+   "bias": [
+    -9.4,
+    2.2,
+    0.6,
+    0.5,
+    2.6,
+    1.5,
+    -12.1,
+    -10.1,
+    0.4
+   ]
+  },
+  {
+   "form": "Taegeuk_2nd",
+   "moves": 20,
+   "raw_flags": 17,
+   "calibrated_flags": 16,
+   "mean_abs_raw": 9.15,
+   "mean_abs_calibrated": 8.36,
+   "bias": [
+    -0.4,
+    4.3,
+    0.2,
+    -2.5,
+    6.2,
+    6.0,
+    -1.5,
+    -4.3,
+    -0.4
+   ]
+  },
+  {
+   "form": "Taegeuk_3rd",
+   "moves": 22,
+   "raw_flags": 19,
+   "calibrated_flags": 17,
+   "mean_abs_raw": 8.54,
+   "mean_abs_calibrated": 7.8,
+   "bias": [
+    2.3,
+    6.9,
+    -0.2,
+    -0.4,
+    4.0,
+    4.2,
+    -7.3,
+    -8.4,
+    -0.0
+   ]
+  },
+  {
+   "form": "Taegeuk_4th",
+   "moves": 17,
+   "raw_flags": 17,
+   "calibrated_flags": 13,
+   "mean_abs_raw": 8.11,
+   "mean_abs_calibrated": 7.33,
+   "bias": [
+    0.3,
+    -2.1,
+    1.1,
+    -4.8,
+    6.8,
+    0.5,
+    -5.7,
+    -1.6,
+    1.1
+   ]
+  },
+  {
+   "form": "Taegeuk_5th",
+   "moves": 19,
+   "raw_flags": 19,
+   "calibrated_flags": 17,
+   "mean_abs_raw": 13.25,
+   "mean_abs_calibrated": 12.82,
+   "bias": [
+    -2.0,
+    0.0,
+    0.7,
+    -1.8,
+    4.9,
+    3.0,
+    -6.8,
+    2.1,
+    2.0
+   ]
+  },
+  {
+   "form": "Taegeuk_6th",
+   "moves": 16,
+   "raw_flags": 10,
+   "calibrated_flags": 13,
+   "mean_abs_raw": 7.19,
+   "mean_abs_calibrated": 6.67,
+   "bias": [
+    -1.0,
+    3.1,
+    1.4,
+    -4.8,
+    4.2,
+    4.4,
+    -2.0,
+    -1.8,
+    1.1
+   ]
+  },
+  {
+   "form": "Taegeuk_7th",
+   "moves": 23,
+   "raw_flags": 19,
+   "calibrated_flags": 20,
+   "mean_abs_raw": 10.9,
+   "mean_abs_calibrated": 9.98,
+   "bias": [
+    3.6,
+    -4.8,
+    7.2,
+    1.2,
+    6.9,
+    0.0,
+    -7.8,
+    -5.9,
+    0.7
+   ]
+  },
+  {
+   "form": "Taegeuk_8th",
+   "moves": 20,
+   "raw_flags": 18,
+   "calibrated_flags": 16,
+   "mean_abs_raw": 13.12,
+   "mean_abs_calibrated": 11.43,
+   "bias": [
+    6.7,
+    1.4,
+    3.8,
+    -0.4,
+    8.0,
+    6.0,
+    -11.4,
+    -8.5,
+    1.7
+   ]
+  }
+ ],
+ "pooled": {
+  "moves": 156,
+  "raw_flags": 138,
+  "calibrated_flags": 130,
+  "raw_flag_rate": 0.8846,
+  "calibrated_flag_rate": 0.8333,
+  "mean_abs_raw": 10.19,
+  "mean_abs_calibrated": 9.35
+ },
+ "bias_field_deg": {
+  "L_elbow": 0.0,
+  "R_elbow": 1.4,
+  "L_knee": 1.8,
+  "R_knee": -1.6,
+  "L_hip": 5.4,
+  "R_hip": 3.2,
+  "L_shoulder": -6.8,
+  "R_shoulder": -4.8,
+  "torso_tilt": 0.8
+ },
+ "injection_recall_after_calibration": {
+  "10deg": 0.3889,
+  "15deg": 0.6667,
+  "20deg": 0.9028,
+  "25deg": 0.9583
+ },
+ "cost": "a fault the athlete commits on every move is absorbed into the bias and disappears; this measures inconsistency, not absolute correctness"
+}

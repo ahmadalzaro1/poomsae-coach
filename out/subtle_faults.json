@@ -1,0 +1,580 @@
+{
+ "protocol": "analytic injection on measured per-move deviations; A = same-side, B = opposite-side camera",
+ "magnitudes_deg": [
+  2.0,
+  3.0,
+  4.0,
+  5.0,
+  7.0,
+  10.0,
+  12.0,
+  15.0,
+  20.0
+ ],
+ "tolerance_deg": {
+  "L_elbow": 18.0,
+  "R_elbow": 18.0,
+  "L_knee": 10.0,
+  "R_knee": 10.0,
+  "L_hip": 10.0,
+  "R_hip": 10.0,
+  "L_shoulder": 12.0,
+  "R_shoulder": 12.0,
+  "torso_tilt": 5.0
+ },
+ "tolerance_source": "out/tolerance_override.json (pooled per-move p95 of cross-estimator deviation on Taegeuk 1 = 17.6 deg; held-out 2-8 = 13.2 deg (out/elbow_signal.json))",
+ "baseline_tolerance_deg": {
+  "L_elbow": 25.0,
+  "R_elbow": 25.0,
+  "L_knee": 10.0,
+  "R_knee": 10.0,
+  "L_hip": 10.0,
+  "R_hip": 10.0,
+  "L_shoulder": 12.0,
+  "R_shoulder": 12.0,
+  "torso_tilt": 5.0
+ },
+ "jitter_sigma_deg": {
+  "L_elbow": 0.615,
+  "R_elbow": 0.499,
+  "L_knee": 0.204,
+  "R_knee": 0.289,
+  "L_hip": 0.158,
+  "R_hip": 0.164,
+  "L_shoulder": 0.317,
+  "R_shoulder": 0.42,
+  "torso_tilt": 0.093
+ },
+ "conditions": {
+  "A_same_side": "student is the reference; deltas exactly 0, so this measures threshold arithmetic only",
+  "B_opposite_side": "camera mismatch; artifact dominates",
+  "C_same_side_with_jitter": "both takes carry measured jitter; pairing simulated, noise measured"
+ },
+ "baseline": {
+  "same_side_flags": 0,
+  "opposite_side_flags": 138,
+  "moves": 156
+ },
+ "families": {
+  "arm height (block too high/low)": {
+   "features": [
+    "L_shoulder",
+    "R_shoulder"
+   ],
+   "tolerance_deg": 12.0,
+   "tolerance_baseline_deg": 12.0,
+   "jitter_sigma_deg": [
+    0.317,
+    0.42
+   ],
+   "same_side": {
+    "detection": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 0.0,
+     "10": 0.0,
+     "12": 0.0,
+     "15": 1.0,
+     "20": 1.0
+    },
+    "no_fault_rate": 0.0,
+    "incremental": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 0.0,
+     "10": 0.0,
+     "12": 0.0,
+     "15": 1.0,
+     "20": 1.0
+    },
+    "m50_deg": 15.0
+   },
+   "opposite_side": {
+    "detection": {
+     "2": 0.3814,
+     "3": 0.3814,
+     "4": 0.3622,
+     "5": 0.3654,
+     "7": 0.3494,
+     "10": 0.3782,
+     "12": 0.4135,
+     "15": 0.484,
+     "20": 0.625
+    },
+    "no_fault_rate": 0.4103,
+    "incremental": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 0.0,
+     "10": 0.0,
+     "12": 0.0032,
+     "15": 0.0737,
+     "20": 0.2147
+    },
+    "m50_deg": 20.0
+   },
+   "same_side_with_jitter": {
+    "detection": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 0.0,
+     "10": 0.0003,
+     "12": 0.5032,
+     "15": 1.0,
+     "20": 1.0
+    },
+    "no_fault_rate": 0.0,
+    "m50_deg": 12.0
+   },
+   "same_side_with_jitter_baseline": {
+    "detection": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 0.0,
+     "10": 0.0003,
+     "12": 0.5032,
+     "15": 1.0,
+     "20": 1.0
+    },
+    "no_fault_rate": 0.0,
+    "m50_deg": 12.0
+   },
+   "floor_before_deg": 12.0,
+   "floor_after_deg": 12.0
+  },
+  "elbow extension (punch short)": {
+   "features": [
+    "L_elbow",
+    "R_elbow"
+   ],
+   "tolerance_deg": 18.0,
+   "tolerance_baseline_deg": 25.0,
+   "jitter_sigma_deg": [
+    0.615,
+    0.499
+   ],
+   "same_side": {
+    "detection": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 0.0,
+     "10": 0.0,
+     "12": 0.0,
+     "15": 0.0,
+     "20": 1.0
+    },
+    "no_fault_rate": 0.0,
+    "incremental": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 0.0,
+     "10": 0.0,
+     "12": 0.0,
+     "15": 0.0,
+     "20": 1.0
+    },
+    "m50_deg": 20.0
+   },
+   "opposite_side": {
+    "detection": {
+     "2": 0.3365,
+     "3": 0.3269,
+     "4": 0.3365,
+     "5": 0.359,
+     "7": 0.3782,
+     "10": 0.4295,
+     "12": 0.4519,
+     "15": 0.5096,
+     "20": 0.6378
+    },
+    "no_fault_rate": 0.3333,
+    "incremental": {
+     "2": 0.0032,
+     "3": 0.0,
+     "4": 0.0032,
+     "5": 0.0257,
+     "7": 0.0449,
+     "10": 0.0962,
+     "12": 0.1186,
+     "15": 0.1763,
+     "20": 0.3045
+    },
+    "m50_deg": 15.0
+   },
+   "same_side_with_jitter": {
+    "detection": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 0.0,
+     "10": 0.0,
+     "12": 0.0,
+     "15": 0.0001,
+     "20": 0.9937
+    },
+    "no_fault_rate": 0.0,
+    "m50_deg": 20.0
+   },
+   "same_side_with_jitter_baseline": {
+    "detection": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 0.0,
+     "10": 0.0,
+     "12": 0.0,
+     "15": 0.0,
+     "20": 0.0
+    },
+    "no_fault_rate": 0.0,
+    "m50_deg": null
+   },
+   "floor_before_deg": null,
+   "floor_after_deg": 20.0
+  },
+  "knee bend (stance too high)": {
+   "features": [
+    "L_knee",
+    "R_knee"
+   ],
+   "tolerance_deg": 10.0,
+   "tolerance_baseline_deg": 10.0,
+   "jitter_sigma_deg": [
+    0.204,
+    0.289
+   ],
+   "same_side": {
+    "detection": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 0.0,
+     "10": 0.0,
+     "12": 1.0,
+     "15": 1.0,
+     "20": 1.0
+    },
+    "no_fault_rate": 0.0,
+    "incremental": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 0.0,
+     "10": 0.0,
+     "12": 1.0,
+     "15": 1.0,
+     "20": 1.0
+    },
+    "m50_deg": 12.0
+   },
+   "opposite_side": {
+    "detection": {
+     "2": 0.2821,
+     "3": 0.2949,
+     "4": 0.3205,
+     "5": 0.3558,
+     "7": 0.4038,
+     "10": 0.5256,
+     "12": 0.6314,
+     "15": 0.7436,
+     "20": 0.9006
+    },
+    "no_fault_rate": 0.2853,
+    "incremental": {
+     "2": 0.0,
+     "3": 0.0096,
+     "4": 0.0352,
+     "5": 0.0705,
+     "7": 0.1185,
+     "10": 0.2403,
+     "12": 0.3461,
+     "15": 0.4583,
+     "20": 0.6153
+    },
+    "m50_deg": 10.0
+   },
+   "same_side_with_jitter": {
+    "detection": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 0.0,
+     "10": 0.5014,
+     "12": 1.0,
+     "15": 1.0,
+     "20": 1.0
+    },
+    "no_fault_rate": 0.0,
+    "m50_deg": 10.0
+   },
+   "same_side_with_jitter_baseline": {
+    "detection": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 0.0,
+     "10": 0.5014,
+     "12": 1.0,
+     "15": 1.0,
+     "20": 1.0
+    },
+    "no_fault_rate": 0.0,
+    "m50_deg": 10.0
+   },
+   "floor_before_deg": 10.0,
+   "floor_after_deg": 10.0
+  },
+  "hip rotation (incomplete turn)": {
+   "features": [
+    "L_hip",
+    "R_hip"
+   ],
+   "tolerance_deg": 10.0,
+   "tolerance_baseline_deg": 10.0,
+   "jitter_sigma_deg": [
+    0.158,
+    0.164
+   ],
+   "same_side": {
+    "detection": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 0.0,
+     "10": 0.0,
+     "12": 1.0,
+     "15": 1.0,
+     "20": 1.0
+    },
+    "no_fault_rate": 0.0,
+    "incremental": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 0.0,
+     "10": 0.0,
+     "12": 1.0,
+     "15": 1.0,
+     "20": 1.0
+    },
+    "m50_deg": 12.0
+   },
+   "opposite_side": {
+    "detection": {
+     "2": 0.3013,
+     "3": 0.3718,
+     "4": 0.4519,
+     "5": 0.516,
+     "7": 0.6186,
+     "10": 0.75,
+     "12": 0.8077,
+     "15": 0.8846,
+     "20": 0.9455
+    },
+    "no_fault_rate": 0.234,
+    "incremental": {
+     "2": 0.0673,
+     "3": 0.1378,
+     "4": 0.2179,
+     "5": 0.282,
+     "7": 0.3846,
+     "10": 0.516,
+     "12": 0.5737,
+     "15": 0.6506,
+     "20": 0.7115
+    },
+    "m50_deg": 5.0
+   },
+   "same_side_with_jitter": {
+    "detection": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 0.0,
+     "10": 0.5014,
+     "12": 1.0,
+     "15": 1.0,
+     "20": 1.0
+    },
+    "no_fault_rate": 0.0,
+    "m50_deg": 10.0
+   },
+   "same_side_with_jitter_baseline": {
+    "detection": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 0.0,
+     "10": 0.5014,
+     "12": 1.0,
+     "15": 1.0,
+     "20": 1.0
+    },
+    "no_fault_rate": 0.0,
+    "m50_deg": 10.0
+   },
+   "floor_before_deg": 10.0,
+   "floor_after_deg": 10.0
+  },
+  "torso lean (weight shift missing)": {
+   "features": [
+    "torso_tilt"
+   ],
+   "tolerance_deg": 5.0,
+   "tolerance_baseline_deg": 5.0,
+   "jitter_sigma_deg": [
+    0.093
+   ],
+   "same_side": {
+    "detection": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 1.0,
+     "10": 1.0,
+     "12": 1.0,
+     "15": 1.0,
+     "20": 1.0
+    },
+    "no_fault_rate": 0.0,
+    "incremental": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0,
+     "7": 1.0,
+     "10": 1.0,
+     "12": 1.0,
+     "15": 1.0,
+     "20": 1.0
+    },
+    "m50_deg": 7.0
+   },
+   "opposite_side": {
+    "detection": {
+     "2": 0.1474,
+     "3": 0.2692,
+     "4": 0.4359,
+     "5": 0.6282,
+     "7": 0.9103,
+     "10": 0.9936,
+     "12": 1.0,
+     "15": 1.0,
+     "20": 1.0
+    },
+    "no_fault_rate": 0.0321,
+    "incremental": {
+     "2": 0.1153,
+     "3": 0.2371,
+     "4": 0.4038,
+     "5": 0.5961,
+     "7": 0.8782,
+     "10": 0.9615,
+     "12": 0.9679,
+     "15": 0.9679,
+     "20": 0.9679
+    },
+    "m50_deg": 5.0
+   },
+   "same_side_with_jitter": {
+    "detection": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.5039,
+     "7": 1.0,
+     "10": 1.0,
+     "12": 1.0,
+     "15": 1.0,
+     "20": 1.0
+    },
+    "no_fault_rate": 0.0,
+    "m50_deg": 5.0
+   },
+   "same_side_with_jitter_baseline": {
+    "detection": {
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.5039,
+     "7": 1.0,
+     "10": 1.0,
+     "12": 1.0,
+     "15": 1.0,
+     "20": 1.0
+    },
+    "no_fault_rate": 0.0,
+    "m50_deg": 5.0
+   },
+   "floor_before_deg": 5.0,
+   "floor_after_deg": 5.0
+  }
+ },
+ "time_blindness": {
+  "same": {
+   "flags_before": 0,
+   "flags_after": 0,
+   "moves": 19,
+   "frames_before": 11,
+   "frames_after": 22,
+   "segment_mean_visibility": 0.984,
+   "segment_low_visibility_frames": 0,
+   "shape_distortion_max_deg": 0.726,
+   "shape_distortion_interior_deg": 0.7262,
+   "frames_compared": 10,
+   "mean_abs_before": 0.0,
+   "mean_abs_after": 0.0,
+   "note": "one move's duration doubled by repeating frames; interior angles identical by construction",
+   "confidence": "clean: residual distortion under 1 deg, all compared frames valid"
+  },
+  "opposite": {
+   "flags_before": 19,
+   "flags_after": 19,
+   "moves": 19,
+   "frames_before": 21,
+   "frames_after": 42,
+   "segment_mean_visibility": 0.952,
+   "segment_low_visibility_frames": 0,
+   "shape_distortion_max_deg": 18.921,
+   "shape_distortion_interior_deg": 17.3126,
+   "frames_compared": 30,
+   "mean_abs_before": 11.2,
+   "mean_abs_after": 11.4,
+   "note": "one move's duration doubled by repeating frames; interior angles identical by construction",
+   "confidence": "INCONCLUSIVE: residual distortion 17.3 deg not attributable to duration; do not cite this condition as timing evidence"
+  }
+ },
+ "not_covered": {
+  "stance width / foot position": "no feature uses foot separation - only joint angles",
+  "fist / hand shape (knife hand vs fist)": "dataset annotates 12 joints, no hand landmarks",
+  "foot angle / pivot": "ankle orientation is not a feature",
+  "rhythm / tempo / kime": "no timing feature - see time_blindness below",
+  "chamber depth (fist at hip)": "wrist-to-hip distance is not a feature"
+ },
+ "verdict": "measurement is not the limit (max jitter sigma 0.61 deg), the TOLERANCE GRID is: floor per family {'arm height (block too high/low)': 12.0, 'elbow extension (punch short)': 20.0, 'knee bend (stance too high)': 10.0, 'hip rotation (incomplete turn)': 10.0, 'torso lean (weight shift missing)': 5.0}, worst elbow extension (punch short) at 18 deg; under opposite-side filming 1/5 families gain nothing (incremental <= 0.02 at 10 deg): ['arm height']"
+}

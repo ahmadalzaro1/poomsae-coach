@@ -1,0 +1,18 @@
+# Generated data, weights, environments
+data/
+models/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Adjacent corpora that must never enter this repo (no licence)
+labelled/
+NEW_MP_Data/
+*.npy
+
+# Local scratch
+tmp/
+*.log
+.pytest_cache/

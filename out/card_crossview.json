@@ -1,0 +1,2625 @@
+{
+ "ref": "1st/Lateral",
+ "stu": "pose/Frontal",
+ "cross_side": true,
+ "comparison": "opposite-side (camera geometry dominates)",
+ "frames": [
+  768,
+  768
+ ],
+ "dtw_cost_per_frame": 2.7686,
+ "path_len": 806,
+ "n_moves": 16,
+ "mean_abs_delta": 12.5,
+ "flagged_moves": 16,
+ "moves": [
+  {
+   "move": 1,
+   "t": 0.0,
+   "mean_abs_delta": 5.9,
+   "max_abs_delta": 14.8,
+   "max_exceedance": 1.23,
+   "flags": [
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": 14.8,
+     "tol": 12.0,
+     "msg": "15\u00b0 more bent than reference",
+     "band_deg": 1.4,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": 13.3,
+     "tol": 12.0,
+     "msg": "13\u00b0 more bent than reference",
+     "band_deg": 1.9,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.01,
+      "withhold": 0.99
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    }
+   ],
+   "deltas": {
+    "L_elbow": -3.8,
+    "R_elbow": -1.6,
+    "L_knee": 0.7,
+    "R_knee": 5.1,
+    "L_hip": -5.0,
+    "R_hip": -5.8,
+    "L_shoulder": 14.8,
+    "R_shoulder": 13.3,
+    "torso_tilt": 3.2
+   },
+   "technique": "arae makki (low block)",
+   "technique_labels": [
+    "A1"
+   ],
+   "technique_confidence": "high",
+   "band_deg": {
+    "L_elbow": 2.4,
+    "R_elbow": 3.2,
+    "L_knee": 0.8,
+    "R_knee": 0.6,
+    "L_hip": 5.1,
+    "R_hip": 2.3,
+    "L_shoulder": 1.4,
+    "R_shoulder": 1.9,
+    "torso_tilt": 0.7
+   },
+   "band_max_deg": 5.1,
+   "band_note": "lower bound: two pose models on the same frames",
+   "attribution": {
+    "offset_deg": {
+     "L_elbow": 12.3,
+     "R_elbow": 1.6,
+     "L_knee": -0.6,
+     "R_knee": -1.3,
+     "L_hip": -1.1,
+     "R_hip": -3.1,
+     "L_shoulder": 14.8,
+     "R_shoulder": 10.3,
+     "torso_tilt": -0.3
+    },
+    "per_joint": {
+     "L_elbow": {
+      "residual": -16.1,
+      "z": -0.6,
+      "band": 2.4,
+      "verdict": "noise"
+     },
+     "R_elbow": {
+      "residual": -3.2,
+      "z": -0.2,
+      "band": 3.2,
+      "verdict": "noise"
+     },
+     "L_knee": {
+      "residual": 1.2,
+      "z": 0.2,
+      "band": 0.8,
+      "verdict": "noise"
+     },
+     "R_knee": {
+      "residual": 6.4,
+      "z": 0.8,
+      "band": 0.6,
+      "verdict": "noise"
+     },
+     "L_hip": {
+      "residual": -4.0,
+      "z": -0.5,
+      "band": 5.1,
+      "verdict": "noise"
+     },
+     "R_hip": {
+      "residual": -2.7,
+      "z": -0.3,
+      "band": 2.3,
+      "verdict": "noise"
+     },
+     "L_shoulder": {
+      "residual": 0.1,
+      "z": 0.0,
+      "band": 1.4,
+      "verdict": "style"
+     },
+     "R_shoulder": {
+      "residual": 3.0,
+      "z": 0.2,
+      "band": 1.9,
+      "verdict": "noise"
+     },
+     "torso_tilt": {
+      "residual": 3.6,
+      "z": 2.5,
+      "band": 0.7,
+      "verdict": "noise"
+     }
+    },
+    "faults": [],
+    "style_joints": [
+     "L_shoulder"
+    ]
+   }
+  },
+  {
+   "move": 2,
+   "t": 0.27,
+   "mean_abs_delta": 9.4,
+   "max_abs_delta": 28.0,
+   "max_exceedance": 2.33,
+   "flags": [
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": 28.0,
+     "tol": 12.0,
+     "msg": "28\u00b0 more bent than reference",
+     "band_deg": 1.1,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": 17.7,
+     "tol": 12.0,
+     "msg": "18\u00b0 more bent than reference",
+     "band_deg": 2.2,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    }
+   ],
+   "deltas": {
+    "L_elbow": 5.5,
+    "R_elbow": -12.7,
+    "L_knee": -2.7,
+    "R_knee": -4.8,
+    "L_hip": -4.6,
+    "R_hip": -8.7,
+    "L_shoulder": 17.7,
+    "R_shoulder": 28.0,
+    "torso_tilt": 0.1
+   },
+   "technique": "arae makki (low block)",
+   "technique_labels": [
+    "A1"
+   ],
+   "technique_confidence": "high",
+   "band_deg": {
+    "L_elbow": 3.3,
+    "R_elbow": 0.4,
+    "L_knee": 1.3,
+    "R_knee": 1.5,
+    "L_hip": 2.9,
+    "R_hip": 0.0,
+    "L_shoulder": 2.2,
+    "R_shoulder": 1.1,
+    "torso_tilt": 0.7
+   },
+   "band_max_deg": 3.3,
+   "band_note": "lower bound: two pose models on the same frames",
+   "attribution": {
+    "offset_deg": {
+     "L_elbow": 12.3,
+     "R_elbow": 1.6,
+     "L_knee": -0.6,
+     "R_knee": -1.3,
+     "L_hip": -1.1,
+     "R_hip": -3.1,
+     "L_shoulder": 14.8,
+     "R_shoulder": 10.3,
+     "torso_tilt": -0.3
+    },
+    "per_joint": {
+     "L_elbow": {
+      "residual": -6.8,
+      "z": -0.3,
+      "band": 3.3,
+      "verdict": "noise"
+     },
+     "R_elbow": {
+      "residual": -14.3,
+      "z": -0.7,
+      "band": 0.4,
+      "verdict": "noise"
+     },
+     "L_knee": {
+      "residual": -2.2,
+      "z": -0.3,
+      "band": 1.3,
+      "verdict": "noise"
+     },
+     "R_knee": {
+      "residual": -3.5,
+      "z": -0.4,
+      "band": 1.5,
+      "verdict": "noise"
+     },
+     "L_hip": {
+      "residual": -3.5,
+      "z": -0.4,
+      "band": 2.9,
+      "verdict": "noise"
+     },
+     "R_hip": {
+      "residual": -5.6,
+      "z": -0.7,
+      "band": 0.0,
+      "verdict": "noise"
+     },
+     "L_shoulder": {
+      "residual": 2.9,
+      "z": 0.4,
+      "band": 2.2,
+      "verdict": "style"
+     },
+     "R_shoulder": {
+      "residual": 17.7,
+      "z": 0.9,
+      "band": 1.1,
+      "verdict": "noise"
+     },
+     "torso_tilt": {
+      "residual": 0.4,
+      "z": 0.3,
+      "band": 0.7,
+      "verdict": "noise"
+     }
+    },
+    "faults": [],
+    "style_joints": [
+     "L_shoulder"
+    ]
+   }
+  },
+  {
+   "move": 3,
+   "t": 2.77,
+   "mean_abs_delta": 9.9,
+   "max_abs_delta": 25.2,
+   "max_exceedance": 1.4,
+   "flags": [
+    {
+     "joint": "right elbow",
+     "key": "R_elbow",
+     "delta": 25.2,
+     "tol": 18.0,
+     "msg": "25\u00b0 more bent than reference",
+     "band_deg": 0.2,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.03,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "left elbow",
+     "key": "L_elbow",
+     "delta": -21.7,
+     "tol": 18.0,
+     "msg": "22\u00b0 straighter than reference",
+     "band_deg": 41.7,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.01,
+      "withhold": 0.99
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "right hip",
+     "key": "R_hip",
+     "delta": -10.4,
+     "tol": 10.0,
+     "msg": "10\u00b0 straighter than reference",
+     "band_deg": 0.5,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.01,
+      "withhold": 0.99
+     },
+     "attributable": 0.05,
+     "release_ms": 0,
+     "release_cached": true
+    }
+   ],
+   "deltas": {
+    "L_elbow": -21.7,
+    "R_elbow": 25.2,
+    "L_knee": -5.6,
+    "R_knee": -4.3,
+    "L_hip": -4.6,
+    "R_hip": -10.4,
+    "L_shoulder": 11.8,
+    "R_shoulder": 5.4,
+    "torso_tilt": -0.4
+   },
+   "technique": "momtong jireugi (middle punch)",
+   "technique_labels": [
+    "A4"
+   ],
+   "technique_confidence": "high",
+   "band_deg": {
+    "L_elbow": 41.7,
+    "R_elbow": 0.2,
+    "L_knee": 0.3,
+    "R_knee": 1.6,
+    "L_hip": 0.4,
+    "R_hip": 0.5,
+    "L_shoulder": 3.1,
+    "R_shoulder": 1.9,
+    "torso_tilt": 0.3
+   },
+   "band_max_deg": 41.7,
+   "band_note": "lower bound: two pose models on the same frames",
+   "attribution": {
+    "offset_deg": {
+     "L_elbow": 12.3,
+     "R_elbow": 1.6,
+     "L_knee": -0.6,
+     "R_knee": -1.3,
+     "L_hip": -1.1,
+     "R_hip": -3.1,
+     "L_shoulder": 14.8,
+     "R_shoulder": 10.3,
+     "torso_tilt": -0.3
+    },
+    "per_joint": {
+     "L_elbow": {
+      "residual": -34.0,
+      "z": -1.3,
+      "band": 41.7,
+      "verdict": "noise"
+     },
+     "R_elbow": {
+      "residual": 23.6,
+      "z": 1.2,
+      "band": 0.2,
+      "verdict": "noise"
+     },
+     "L_knee": {
+      "residual": -5.0,
+      "z": -0.7,
+      "band": 0.3,
+      "verdict": "noise"
+     },
+     "R_knee": {
+      "residual": -3.0,
+      "z": -0.3,
+      "band": 1.6,
+      "verdict": "noise"
+     },
+     "L_hip": {
+      "residual": -3.5,
+      "z": -0.4,
+      "band": 0.4,
+      "verdict": "noise"
+     },
+     "R_hip": {
+      "residual": -7.3,
+      "z": -0.9,
+      "band": 0.5,
+      "verdict": "noise"
+     },
+     "L_shoulder": {
+      "residual": -2.9,
+      "z": -0.4,
+      "band": 3.1,
+      "verdict": "style"
+     },
+     "R_shoulder": {
+      "residual": -4.9,
+      "z": -0.3,
+      "band": 1.9,
+      "verdict": "noise"
+     },
+     "torso_tilt": {
+      "residual": -0.1,
+      "z": -0.0,
+      "band": 0.3,
+      "verdict": "noise"
+     }
+    },
+    "faults": [],
+    "style_joints": [
+     "L_shoulder"
+    ]
+   }
+  },
+  {
+   "move": 4,
+   "t": 4.03,
+   "mean_abs_delta": 13.1,
+   "max_abs_delta": 44.3,
+   "max_exceedance": 3.69,
+   "flags": [
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": 44.3,
+     "tol": 12.0,
+     "msg": "44\u00b0 more bent than reference",
+     "band_deg": 0.5,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.03,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": 29.8,
+     "tol": 12.0,
+     "msg": "30\u00b0 more bent than reference",
+     "band_deg": 25.5,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.01,
+      "withhold": 0.99
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    }
+   ],
+   "deltas": {
+    "L_elbow": -15.3,
+    "R_elbow": 2.1,
+    "L_knee": -5.5,
+    "R_knee": -4.1,
+    "L_hip": -9.8,
+    "R_hip": -6.6,
+    "L_shoulder": 44.3,
+    "R_shoulder": 29.8,
+    "torso_tilt": -0.9
+   },
+   "technique": "arae makki (low block)",
+   "technique_labels": [
+    "A1"
+   ],
+   "technique_confidence": "high",
+   "band_deg": {
+    "L_elbow": 1.8,
+    "R_elbow": 11.2,
+    "L_knee": 0.4,
+    "R_knee": 1.1,
+    "L_hip": 2.0,
+    "R_hip": 0.2,
+    "L_shoulder": 0.5,
+    "R_shoulder": 25.5,
+    "torso_tilt": 0.2
+   },
+   "band_max_deg": 25.5,
+   "band_note": "lower bound: two pose models on the same frames",
+   "attribution": {
+    "offset_deg": {
+     "L_elbow": 12.3,
+     "R_elbow": 1.6,
+     "L_knee": -0.6,
+     "R_knee": -1.3,
+     "L_hip": -1.1,
+     "R_hip": -3.1,
+     "L_shoulder": 14.8,
+     "R_shoulder": 10.3,
+     "torso_tilt": -0.3
+    },
+    "per_joint": {
+     "L_elbow": {
+      "residual": -27.6,
+      "z": -1.1,
+      "band": 1.8,
+      "verdict": "noise"
+     },
+     "R_elbow": {
+      "residual": 0.5,
+      "z": 0.0,
+      "band": 11.2,
+      "verdict": "noise"
+     },
+     "L_knee": {
+      "residual": -5.0,
+      "z": -0.7,
+      "band": 0.4,
+      "verdict": "noise"
+     },
+     "R_knee": {
+      "residual": -2.8,
+      "z": -0.3,
+      "band": 1.1,
+      "verdict": "noise"
+     },
+     "L_hip": {
+      "residual": -8.8,
+      "z": -1.1,
+      "band": 2.0,
+      "verdict": "noise"
+     },
+     "R_hip": {
+      "residual": -3.5,
+      "z": -0.4,
+      "band": 0.2,
+      "verdict": "noise"
+     },
+     "L_shoulder": {
+      "residual": 29.5,
+      "z": 4.1,
+      "band": 0.5,
+      "verdict": "fault"
+     },
+     "R_shoulder": {
+      "residual": 19.5,
+      "z": 1.0,
+      "band": 25.5,
+      "verdict": "noise"
+     },
+     "torso_tilt": {
+      "residual": -0.6,
+      "z": -0.4,
+      "band": 0.2,
+      "verdict": "noise"
+     }
+    },
+    "faults": [
+     "L_shoulder"
+    ],
+    "style_joints": []
+   }
+  },
+  {
+   "move": 5,
+   "t": 4.9,
+   "mean_abs_delta": 8.2,
+   "max_abs_delta": 26.0,
+   "max_exceedance": 1.67,
+   "flags": [
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": 20.0,
+     "tol": 12.0,
+     "msg": "20\u00b0 more bent than reference",
+     "band_deg": 0.2,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "left elbow",
+     "key": "L_elbow",
+     "delta": 26.0,
+     "tol": 18.0,
+     "msg": "26\u00b0 more bent than reference",
+     "band_deg": 0.8,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    }
+   ],
+   "deltas": {
+    "L_elbow": 26.0,
+    "R_elbow": 1.3,
+    "L_knee": 9.9,
+    "R_knee": -4.3,
+    "L_hip": 4.1,
+    "R_hip": -2.5,
+    "L_shoulder": 20.0,
+    "R_shoulder": 4.6,
+    "torso_tilt": 1.0
+   },
+   "technique": "momtong jireugi (middle punch)",
+   "technique_labels": [
+    "A4"
+   ],
+   "technique_confidence": "high",
+   "band_deg": {
+    "L_elbow": 0.8,
+    "R_elbow": 46.0,
+    "L_knee": 0.2,
+    "R_knee": 0.0,
+    "L_hip": 0.7,
+    "R_hip": 0.7,
+    "L_shoulder": 0.2,
+    "R_shoulder": 2.9,
+    "torso_tilt": 0.3
+   },
+   "band_max_deg": 46.0,
+   "band_note": "lower bound: two pose models on the same frames",
+   "attribution": {
+    "offset_deg": {
+     "L_elbow": 12.3,
+     "R_elbow": 1.6,
+     "L_knee": -0.6,
+     "R_knee": -1.3,
+     "L_hip": -1.1,
+     "R_hip": -3.1,
+     "L_shoulder": 14.8,
+     "R_shoulder": 10.3,
+     "torso_tilt": -0.3
+    },
+    "per_joint": {
+     "L_elbow": {
+      "residual": 13.7,
+      "z": 0.5,
+      "band": 0.8,
+      "verdict": "noise"
+     },
+     "R_elbow": {
+      "residual": -0.3,
+      "z": -0.0,
+      "band": 46.0,
+      "verdict": "noise"
+     },
+     "L_knee": {
+      "residual": 10.5,
+      "z": 1.4,
+      "band": 0.2,
+      "verdict": "noise"
+     },
+     "R_knee": {
+      "residual": -3.0,
+      "z": -0.3,
+      "band": 0.0,
+      "verdict": "noise"
+     },
+     "L_hip": {
+      "residual": 5.1,
+      "z": 0.6,
+      "band": 0.7,
+      "verdict": "noise"
+     },
+     "R_hip": {
+      "residual": 0.6,
+      "z": 0.1,
+      "band": 0.7,
+      "verdict": "noise"
+     },
+     "L_shoulder": {
+      "residual": 5.2,
+      "z": 0.7,
+      "band": 0.2,
+      "verdict": "style"
+     },
+     "R_shoulder": {
+      "residual": -5.7,
+      "z": -0.3,
+      "band": 2.9,
+      "verdict": "noise"
+     },
+     "torso_tilt": {
+      "residual": 1.4,
+      "z": 1.0,
+      "band": 0.3,
+      "verdict": "noise"
+     }
+    },
+    "faults": [],
+    "style_joints": [
+     "L_shoulder"
+    ]
+   }
+  },
+  {
+   "move": 6,
+   "t": 6.23,
+   "mean_abs_delta": 25.8,
+   "max_abs_delta": 44.2,
+   "max_exceedance": 4.42,
+   "flags": [
+    {
+     "joint": "left knee",
+     "key": "L_knee",
+     "delta": 44.2,
+     "tol": 10.0,
+     "msg": "44\u00b0 more bent than reference",
+     "band_deg": 0.0,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.03,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "left hip",
+     "key": "L_hip",
+     "delta": 39.0,
+     "tol": 10.0,
+     "msg": "39\u00b0 more bent than reference",
+     "band_deg": 0.0,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.03,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "right hip",
+     "key": "R_hip",
+     "delta": 26.1,
+     "tol": 10.0,
+     "msg": "26\u00b0 more bent than reference",
+     "band_deg": 4.2,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    }
+   ],
+   "deltas": {
+    "L_elbow": 25.6,
+    "R_elbow": 34.1,
+    "L_knee": 44.2,
+    "R_knee": 6.6,
+    "L_hip": 39.0,
+    "R_hip": 26.1,
+    "L_shoulder": -29.2,
+    "R_shoulder": -26.2,
+    "torso_tilt": 1.7
+   },
+   "technique": "arae makki (low block)",
+   "technique_labels": [
+    "A1"
+   ],
+   "technique_confidence": "high",
+   "band_deg": {
+    "L_elbow": 8.8,
+    "R_elbow": 7.9,
+    "L_knee": 0.0,
+    "R_knee": 9.5,
+    "L_hip": 0.0,
+    "R_hip": 4.2,
+    "L_shoulder": 1.7,
+    "R_shoulder": 1.8,
+    "torso_tilt": 0.3
+   },
+   "band_max_deg": 9.5,
+   "band_note": "lower bound: two pose models on the same frames",
+   "attribution": {
+    "offset_deg": {
+     "L_elbow": 12.3,
+     "R_elbow": 1.6,
+     "L_knee": -0.6,
+     "R_knee": -1.3,
+     "L_hip": -1.1,
+     "R_hip": -3.1,
+     "L_shoulder": 14.8,
+     "R_shoulder": 10.3,
+     "torso_tilt": -0.3
+    },
+    "per_joint": {
+     "L_elbow": {
+      "residual": 13.3,
+      "z": 0.5,
+      "band": 8.8,
+      "verdict": "noise"
+     },
+     "R_elbow": {
+      "residual": 32.5,
+      "z": 1.7,
+      "band": 7.9,
+      "verdict": "noise"
+     },
+     "L_knee": {
+      "residual": 44.8,
+      "z": 6.0,
+      "band": 0.0,
+      "verdict": "fault"
+     },
+     "R_knee": {
+      "residual": 7.9,
+      "z": 0.9,
+      "band": 9.5,
+      "verdict": "noise"
+     },
+     "L_hip": {
+      "residual": 40.0,
+      "z": 5.0,
+      "band": 0.0,
+      "verdict": "fault"
+     },
+     "R_hip": {
+      "residual": 29.2,
+      "z": 3.5,
+      "band": 4.2,
+      "verdict": "fault"
+     },
+     "L_shoulder": {
+      "residual": -44.0,
+      "z": -6.0,
+      "band": 1.7,
+      "verdict": "fault"
+     },
+     "R_shoulder": {
+      "residual": -36.5,
+      "z": -1.9,
+      "band": 1.8,
+      "verdict": "noise"
+     },
+     "torso_tilt": {
+      "residual": 2.0,
+      "z": 1.5,
+      "band": 0.3,
+      "verdict": "noise"
+     }
+    },
+    "faults": [
+     "L_knee",
+     "L_hip",
+     "R_hip",
+     "L_shoulder"
+    ],
+    "style_joints": []
+   }
+  },
+  {
+   "move": 7,
+   "t": 6.93,
+   "mean_abs_delta": 13.2,
+   "max_abs_delta": 43.2,
+   "max_exceedance": 2.4,
+   "flags": [
+    {
+     "joint": "left elbow",
+     "key": "L_elbow",
+     "delta": 43.2,
+     "tol": 18.0,
+     "msg": "43\u00b0 more bent than reference",
+     "band_deg": 0.3,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.03,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": 18.5,
+     "tol": 12.0,
+     "msg": "19\u00b0 more bent than reference",
+     "band_deg": 13.3,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.01,
+      "withhold": 0.99
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": 18.0,
+     "tol": 12.0,
+     "msg": "18\u00b0 more bent than reference",
+     "band_deg": 0.6,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    }
+   ],
+   "deltas": {
+    "L_elbow": 43.2,
+    "R_elbow": -16.9,
+    "L_knee": 5.4,
+    "R_knee": -7.5,
+    "L_hip": 6.1,
+    "R_hip": -2.7,
+    "L_shoulder": 18.0,
+    "R_shoulder": 18.5,
+    "torso_tilt": -0.4
+   },
+   "technique": "momtong jireugi (middle punch)",
+   "technique_labels": [
+    "A4"
+   ],
+   "technique_confidence": "high",
+   "band_deg": {
+    "L_elbow": 0.3,
+    "R_elbow": 14.0,
+    "L_knee": 1.3,
+    "R_knee": 5.7,
+    "L_hip": 0.1,
+    "R_hip": 0.9,
+    "L_shoulder": 0.6,
+    "R_shoulder": 13.3,
+    "torso_tilt": 0.4
+   },
+   "band_max_deg": 14.0,
+   "band_note": "lower bound: two pose models on the same frames",
+   "attribution": {
+    "offset_deg": {
+     "L_elbow": 12.3,
+     "R_elbow": 1.6,
+     "L_knee": -0.6,
+     "R_knee": -1.3,
+     "L_hip": -1.1,
+     "R_hip": -3.1,
+     "L_shoulder": 14.8,
+     "R_shoulder": 10.3,
+     "torso_tilt": -0.3
+    },
+    "per_joint": {
+     "L_elbow": {
+      "residual": 30.9,
+      "z": 1.2,
+      "band": 0.3,
+      "verdict": "noise"
+     },
+     "R_elbow": {
+      "residual": -18.5,
+      "z": -0.9,
+      "band": 14.0,
+      "verdict": "noise"
+     },
+     "L_knee": {
+      "residual": 6.0,
+      "z": 0.8,
+      "band": 1.3,
+      "verdict": "noise"
+     },
+     "R_knee": {
+      "residual": -6.2,
+      "z": -0.7,
+      "band": 5.7,
+      "verdict": "noise"
+     },
+     "L_hip": {
+      "residual": 7.1,
+      "z": 0.9,
+      "band": 0.1,
+      "verdict": "noise"
+     },
+     "R_hip": {
+      "residual": 0.4,
+      "z": 0.0,
+      "band": 0.9,
+      "verdict": "noise"
+     },
+     "L_shoulder": {
+      "residual": 3.2,
+      "z": 0.4,
+      "band": 0.6,
+      "verdict": "style"
+     },
+     "R_shoulder": {
+      "residual": 8.2,
+      "z": 0.4,
+      "band": 13.3,
+      "verdict": "noise"
+     },
+     "torso_tilt": {
+      "residual": -0.1,
+      "z": -0.0,
+      "band": 0.4,
+      "verdict": "noise"
+     }
+    },
+    "faults": [],
+    "style_joints": [
+     "L_shoulder"
+    ]
+   }
+  },
+  {
+   "move": 8,
+   "t": 9.37,
+   "mean_abs_delta": 17.1,
+   "max_abs_delta": 49.8,
+   "max_exceedance": 3.44,
+   "flags": [
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": 41.3,
+     "tol": 12.0,
+     "msg": "41\u00b0 more bent than reference",
+     "band_deg": 11.4,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.03,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "right elbow",
+     "key": "R_elbow",
+     "delta": 49.8,
+     "tol": 18.0,
+     "msg": "50\u00b0 more bent than reference",
+     "band_deg": 30.3,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": 19.3,
+     "tol": 12.0,
+     "msg": "19\u00b0 more bent than reference",
+     "band_deg": 3.0,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    }
+   ],
+   "deltas": {
+    "L_elbow": 14.7,
+    "R_elbow": 49.8,
+    "L_knee": -5.8,
+    "R_knee": -5.7,
+    "L_hip": -6.3,
+    "R_hip": -8.3,
+    "L_shoulder": 19.3,
+    "R_shoulder": 41.3,
+    "torso_tilt": -2.5
+   },
+   "technique": "momtong jireugi (middle punch)",
+   "technique_labels": [
+    "A4"
+   ],
+   "technique_confidence": "high",
+   "band_deg": {
+    "L_elbow": 21.8,
+    "R_elbow": 30.3,
+    "L_knee": 2.0,
+    "R_knee": 1.0,
+    "L_hip": 2.1,
+    "R_hip": 1.6,
+    "L_shoulder": 3.0,
+    "R_shoulder": 11.4,
+    "torso_tilt": 0.2
+   },
+   "band_max_deg": 30.3,
+   "band_note": "lower bound: two pose models on the same frames",
+   "attribution": {
+    "offset_deg": {
+     "L_elbow": 12.3,
+     "R_elbow": 1.6,
+     "L_knee": -0.6,
+     "R_knee": -1.3,
+     "L_hip": -1.1,
+     "R_hip": -3.1,
+     "L_shoulder": 14.8,
+     "R_shoulder": 10.3,
+     "torso_tilt": -0.3
+    },
+    "per_joint": {
+     "L_elbow": {
+      "residual": 2.3,
+      "z": 0.1,
+      "band": 21.8,
+      "verdict": "noise"
+     },
+     "R_elbow": {
+      "residual": 48.2,
+      "z": 2.5,
+      "band": 30.3,
+      "verdict": "noise"
+     },
+     "L_knee": {
+      "residual": -5.2,
+      "z": -0.7,
+      "band": 2.0,
+      "verdict": "noise"
+     },
+     "R_knee": {
+      "residual": -4.4,
+      "z": -0.5,
+      "band": 1.0,
+      "verdict": "noise"
+     },
+     "L_hip": {
+      "residual": -5.2,
+      "z": -0.7,
+      "band": 2.1,
+      "verdict": "noise"
+     },
+     "R_hip": {
+      "residual": -5.2,
+      "z": -0.6,
+      "band": 1.6,
+      "verdict": "noise"
+     },
+     "L_shoulder": {
+      "residual": 4.6,
+      "z": 0.6,
+      "band": 3.0,
+      "verdict": "style"
+     },
+     "R_shoulder": {
+      "residual": 31.0,
+      "z": 1.6,
+      "band": 11.4,
+      "verdict": "noise"
+     },
+     "torso_tilt": {
+      "residual": -2.1,
+      "z": -1.5,
+      "band": 0.2,
+      "verdict": "noise"
+     }
+    },
+    "faults": [],
+    "style_joints": [
+     "L_shoulder"
+    ]
+   }
+  },
+  {
+   "move": 9,
+   "t": 11.17,
+   "mean_abs_delta": 16.0,
+   "max_abs_delta": 45.9,
+   "max_exceedance": 3.82,
+   "flags": [
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": 45.9,
+     "tol": 12.0,
+     "msg": "46\u00b0 more bent than reference",
+     "band_deg": 8.9,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.03,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": 36.9,
+     "tol": 12.0,
+     "msg": "37\u00b0 more bent than reference",
+     "band_deg": 0.3,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.03,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "right elbow",
+     "key": "R_elbow",
+     "delta": -22.8,
+     "tol": 18.0,
+     "msg": "23\u00b0 straighter than reference",
+     "band_deg": 6.0,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    }
+   ],
+   "deltas": {
+    "L_elbow": -5.7,
+    "R_elbow": -22.8,
+    "L_knee": -3.3,
+    "R_knee": -9.6,
+    "L_hip": -6.5,
+    "R_hip": -10.1,
+    "L_shoulder": 45.9,
+    "R_shoulder": 36.9,
+    "torso_tilt": -3.1
+   },
+   "technique": "momtong jireugi (middle punch)",
+   "technique_labels": [
+    "A4"
+   ],
+   "technique_confidence": "high",
+   "band_deg": {
+    "L_elbow": 36.1,
+    "R_elbow": 6.0,
+    "L_knee": 4.2,
+    "R_knee": 3.5,
+    "L_hip": 3.1,
+    "R_hip": 3.0,
+    "L_shoulder": 8.9,
+    "R_shoulder": 0.3,
+    "torso_tilt": 1.0
+   },
+   "band_max_deg": 36.1,
+   "band_note": "lower bound: two pose models on the same frames",
+   "attribution": {
+    "offset_deg": {
+     "L_elbow": 12.3,
+     "R_elbow": 1.6,
+     "L_knee": -0.6,
+     "R_knee": -1.3,
+     "L_hip": -1.1,
+     "R_hip": -3.1,
+     "L_shoulder": 14.8,
+     "R_shoulder": 10.3,
+     "torso_tilt": -0.3
+    },
+    "per_joint": {
+     "L_elbow": {
+      "residual": -18.1,
+      "z": -0.7,
+      "band": 36.1,
+      "verdict": "noise"
+     },
+     "R_elbow": {
+      "residual": -24.4,
+      "z": -1.3,
+      "band": 6.0,
+      "verdict": "noise"
+     },
+     "L_knee": {
+      "residual": -2.8,
+      "z": -0.4,
+      "band": 4.2,
+      "verdict": "noise"
+     },
+     "R_knee": {
+      "residual": -8.2,
+      "z": -1.0,
+      "band": 3.5,
+      "verdict": "noise"
+     },
+     "L_hip": {
+      "residual": -5.5,
+      "z": -0.7,
+      "band": 3.1,
+      "verdict": "noise"
+     },
+     "R_hip": {
+      "residual": -7.0,
+      "z": -0.8,
+      "band": 3.0,
+      "verdict": "noise"
+     },
+     "L_shoulder": {
+      "residual": 31.1,
+      "z": 4.3,
+      "band": 8.9,
+      "verdict": "fault"
+     },
+     "R_shoulder": {
+      "residual": 26.6,
+      "z": 1.4,
+      "band": 0.3,
+      "verdict": "noise"
+     },
+     "torso_tilt": {
+      "residual": -2.8,
+      "z": -2.0,
+      "band": 1.0,
+      "verdict": "noise"
+     }
+    },
+    "faults": [
+     "L_shoulder"
+    ],
+    "style_joints": []
+   }
+  },
+  {
+   "move": 10,
+   "t": 12.0,
+   "mean_abs_delta": 11.3,
+   "max_abs_delta": 29.8,
+   "max_exceedance": 1.65,
+   "flags": [
+    {
+     "joint": "left elbow",
+     "key": "L_elbow",
+     "delta": 29.8,
+     "tol": 18.0,
+     "msg": "30\u00b0 more bent than reference",
+     "band_deg": 1.6,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": 18.9,
+     "tol": 12.0,
+     "msg": "19\u00b0 more bent than reference",
+     "band_deg": 0.5,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": 18.0,
+     "tol": 12.0,
+     "msg": "18\u00b0 more bent than reference",
+     "band_deg": 0.9,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.01,
+      "withhold": 0.99
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    }
+   ],
+   "deltas": {
+    "L_elbow": 29.8,
+    "R_elbow": -19.3,
+    "L_knee": -8.9,
+    "R_knee": 1.7,
+    "L_hip": -0.9,
+    "R_hip": 4.2,
+    "L_shoulder": 18.0,
+    "R_shoulder": 18.9,
+    "torso_tilt": 0.1
+   },
+   "technique": "momtong jireugi (middle punch)",
+   "technique_labels": [
+    "A4"
+   ],
+   "technique_confidence": "high",
+   "band_deg": {
+    "L_elbow": 1.6,
+    "R_elbow": 0.8,
+    "L_knee": 1.7,
+    "R_knee": 2.3,
+    "L_hip": 1.1,
+    "R_hip": 2.4,
+    "L_shoulder": 0.9,
+    "R_shoulder": 0.5,
+    "torso_tilt": 0.6
+   },
+   "band_max_deg": 2.4,
+   "band_note": "lower bound: two pose models on the same frames",
+   "attribution": {
+    "offset_deg": {
+     "L_elbow": 12.3,
+     "R_elbow": 1.6,
+     "L_knee": -0.6,
+     "R_knee": -1.3,
+     "L_hip": -1.1,
+     "R_hip": -3.1,
+     "L_shoulder": 14.8,
+     "R_shoulder": 10.3,
+     "torso_tilt": -0.3
+    },
+    "per_joint": {
+     "L_elbow": {
+      "residual": 17.5,
+      "z": 0.7,
+      "band": 1.6,
+      "verdict": "noise"
+     },
+     "R_elbow": {
+      "residual": -20.9,
+      "z": -1.1,
+      "band": 0.8,
+      "verdict": "noise"
+     },
+     "L_knee": {
+      "residual": -8.3,
+      "z": -1.1,
+      "band": 1.7,
+      "verdict": "noise"
+     },
+     "R_knee": {
+      "residual": 3.0,
+      "z": 0.4,
+      "band": 2.3,
+      "verdict": "noise"
+     },
+     "L_hip": {
+      "residual": 0.2,
+      "z": 0.0,
+      "band": 1.1,
+      "verdict": "noise"
+     },
+     "R_hip": {
+      "residual": 7.3,
+      "z": 0.9,
+      "band": 2.4,
+      "verdict": "noise"
+     },
+     "L_shoulder": {
+      "residual": 3.2,
+      "z": 0.4,
+      "band": 0.9,
+      "verdict": "style"
+     },
+     "R_shoulder": {
+      "residual": 8.6,
+      "z": 0.4,
+      "band": 0.5,
+      "verdict": "noise"
+     },
+     "torso_tilt": {
+      "residual": 0.4,
+      "z": 0.3,
+      "band": 0.6,
+      "verdict": "noise"
+     }
+    },
+    "faults": [],
+    "style_joints": [
+     "L_shoulder"
+    ]
+   }
+  },
+  {
+   "move": 11,
+   "t": 13.2,
+   "mean_abs_delta": 22.2,
+   "max_abs_delta": 45.1,
+   "max_exceedance": 3.64,
+   "flags": [
+    {
+     "joint": "right knee",
+     "key": "R_knee",
+     "delta": 36.4,
+     "tol": 10.0,
+     "msg": "36\u00b0 more bent than reference",
+     "band_deg": 0.8,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": -34.7,
+     "tol": 12.0,
+     "msg": "35\u00b0 straighter than reference",
+     "band_deg": 3.2,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "right elbow",
+     "key": "R_elbow",
+     "delta": 45.1,
+     "tol": 18.0,
+     "msg": "45\u00b0 more bent than reference",
+     "band_deg": 0.3,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.03,
+     "release_ms": 0,
+     "release_cached": true
+    }
+   ],
+   "deltas": {
+    "L_elbow": 32.6,
+    "R_elbow": 45.1,
+    "L_knee": 4.5,
+    "R_knee": 36.4,
+    "L_hip": 5.1,
+    "R_hip": 16.4,
+    "L_shoulder": -34.7,
+    "R_shoulder": -24.5,
+    "torso_tilt": 0.2
+   },
+   "technique": "arae makki (low block)",
+   "technique_labels": [
+    "A1"
+   ],
+   "technique_confidence": "high",
+   "band_deg": {
+    "L_elbow": 5.0,
+    "R_elbow": 0.3,
+    "L_knee": 6.8,
+    "R_knee": 0.8,
+    "L_hip": 3.2,
+    "R_hip": 0.3,
+    "L_shoulder": 3.2,
+    "R_shoulder": 0.5,
+    "torso_tilt": 0.6
+   },
+   "band_max_deg": 6.8,
+   "band_note": "lower bound: two pose models on the same frames",
+   "attribution": {
+    "offset_deg": {
+     "L_elbow": 12.3,
+     "R_elbow": 1.6,
+     "L_knee": -0.6,
+     "R_knee": -1.3,
+     "L_hip": -1.1,
+     "R_hip": -3.1,
+     "L_shoulder": 14.8,
+     "R_shoulder": 10.3,
+     "torso_tilt": -0.3
+    },
+    "per_joint": {
+     "L_elbow": {
+      "residual": 20.2,
+      "z": 0.8,
+      "band": 5.0,
+      "verdict": "noise"
+     },
+     "R_elbow": {
+      "residual": 43.5,
+      "z": 2.2,
+      "band": 0.3,
+      "verdict": "noise"
+     },
+     "L_knee": {
+      "residual": 5.0,
+      "z": 0.7,
+      "band": 6.8,
+      "verdict": "noise"
+     },
+     "R_knee": {
+      "residual": 37.8,
+      "z": 4.4,
+      "band": 0.8,
+      "verdict": "fault"
+     },
+     "L_hip": {
+      "residual": 6.1,
+      "z": 0.8,
+      "band": 3.2,
+      "verdict": "noise"
+     },
+     "R_hip": {
+      "residual": 19.5,
+      "z": 2.3,
+      "band": 0.3,
+      "verdict": "noise"
+     },
+     "L_shoulder": {
+      "residual": -49.5,
+      "z": -6.8,
+      "band": 3.2,
+      "verdict": "fault"
+     },
+     "R_shoulder": {
+      "residual": -34.8,
+      "z": -1.8,
+      "band": 0.5,
+      "verdict": "noise"
+     },
+     "torso_tilt": {
+      "residual": 0.6,
+      "z": 0.4,
+      "band": 0.6,
+      "verdict": "noise"
+     }
+    },
+    "faults": [
+     "R_knee",
+     "L_shoulder"
+    ],
+    "style_joints": []
+   }
+  },
+  {
+   "move": 12,
+   "t": 13.87,
+   "mean_abs_delta": 7.3,
+   "max_abs_delta": 32.8,
+   "max_exceedance": 1.82,
+   "flags": [
+    {
+     "joint": "left elbow",
+     "key": "L_elbow",
+     "delta": 32.8,
+     "tol": 18.0,
+     "msg": "33\u00b0 more bent than reference",
+     "band_deg": 9.9,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.01,
+      "withhold": 0.99
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": -14.5,
+     "tol": 12.0,
+     "msg": "15\u00b0 straighter than reference",
+     "band_deg": 1.7,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    }
+   ],
+   "deltas": {
+    "L_elbow": 32.8,
+    "R_elbow": 3.0,
+    "L_knee": -3.7,
+    "R_knee": 1.4,
+    "L_hip": -1.2,
+    "R_hip": 1.2,
+    "L_shoulder": -14.5,
+    "R_shoulder": 4.3,
+    "torso_tilt": -3.2
+   },
+   "technique": "arae makki (low block)",
+   "technique_labels": [
+    "A1"
+   ],
+   "technique_confidence": "high",
+   "band_deg": {
+    "L_elbow": 9.9,
+    "R_elbow": 2.7,
+    "L_knee": 2.5,
+    "R_knee": 2.4,
+    "L_hip": 2.1,
+    "R_hip": 2.3,
+    "L_shoulder": 1.7,
+    "R_shoulder": 0.4,
+    "torso_tilt": 0.7
+   },
+   "band_max_deg": 9.9,
+   "band_note": "lower bound: two pose models on the same frames",
+   "attribution": {
+    "offset_deg": {
+     "L_elbow": 12.3,
+     "R_elbow": 1.6,
+     "L_knee": -0.6,
+     "R_knee": -1.3,
+     "L_hip": -1.1,
+     "R_hip": -3.1,
+     "L_shoulder": 14.8,
+     "R_shoulder": 10.3,
+     "torso_tilt": -0.3
+    },
+    "per_joint": {
+     "L_elbow": {
+      "residual": 20.4,
+      "z": 0.8,
+      "band": 9.9,
+      "verdict": "noise"
+     },
+     "R_elbow": {
+      "residual": 1.4,
+      "z": 0.1,
+      "band": 2.7,
+      "verdict": "noise"
+     },
+     "L_knee": {
+      "residual": -3.2,
+      "z": -0.4,
+      "band": 2.5,
+      "verdict": "noise"
+     },
+     "R_knee": {
+      "residual": 2.8,
+      "z": 0.3,
+      "band": 2.4,
+      "verdict": "noise"
+     },
+     "L_hip": {
+      "residual": -0.1,
+      "z": -0.0,
+      "band": 2.1,
+      "verdict": "noise"
+     },
+     "R_hip": {
+      "residual": 4.3,
+      "z": 0.5,
+      "band": 2.3,
+      "verdict": "noise"
+     },
+     "L_shoulder": {
+      "residual": -29.2,
+      "z": -4.0,
+      "band": 1.7,
+      "verdict": "fault"
+     },
+     "R_shoulder": {
+      "residual": -6.0,
+      "z": -0.3,
+      "band": 0.4,
+      "verdict": "noise"
+     },
+     "torso_tilt": {
+      "residual": -2.9,
+      "z": -2.0,
+      "band": 0.7,
+      "verdict": "noise"
+     }
+    },
+    "faults": [
+     "L_shoulder"
+    ],
+    "style_joints": []
+   }
+  },
+  {
+   "move": 13,
+   "t": 17.13,
+   "mean_abs_delta": 7.7,
+   "max_abs_delta": 14.7,
+   "max_exceedance": 1.35,
+   "flags": [
+    {
+     "joint": "left hip",
+     "key": "L_hip",
+     "delta": 13.5,
+     "tol": 10.0,
+     "msg": "14\u00b0 more bent than reference",
+     "band_deg": 4.7,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.01,
+      "withhold": 0.99
+     },
+     "attributable": 0.05,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": 14.7,
+     "tol": 12.0,
+     "msg": "15\u00b0 more bent than reference",
+     "band_deg": 3.9,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.01,
+      "withhold": 0.99
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    }
+   ],
+   "deltas": {
+    "L_elbow": 13.0,
+    "R_elbow": 1.9,
+    "L_knee": 2.6,
+    "R_knee": -6.7,
+    "L_hip": 13.5,
+    "R_hip": -8.8,
+    "L_shoulder": 14.7,
+    "R_shoulder": 7.3,
+    "torso_tilt": -0.3
+   },
+   "technique": "abchagi + momtong jireugi (middle punch)",
+   "technique_labels": [
+    "A8",
+    "A4"
+   ],
+   "technique_confidence": "high",
+   "band_deg": {
+    "L_elbow": 2.2,
+    "R_elbow": 12.8,
+    "L_knee": 5.6,
+    "R_knee": 2.1,
+    "L_hip": 4.7,
+    "R_hip": 2.7,
+    "L_shoulder": 3.9,
+    "R_shoulder": 5.0,
+    "torso_tilt": 0.2
+   },
+   "band_max_deg": 12.8,
+   "band_note": "lower bound: two pose models on the same frames",
+   "attribution": {
+    "offset_deg": {
+     "L_elbow": 12.3,
+     "R_elbow": 1.6,
+     "L_knee": -0.6,
+     "R_knee": -1.3,
+     "L_hip": -1.1,
+     "R_hip": -3.1,
+     "L_shoulder": 14.8,
+     "R_shoulder": 10.3,
+     "torso_tilt": -0.3
+    },
+    "per_joint": {
+     "L_elbow": {
+      "residual": 0.7,
+      "z": 0.0,
+      "band": 2.2,
+      "verdict": "noise"
+     },
+     "R_elbow": {
+      "residual": 0.3,
+      "z": 0.0,
+      "band": 12.8,
+      "verdict": "noise"
+     },
+     "L_knee": {
+      "residual": 3.2,
+      "z": 0.4,
+      "band": 5.6,
+      "verdict": "noise"
+     },
+     "R_knee": {
+      "residual": -5.4,
+      "z": -0.6,
+      "band": 2.1,
+      "verdict": "noise"
+     },
+     "L_hip": {
+      "residual": 14.6,
+      "z": 1.8,
+      "band": 4.7,
+      "verdict": "noise"
+     },
+     "R_hip": {
+      "residual": -5.7,
+      "z": -0.7,
+      "band": 2.7,
+      "verdict": "noise"
+     },
+     "L_shoulder": {
+      "residual": -0.1,
+      "z": -0.0,
+      "band": 3.9,
+      "verdict": "style"
+     },
+     "R_shoulder": {
+      "residual": -3.0,
+      "z": -0.2,
+      "band": 5.0,
+      "verdict": "noise"
+     },
+     "torso_tilt": {
+      "residual": 0.0,
+      "z": 0.0,
+      "band": 0.2,
+      "verdict": "noise"
+     }
+    },
+    "faults": [],
+    "style_joints": [
+     "L_shoulder"
+    ]
+   }
+  },
+  {
+   "move": 14,
+   "t": 20.4,
+   "mean_abs_delta": 17.5,
+   "max_abs_delta": 37.0,
+   "max_exceedance": 2.92,
+   "flags": [
+    {
+     "joint": "left shoulder",
+     "key": "L_shoulder",
+     "delta": -35.0,
+     "tol": 12.0,
+     "msg": "35\u00b0 straighter than reference",
+     "band_deg": 1.2,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.03,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": -32.7,
+     "tol": 12.0,
+     "msg": "33\u00b0 straighter than reference",
+     "band_deg": 2.9,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.03,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "left elbow",
+     "key": "L_elbow",
+     "delta": -37.0,
+     "tol": 18.0,
+     "msg": "37\u00b0 straighter than reference",
+     "band_deg": 76.4,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.01,
+      "withhold": 0.99
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    }
+   ],
+   "deltas": {
+    "L_elbow": -37.0,
+    "R_elbow": -10.4,
+    "L_knee": 9.2,
+    "R_knee": 14.1,
+    "L_hip": 9.4,
+    "R_hip": 9.4,
+    "L_shoulder": -35.0,
+    "R_shoulder": -32.7,
+    "torso_tilt": -0.4
+   },
+   "technique": "abchagi + momtong jireugi (middle punch)",
+   "technique_labels": [
+    "A8",
+    "A4"
+   ],
+   "technique_confidence": "high",
+   "band_deg": {
+    "L_elbow": 76.4,
+    "R_elbow": 13.1,
+    "L_knee": 1.6,
+    "R_knee": 2.5,
+    "L_hip": 0.7,
+    "R_hip": 2.5,
+    "L_shoulder": 1.2,
+    "R_shoulder": 2.9,
+    "torso_tilt": 0.4
+   },
+   "band_max_deg": 76.4,
+   "band_note": "lower bound: two pose models on the same frames",
+   "attribution": {
+    "offset_deg": {
+     "L_elbow": 12.3,
+     "R_elbow": 1.6,
+     "L_knee": -0.6,
+     "R_knee": -1.3,
+     "L_hip": -1.1,
+     "R_hip": -3.1,
+     "L_shoulder": 14.8,
+     "R_shoulder": 10.3,
+     "torso_tilt": -0.3
+    },
+    "per_joint": {
+     "L_elbow": {
+      "residual": -49.4,
+      "z": -1.9,
+      "band": 76.4,
+      "verdict": "noise"
+     },
+     "R_elbow": {
+      "residual": -12.0,
+      "z": -0.6,
+      "band": 13.1,
+      "verdict": "noise"
+     },
+     "L_knee": {
+      "residual": 9.8,
+      "z": 1.3,
+      "band": 1.6,
+      "verdict": "noise"
+     },
+     "R_knee": {
+      "residual": 15.4,
+      "z": 1.8,
+      "band": 2.5,
+      "verdict": "noise"
+     },
+     "L_hip": {
+      "residual": 10.5,
+      "z": 1.3,
+      "band": 0.7,
+      "verdict": "noise"
+     },
+     "R_hip": {
+      "residual": 12.5,
+      "z": 1.5,
+      "band": 2.5,
+      "verdict": "noise"
+     },
+     "L_shoulder": {
+      "residual": -49.8,
+      "z": -6.8,
+      "band": 1.2,
+      "verdict": "fault"
+     },
+     "R_shoulder": {
+      "residual": -43.0,
+      "z": -2.2,
+      "band": 2.9,
+      "verdict": "noise"
+     },
+     "torso_tilt": {
+      "residual": -0.1,
+      "z": -0.0,
+      "band": 0.4,
+      "verdict": "noise"
+     }
+    },
+    "faults": [
+     "L_shoulder"
+    ],
+    "style_joints": []
+   }
+  },
+  {
+   "move": 15,
+   "t": 23.2,
+   "mean_abs_delta": 9.0,
+   "max_abs_delta": 16.7,
+   "max_exceedance": 1.67,
+   "flags": [
+    {
+     "joint": "right knee",
+     "key": "R_knee",
+     "delta": 16.7,
+     "tol": 10.0,
+     "msg": "17\u00b0 more bent than reference",
+     "band_deg": 0.2,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": -15.5,
+     "tol": 12.0,
+     "msg": "15\u00b0 straighter than reference",
+     "band_deg": 4.7,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    },
+    {
+     "joint": "right hip",
+     "key": "R_hip",
+     "delta": 12.1,
+     "tol": 10.0,
+     "msg": "12\u00b0 more bent than reference",
+     "band_deg": 1.2,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.01,
+      "withhold": 0.99
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    }
+   ],
+   "deltas": {
+    "L_elbow": 11.7,
+    "R_elbow": 5.9,
+    "L_knee": -0.7,
+    "R_knee": 16.7,
+    "L_hip": 9.6,
+    "R_hip": 12.1,
+    "L_shoulder": -5.3,
+    "R_shoulder": -15.5,
+    "torso_tilt": -3.2
+   },
+   "technique": "momtong an makki (inward middle block)",
+   "technique_labels": [
+    "AN"
+   ],
+   "technique_confidence": "medium",
+   "band_deg": {
+    "L_elbow": 6.8,
+    "R_elbow": 11.3,
+    "L_knee": 2.0,
+    "R_knee": 0.2,
+    "L_hip": 1.1,
+    "R_hip": 1.2,
+    "L_shoulder": 1.9,
+    "R_shoulder": 4.7,
+    "torso_tilt": 0.1
+   },
+   "band_max_deg": 11.3,
+   "band_note": "lower bound: two pose models on the same frames",
+   "attribution": {
+    "offset_deg": {
+     "L_elbow": 12.3,
+     "R_elbow": 1.6,
+     "L_knee": -0.6,
+     "R_knee": -1.3,
+     "L_hip": -1.1,
+     "R_hip": -3.1,
+     "L_shoulder": 14.8,
+     "R_shoulder": 10.3,
+     "torso_tilt": -0.3
+    },
+    "per_joint": {
+     "L_elbow": {
+      "residual": -0.7,
+      "z": -0.0,
+      "band": 6.8,
+      "verdict": "noise"
+     },
+     "R_elbow": {
+      "residual": 4.3,
+      "z": 0.2,
+      "band": 11.3,
+      "verdict": "noise"
+     },
+     "L_knee": {
+      "residual": -0.1,
+      "z": -0.0,
+      "band": 2.0,
+      "verdict": "noise"
+     },
+     "R_knee": {
+      "residual": 18.1,
+      "z": 2.1,
+      "band": 0.2,
+      "verdict": "noise"
+     },
+     "L_hip": {
+      "residual": 10.7,
+      "z": 1.3,
+      "band": 1.1,
+      "verdict": "noise"
+     },
+     "R_hip": {
+      "residual": 15.2,
+      "z": 1.8,
+      "band": 1.2,
+      "verdict": "noise"
+     },
+     "L_shoulder": {
+      "residual": -20.1,
+      "z": -2.8,
+      "band": 1.9,
+      "verdict": "fault"
+     },
+     "R_shoulder": {
+      "residual": -25.8,
+      "z": -1.3,
+      "band": 4.7,
+      "verdict": "noise"
+     },
+     "torso_tilt": {
+      "residual": -2.9,
+      "z": -2.0,
+      "band": 0.1,
+      "verdict": "noise"
+     }
+    },
+    "faults": [
+     "L_shoulder"
+    ],
+    "style_joints": []
+   }
+  },
+  {
+   "move": 16,
+   "t": 25.0,
+   "mean_abs_delta": 6.0,
+   "max_abs_delta": 13.9,
+   "max_exceedance": 1.16,
+   "flags": [
+    {
+     "joint": "right shoulder",
+     "key": "R_shoulder",
+     "delta": 13.9,
+     "tol": 12.0,
+     "msg": "14\u00b0 more bent than reference",
+     "band_deg": 0.7,
+     "release": "withhold",
+     "release_probs": {
+      "show": 0.0,
+      "soften": 0.0,
+      "withhold": 1.0
+     },
+     "attributable": 0.04,
+     "release_ms": 0,
+     "release_cached": true
+    }
+   ],
+   "deltas": {
+    "L_elbow": -5.8,
+    "R_elbow": -7.4,
+    "L_knee": -0.4,
+    "R_knee": 5.1,
+    "L_hip": -6.0,
+    "R_hip": -3.5,
+    "L_shoulder": 10.9,
+    "R_shoulder": 13.9,
+    "torso_tilt": 1.0
+   },
+   "technique": "arae makki (low block)",
+   "technique_labels": [
+    "A1"
+   ],
+   "technique_confidence": "high",
+   "band_deg": {
+    "L_elbow": 8.5,
+    "R_elbow": 8.4,
+    "L_knee": 2.3,
+    "R_knee": 1.5,
+    "L_hip": 2.8,
+    "R_hip": 2.0,
+    "L_shoulder": 0.0,
+    "R_shoulder": 0.7,
+    "torso_tilt": 1.0
+   },
+   "band_max_deg": 8.5,
+   "band_note": "lower bound: two pose models on the same frames",
+   "attribution": {
+    "offset_deg": {
+     "L_elbow": 12.3,
+     "R_elbow": 1.6,
+     "L_knee": -0.6,
+     "R_knee": -1.3,
+     "L_hip": -1.1,
+     "R_hip": -3.1,
+     "L_shoulder": 14.8,
+     "R_shoulder": 10.3,
+     "torso_tilt": -0.3
+    },
+    "per_joint": {
+     "L_elbow": {
+      "residual": -18.1,
+      "z": -0.7,
+      "band": 8.5,
+      "verdict": "noise"
+     },
+     "R_elbow": {
+      "residual": -9.0,
+      "z": -0.5,
+      "band": 8.4,
+      "verdict": "noise"
+     },
+     "L_knee": {
+      "residual": 0.2,
+      "z": 0.0,
+      "band": 2.3,
+      "verdict": "noise"
+     },
+     "R_knee": {
+      "residual": 6.4,
+      "z": 0.8,
+      "band": 1.5,
+      "verdict": "noise"
+     },
+     "L_hip": {
+      "residual": -5.0,
+      "z": -0.6,
+      "band": 2.8,
+      "verdict": "noise"
+     },
+     "R_hip": {
+      "residual": -0.4,
+      "z": -0.0,
+      "band": 2.0,
+      "verdict": "noise"
+     },
+     "L_shoulder": {
+      "residual": -3.8,
+      "z": -0.5,
+      "band": 0.0,
+      "verdict": "style"
+     },
+     "R_shoulder": {
+      "residual": 3.6,
+      "z": 0.2,
+      "band": 0.7,
+      "verdict": "noise"
+     },
+     "torso_tilt": {
+      "residual": 1.4,
+      "z": 1.0,
+      "band": 1.0,
+      "verdict": "noise"
+     }
+    },
+    "faults": [],
+    "style_joints": [
+     "L_shoulder"
+    ]
+   }
+  }
+ ],
+ "source_video": "1st_Frontal.mp4",
+ "extraction_ms_per_frame": 20.8,
+ "pose_vs_annotation": {
+  "frames_compared": 768,
+  "feature_mae_deg": {
+   "L_elbow": 17.2,
+   "R_elbow": 15.8,
+   "L_knee": 1.7,
+   "R_knee": 1.8,
+   "L_hip": 1.7,
+   "R_hip": 1.3,
+   "L_shoulder": 4.6,
+   "R_shoulder": 6.7,
+   "torso_tilt": 0.5
+  },
+  "feature_mae_mean_deg": 5.7,
+  "landmark_mae_px": 10.0,
+  "landmark_p90_px": 23.8
+ },
+ "uncertainty": {
+  "band_note": "|delta_full - delta_heavy| on identical frames: a LOWER BOUND on measurement uncertainty, not two takes of one athlete",
+  "per_joint_band_p50_deg": {
+   "L_elbow": 5.9,
+   "R_elbow": 8.2,
+   "L_knee": 1.6,
+   "R_knee": 1.6,
+   "L_hip": 2.0,
+   "R_hip": 1.8,
+   "L_shoulder": 1.7,
+   "R_shoulder": 1.9,
+   "torso_tilt": 0.4
+  },
+  "per_joint_band_p95_deg": {
+   "L_elbow": 50.4,
+   "R_elbow": 34.2,
+   "L_knee": 5.9,
+   "R_knee": 6.7,
+   "L_hip": 4.8,
+   "R_hip": 3.3,
+   "L_shoulder": 5.2,
+   "R_shoulder": 16.4,
+   "torso_tilt": 1.0
+  },
+  "moves_with_band": 16,
+  "moves_total": 16,
+  "paired_moves_disagreed": 0
+ },
+ "release_policy": {
+  "available": true,
+  "findings": 40,
+  "answered": 40,
+  "counts": {
+   "show": 0,
+   "soften": 0,
+   "withhold": 40
+  },
+  "model": "jev-latest",
+  "cached_decisions": 40,
+  "determinism": "decisions are cached by state hash: the same finding always gets the same release, so re-running the pipeline cannot change a card",
+  "note": "Release is a wording decision and never removes a flag: the flag states that the joint is beyond tolerance, release decides what the athlete is told."
+ },
+ "self_reference": {
+  "note": "flags stay measurement facts; this layer classifies them. offset = this athlete's systematic difference from the reference (style, not fault). A cell is a fault only when |residual| > tolerance AND |residual| > GATE_K*scale AND |residual| > that cell's estimator band.",
+  "gate_k": 2.5,
+  "min_moves": 6,
+  "band_condition": true,
+  "band_source": "out/uncertainty.json per-move band (|delta_full - delta_heavy| on identical frames)",
+  "n_moves": 16,
+  "offsets_deg": {
+   "L_elbow": 12.3,
+   "R_elbow": 1.6,
+   "L_knee": -0.6,
+   "R_knee": -1.3,
+   "L_hip": -1.1,
+   "R_hip": -3.1,
+   "L_shoulder": 14.8,
+   "R_shoulder": 10.3,
+   "torso_tilt": -0.3
+  },
+  "scale_deg": {
+   "L_elbow": 26.32,
+   "R_elbow": 19.5,
+   "L_knee": 7.41,
+   "R_knee": 8.52,
+   "L_hip": 7.93,
+   "R_hip": 8.38,
+   "L_shoulder": 7.26,
+   "R_shoulder": 19.5,
+   "torso_tilt": 1.41
+  },
+  "floor_deg": {
+   "L_elbow": 7.25,
+   "R_elbow": 8.4,
+   "L_knee": 1.4,
+   "R_knee": 1.5,
+   "L_hip": 2.0,
+   "R_hip": 1.4,
+   "L_shoulder": 1.5,
+   "R_shoulder": 2.8,
+   "torso_tilt": 0.3
+  },
+  "baseline": {
+   "L_elbow": "estimated",
+   "R_elbow": "estimated",
+   "L_knee": "estimated",
+   "R_knee": "estimated",
+   "L_hip": "estimated",
+   "R_hip": "estimated",
+   "L_shoulder": "estimated",
+   "R_shoulder": "estimated",
+   "torso_tilt": "estimated"
+  },
+  "verdict_counts": {
+   "fault": 11,
+   "style": 9,
+   "noise": 124
+  },
+  "tolerance_deg": {
+   "L_elbow": 18.0,
+   "R_elbow": 18.0,
+   "L_knee": 10.0,
+   "R_knee": 10.0,
+   "L_hip": 10.0,
+   "R_hip": 10.0,
+   "L_shoulder": 12.0,
+   "R_shoulder": 12.0,
+   "torso_tilt": 5.0
+  },
+  "effective_threshold_deg": {
+   "L_elbow": 18.1,
+   "R_elbow": 21.0,
+   "L_knee": 10.0,
+   "R_knee": 10.0,
+   "L_hip": 10.0,
+   "R_hip": 10.0,
+   "L_shoulder": 12.0,
+   "R_shoulder": 12.0,
+   "torso_tilt": 5.0
+  },
+  "moves_with_faults": 7,
+  "card_flag_count": 40,
+  "card_flag_cap_per_move": 3,
+  "old_gate_flags": 50,
+  "old_gate_flags_note": "raw cells with |delta| > tolerance; the card itself mints at most 3 per move by exceedance, so this number is larger than card_flag_count",
+  "flags_unchanged": true
+ }
+}

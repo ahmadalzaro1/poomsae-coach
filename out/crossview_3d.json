@@ -1,0 +1,116 @@
+{
+ "protocol": "frontal reference vs lateral take, same athlete, same clips",
+ "baseline_2d": {
+  "same_mean": 0.0,
+  "same_flags": 0,
+  "cross_mean": 10.19,
+  "cross_flags": 138,
+  "n_moves": 156
+ },
+ "measured_3d": {
+  "same_mean": 0.0,
+  "same_flags": 0,
+  "cross_mean": 10.49,
+  "cross_flags": 124,
+  "n_moves": 140
+ },
+ "per_form_3d": [
+  {
+   "form": "Taegeuk_1st",
+   "n_moves": 16,
+   "same_view_mean_abs": 0.0,
+   "cross_view_mean_abs": 10.8,
+   "cross_view_flags": 13
+  },
+  {
+   "form": "Taegeuk_2nd",
+   "n_moves": 20,
+   "same_view_mean_abs": 0.0,
+   "cross_view_mean_abs": 10.64,
+   "cross_view_flags": 19
+  },
+  {
+   "form": "Taegeuk_3rd",
+   "n_moves": 18,
+   "same_view_mean_abs": 0.0,
+   "cross_view_mean_abs": 10.07,
+   "cross_view_flags": 15
+  },
+  {
+   "form": "Taegeuk_4th",
+   "n_moves": 17,
+   "same_view_mean_abs": 0.0,
+   "cross_view_mean_abs": 9.89,
+   "cross_view_flags": 15
+  },
+  {
+   "form": "Taegeuk_5th",
+   "n_moves": 16,
+   "same_view_mean_abs": 0.0,
+   "cross_view_mean_abs": 10.57,
+   "cross_view_flags": 14
+  },
+  {
+   "form": "Taegeuk_6th",
+   "n_moves": 19,
+   "same_view_mean_abs": 0.0,
+   "cross_view_mean_abs": 9.66,
+   "cross_view_flags": 17
+  },
+  {
+   "form": "Taegeuk_7th",
+   "n_moves": 19,
+   "same_view_mean_abs": 0.0,
+   "cross_view_mean_abs": 9.33,
+   "cross_view_flags": 17
+  },
+  {
+   "form": "Taegeuk_8th",
+   "n_moves": 15,
+   "same_view_mean_abs": 0.0,
+   "cross_view_mean_abs": 12.95,
+   "cross_view_flags": 14
+  }
+ ],
+ "feature_range_2d": {
+  "L_elbow": 147.6,
+  "R_elbow": 148.9,
+  "L_knee": 72.7,
+  "R_knee": 76.4,
+  "L_hip": 73.0,
+  "R_hip": 92.0,
+  "L_shoulder": 88.0,
+  "R_shoulder": 79.3,
+  "torso_tilt": 15.0
+ },
+ "feature_range_3d": {
+  "L_elbow": 96.5,
+  "R_elbow": 95.4,
+  "L_knee": 65.9,
+  "R_knee": 56.5,
+  "L_hip": 61.8,
+  "R_hip": 73.0,
+  "L_shoulder": 74.9,
+  "R_shoulder": 76.8,
+  "torso_tilt": 21.1
+ },
+ "range_ratio_3d_over_2d": 0.867,
+ "range_ratio_of_means": 0.784,
+ "signal_noise": {
+  "signal_2d": 88.1,
+  "signal_3d": 69.1,
+  "noise_2d": 10.19,
+  "noise_3d": 10.49,
+  "snr_2d": 8.65,
+  "snr_3d": 6.59,
+  "note": "signal = mean per-feature dynamic range p95-p5; noise = cross-view minus same-view deviation. This is the sensitivity verdict, not the injection_recall_3d below."
+ },
+ "injection_recall_3d": {
+  "10deg": 0.5921,
+  "20deg": 0.8167,
+  "25deg": 0.8683
+ },
+ "injection_protocol_note": "measured on the CROSS-VIEW pair, where most moves are already flagged by the camera artifact, so it is not comparable to the 2D same-view injection test (out/injection_test.json). Do not read it as a sensitivity win or loss; use signal_noise.",
+ "analytic_vs_realignment_agreement": 0.9333,
+ "verdict": "3D does not reduce cross-view deviation -- no benefit"
+}
