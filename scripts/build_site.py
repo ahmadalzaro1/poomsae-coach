@@ -85,6 +85,16 @@ def main() -> int:
 
     form_tiles = "\n    ".join(tour_tile(r) for r in tour)
     form_rows = "\n".join(tour_row(r) for r in tour)
+    tot_frames = sum(r["agreement"]["frames_compared"] for r in tour)
+    tot_gross = sum(r["agreement"]["frames_gross"] for r in tour)
+    p50s = [r["agreement"]["p50_abs_delta_deg"] for r in tour]
+    p95s = [r["agreement"]["p95_abs_delta_deg"] for r in tour]
+    form_totals = (f'<tr><td><b>all eight</b></td>'
+                   f'<td class="num"><b>{tot_frames:,}</b></td>'
+                   f'<td class="num"><b>{min(p50s)}–{max(p50s)}°</b></td>'
+                   f'<td class="num"><b>{min(p95s)}–{max(p95s)}°</b></td>'
+                   f'<td class="num"><b>{tot_gross:,} ({tot_gross / tot_frames * 100:.1f}%)</b></td>'
+                   f'<td colspan="2"><b>elbows in 6 of 8</b></td></tr>')
     if len(tour) != 8:
         sys.exit(f"build_site: expected 8 forms in form_tour.json, found {len(tour)}")
 
@@ -251,7 +261,12 @@ footer a{{color:var(--acc);text-decoration:none}}
     <thead><tr><th>form</th><th>frames</th><th>|Δ| p50</th><th>|Δ| p95</th><th>worst window</th>
       <th>cell carrying it</th><th>frames with a cell over tol</th></tr></thead>
     <tbody>{form_rows}</tbody>
+    <tfoot>{form_totals}</tfoot>
   </table>
+  <p class="lede"><b>{tot_gross:,} of {tot_frames:,} frames — {tot_gross / tot_frames * 100:.1f}% — carry an arm cell where two
+  estimators looking at the same pixels disagree by more than a coaching threshold and, in the
+  excluded set, by more than 60°.</b> That is the honest size of the 2D measurement problem on this
+  dataset, and it is why the number that reaches a reader is a median with an explicit tail beside it.</p>
   <p class="lede">Read the two columns together. A p50 near a degree says the mask sits on the
   athlete; a p95 near thirty says that on some frames two independent pose estimators disagree by
   more than any coaching threshold — which is why the gate on Taegeuk 1 has a band condition, and
