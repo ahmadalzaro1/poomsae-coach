@@ -23,6 +23,16 @@ Derived from:
 No claim of endorsement by the dataset's author or institution is made. The CC BY 4.0 licence
 permits this derivative; attribution is provided here and in the README.
 
+## Eight-form tour (media/form_tour_1.mp4 … media/form_tour_8.mp4)
+
+Same source, same licence, same changes as above, applied to all eight forms from the frontal camera:
+12 keypoints re-estimated per frame with MediaPipe, 9 joint angles computed, compared frame by frame
+against that clip's own published annotation, and a five-second excerpt re-encoded to H.264 at 30 fps
+with the skeleton mask and the frame's largest deviation burned in. Audio dropped.
+
+These eight clips carry **no verdict text**, because the self-referenced gate in this release is
+measured on Taegeuk 1 Jang only — the clip says so on its own footer strip.
+
 ## Method and prior art
 
 Discussed and cited in [docs/PRIOR-ART.md](docs/PRIOR-ART.md). No third-party code was vendored: the

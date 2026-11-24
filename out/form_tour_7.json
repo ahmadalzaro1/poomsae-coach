@@ -1,0 +1,32 @@
+{
+ "form": 7,
+ "name": "Taegeuk 7 Jang",
+ "source_video": "7th_Frontal.mp4",
+ "agreement": {
+  "frames_compared": 1203,
+  "frames_scored": 993,
+  "frames_gross": 210,
+  "p50_abs_delta_deg": 1.1,
+  "p95_abs_delta_deg": 20.4,
+  "max_abs_delta_deg": 152.4,
+  "per_feature_p95_deg": {
+   "L_elbow": 35.7,
+   "R_elbow": 43.2,
+   "L_knee": 10.6,
+   "R_knee": 21.0,
+   "L_hip": 5.1,
+   "R_hip": 9.5,
+   "L_shoulder": 15.0,
+   "R_shoulder": 32.1,
+   "torso_tilt": 1.1
+  }
+ },
+ "window_start_frame": 673,
+ "window_s": 5.0,
+ "window_worst_cell": "R_knee",
+ "window_mean_ratio": 3.1,
+ "gross_frames_total": 210,
+ "gross_pct": 17.5,
+ "gross_frames_in_window": 69,
+ "frames_in_clip": 150
+}

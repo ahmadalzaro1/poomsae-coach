@@ -1,0 +1,32 @@
+{
+ "form": 4,
+ "name": "Taegeuk 4 Jang",
+ "source_video": "4th_Frontal.mp4",
+ "agreement": {
+  "frames_compared": 1034,
+  "frames_scored": 721,
+  "frames_gross": 313,
+  "p50_abs_delta_deg": 1.6,
+  "p95_abs_delta_deg": 26.6,
+  "max_abs_delta_deg": 170.4,
+  "per_feature_p95_deg": {
+   "L_elbow": 39.2,
+   "R_elbow": 47.7,
+   "L_knee": 29.5,
+   "R_knee": 12.4,
+   "L_hip": 18.2,
+   "R_hip": 10.0,
+   "L_shoulder": 23.7,
+   "R_shoulder": 22.1,
+   "torso_tilt": 2.7
+  }
+ },
+ "window_start_frame": 542,
+ "window_s": 5.0,
+ "window_worst_cell": "L_shoulder",
+ "window_mean_ratio": 2.9,
+ "gross_frames_total": 313,
+ "gross_pct": 30.3,
+ "gross_frames_in_window": 69,
+ "frames_in_clip": 150
+}

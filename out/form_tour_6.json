@@ -1,0 +1,32 @@
+{
+ "form": 6,
+ "name": "Taegeuk 6 Jang",
+ "source_video": "6th_Frontal.mp4",
+ "agreement": {
+  "frames_compared": 1194,
+  "frames_scored": 903,
+  "frames_gross": 291,
+  "p50_abs_delta_deg": 1.0,
+  "p95_abs_delta_deg": 16.3,
+  "max_abs_delta_deg": 153.6,
+  "per_feature_p95_deg": {
+   "L_elbow": 35.4,
+   "R_elbow": 44.1,
+   "L_knee": 7.6,
+   "R_knee": 7.0,
+   "L_hip": 9.2,
+   "R_hip": 6.8,
+   "L_shoulder": 17.3,
+   "R_shoulder": 17.5,
+   "torso_tilt": 2.4
+  }
+ },
+ "window_start_frame": 788,
+ "window_s": 5.0,
+ "window_worst_cell": "L_elbow",
+ "window_mean_ratio": 3.45,
+ "gross_frames_total": 291,
+ "gross_pct": 24.4,
+ "gross_frames_in_window": 140,
+ "frames_in_clip": 150
+}

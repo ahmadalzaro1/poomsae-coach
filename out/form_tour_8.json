@@ -1,0 +1,32 @@
+{
+ "form": 8,
+ "name": "Taegeuk 8 Jang",
+ "source_video": "8th_Frontal.mp4",
+ "agreement": {
+  "frames_compared": 1464,
+  "frames_scored": 1148,
+  "frames_gross": 316,
+  "p50_abs_delta_deg": 1.9,
+  "p95_abs_delta_deg": 26.7,
+  "max_abs_delta_deg": 170.6,
+  "per_feature_p95_deg": {
+   "L_elbow": 39.6,
+   "R_elbow": 48.9,
+   "L_knee": 19.7,
+   "R_knee": 18.3,
+   "L_hip": 12.5,
+   "R_hip": 13.2,
+   "L_shoulder": 20.7,
+   "R_shoulder": 31.0,
+   "torso_tilt": 3.1
+  }
+ },
+ "window_start_frame": 1050,
+ "window_s": 5.0,
+ "window_worst_cell": "L_elbow",
+ "window_mean_ratio": 4.24,
+ "gross_frames_total": 316,
+ "gross_pct": 21.6,
+ "gross_frames_in_window": 125,
+ "frames_in_clip": 150
+}

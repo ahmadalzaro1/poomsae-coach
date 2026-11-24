@@ -172,6 +172,18 @@ def main(show=False):
     check_eq("release: soften", rel["soften"], 6)
     check_eq("release: withhold", rel["withhold"], 1)
 
+    # --- the eight-form tour: a measurement that travels, and the frames it drops
+    tour = load("form_tour.json")
+    check_eq("tour covers 8 forms", len(tour), 8)
+    check("form 1 |d| p50 (deg)", tour[0]["agreement"]["p50_abs_delta_deg"], 1.1, tol=0.05)
+    check("form 1 |d| p95, gross frames excluded (deg)", tour[0]["agreement"]["p95_abs_delta_deg"], 19.9, tol=0.05)
+    check("worst p95 of the eight forms (deg)",
+          max(r["agreement"]["p95_abs_delta_deg"] for r in tour), 28.3, tol=0.05)
+    check_eq("frames compared, all eight forms",
+             sum(r["agreement"]["frames_compared"] for r in tour), 8664)
+    check_eq("gross pose-failure frames, all eight forms",
+             sum(r["agreement"]["frames_gross"] for r in tour), 2170)
+
     # --- verdict words: the prose must match the artifact, not the other way round
     def verdict_of(move_no, joint):
         mv = [m for m in card["moves"] if m["move"] == move_no][0]

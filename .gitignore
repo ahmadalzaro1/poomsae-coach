@@ -31,3 +31,4 @@ tmp/
 *.log
 !out/run_all.log
 .pytest_cache/
+out/form_tour_*.mp4

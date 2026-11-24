@@ -39,6 +39,7 @@ def main() -> int:
     c3d = load("crossview_3d.json")
     jev = load("jev_gate.json")
     lg = load("learned_gate.json")
+    tour = load("form_tour.json")
 
     # Evidence of the packaged tree actually running, parsed rather than asserted.
     log_path = os.path.join(OUT, "run_all.log")
@@ -61,6 +62,31 @@ def main() -> int:
 
     clean, style = bench["clean"], bench["style_only"]
     sweep0, sweepm = bench["sweep_zero_base"], bench["sweep_measured_base"]
+
+    def tour_tile(rec):
+        n = rec["form"]
+        return (f'<figure class="form"><video controls preload="none" muted playsinline '
+                f'poster="media/form_tour_{n}.jpg">'
+                f'<source src="media/form_tour_{n}.mp4" type="video/mp4"></video>'
+                f'<figcaption><b>{rec["name"]}</b><br>'
+                f'|Δ| p50 <span class="num">{rec["agreement"]["p50_abs_delta_deg"]}°</span> · '
+                f'p95 <span class="num">{rec["agreement"]["p95_abs_delta_deg"]}°</span><br>'
+                f'worst cell <code>{rec["window_worst_cell"]}</code>, '
+                f'ratio <span class="num">{rec["window_mean_ratio"]}</span></figcaption></figure>')
+
+    def tour_row(rec):
+        return (f'<tr><td>{rec["name"]}</td>'
+                f'<td class="num">{rec["agreement"]["frames_compared"]}</td>'
+                f'<td class="num">{rec["agreement"]["p50_abs_delta_deg"]}°</td>'
+                f'<td class="num">{rec["agreement"]["p95_abs_delta_deg"]}°</td>'
+                f'<td class="num">{rec["window_start_frame"] / 30:.1f}s</td>'
+                f'<td><code>{rec["window_worst_cell"]}</code></td>'
+                f'<td class="num">{rec.get("pct_frames_some_cell_over_tol", "—")}%</td></tr>')
+
+    form_tiles = "\n    ".join(tour_tile(r) for r in tour)
+    form_rows = "\n".join(tour_row(r) for r in tour)
+    if len(tour) != 8:
+        sys.exit(f"build_site: expected 8 forms in form_tour.json, found {len(tour)}")
 
     K = float(sr.get("gate_k") or 2.5)
     floor_of = lambda j: gate.get(j, tol.get(j, 15.0))
@@ -211,6 +237,28 @@ footer a{{color:var(--acc);text-decoration:none}}
 </section>
 
 <section>
+  <h2>The mask travels: eight forms, eight measurements</h2>
+  <p class="lede">Every clip in the dataset — the same frontal camera, Taegeuk 1 Jang to 8 Jang —
+  run through the identical mask and the identical measurement. Each tile is that form's worst five
+  seconds, placed on the cell carrying its largest |Δ| against the published annotation.</p>
+  <p class="lede"><b>No verdicts are published for forms 2–8.</b> A verdict needs that athlete's own
+  gate, and this release measures one athlete's gate, on Taegeuk 1 Jang. What travels here is the
+  measurement, not the judgement.</p>
+  <div class="forms">
+    {form_tiles}
+  </div>
+  <table>
+    <thead><tr><th>form</th><th>frames</th><th>|Δ| p50</th><th>|Δ| p95</th><th>worst window</th>
+      <th>cell carrying it</th><th>frames with a cell over tol</th></tr></thead>
+    <tbody>{form_rows}</tbody>
+  </table>
+  <p class="lede">Read the two columns together. A p50 near a degree says the mask sits on the
+  athlete; a p95 near thirty says that on some frames two independent pose estimators disagree by
+  more than any coaching threshold — which is why the gate on Taegeuk 1 has a band condition, and
+  why no band-free number on this page is called a fault.</p>
+</section>
+
+<section>
   <h2>Where the number came from</h2>
   <div class="strip">
     <div class="card"><div class="v num">{tol['R_elbow']:.1f}°</div>
@@ -348,7 +396,10 @@ footer a{{color:var(--acc);text-decoration:none}}
 """
 
     os.makedirs(os.path.join(SITE, "media"), exist_ok=True)
-    needed = ("demo_sameview.mp4", "demo_crossview.mp4", "frame_move6_elbow.png", "frame_crossview.png")
+    needed = (("demo_sameview.mp4", "demo_crossview.mp4", "frame_move6_elbow.png",
+               "frame_crossview.png")
+              + tuple(f"form_tour_{n}.mp4" for n in range(1, 9))
+              + tuple(f"form_tour_{n}.jpg" for n in range(1, 9)))
     for name in needed:
         src = os.path.join(MEDIA, name)
         if not os.path.exists(src):

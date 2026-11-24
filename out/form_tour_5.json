@@ -1,0 +1,32 @@
+{
+ "form": 5,
+ "name": "Taegeuk 5 Jang",
+ "source_video": "5th_Frontal.mp4",
+ "agreement": {
+  "frames_compared": 1053,
+  "frames_scored": 685,
+  "frames_gross": 368,
+  "p50_abs_delta_deg": 1.4,
+  "p95_abs_delta_deg": 28.3,
+  "max_abs_delta_deg": 157.2,
+  "per_feature_p95_deg": {
+   "L_elbow": 40.2,
+   "R_elbow": 46.0,
+   "L_knee": 32.1,
+   "R_knee": 22.1,
+   "L_hip": 15.2,
+   "R_hip": 7.6,
+   "L_shoulder": 27.4,
+   "R_shoulder": 22.0,
+   "torso_tilt": 2.8
+  }
+ },
+ "window_start_frame": 603,
+ "window_s": 5.0,
+ "window_worst_cell": "L_elbow",
+ "window_mean_ratio": 3.06,
+ "gross_frames_total": 368,
+ "gross_pct": 34.9,
+ "gross_frames_in_window": 106,
+ "frames_in_clip": 150
+}

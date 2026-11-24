@@ -1,0 +1,32 @@
+{
+ "form": 2,
+ "name": "Taegeuk 2 Jang",
+ "source_video": "2nd_Frontal.mp4",
+ "agreement": {
+  "frames_compared": 884,
+  "frames_scored": 699,
+  "frames_gross": 185,
+  "p50_abs_delta_deg": 1.1,
+  "p95_abs_delta_deg": 24.7,
+  "max_abs_delta_deg": 149.6,
+  "per_feature_p95_deg": {
+   "L_elbow": 49.8,
+   "R_elbow": 42.1,
+   "L_knee": 6.4,
+   "R_knee": 12.2,
+   "L_hip": 3.5,
+   "R_hip": 7.2,
+   "L_shoulder": 21.7,
+   "R_shoulder": 21.4,
+   "torso_tilt": 1.0
+  }
+ },
+ "window_start_frame": 615,
+ "window_s": 5.0,
+ "window_worst_cell": "L_elbow",
+ "window_mean_ratio": 3.16,
+ "gross_frames_total": 185,
+ "gross_pct": 20.9,
+ "gross_frames_in_window": 74,
+ "frames_in_clip": 150
+}

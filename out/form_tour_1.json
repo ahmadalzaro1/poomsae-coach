@@ -1,0 +1,32 @@
+{
+ "form": 1,
+ "name": "Taegeuk 1 Jang",
+ "source_video": "1st_Frontal.mp4",
+ "agreement": {
+  "frames_compared": 768,
+  "frames_scored": 647,
+  "frames_gross": 121,
+  "p50_abs_delta_deg": 1.1,
+  "p95_abs_delta_deg": 19.9,
+  "max_abs_delta_deg": 171.9,
+  "per_feature_p95_deg": {
+   "L_elbow": 45.2,
+   "R_elbow": 43.7,
+   "L_knee": 4.7,
+   "R_knee": 5.1,
+   "L_hip": 4.3,
+   "R_hip": 2.4,
+   "L_shoulder": 9.9,
+   "R_shoulder": 17.8,
+   "torso_tilt": 1.5
+  }
+ },
+ "window_start_frame": 540,
+ "window_s": 5.0,
+ "window_worst_cell": "R_elbow",
+ "window_mean_ratio": 2.11,
+ "gross_frames_total": 121,
+ "gross_pct": 15.8,
+ "gross_frames_in_window": 72,
+ "frames_in_clip": 150
+}

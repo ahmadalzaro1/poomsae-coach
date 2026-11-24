@@ -112,7 +112,7 @@ that camera geometry**, and the card labels them that way instead of blaming the
 ## Certified behaviour, not claimed behaviour
 
 Every row below is re-derived from committed artifacts by `python3 scripts/verify_claims.py`
-(81/81 checks; no dataset, no models, no network).
+(87/87 checks; no dataset, no models, no network).
 
 | arm | old gate (raw `|delta| > tol`) | self-referenced layer |
 |---|---:|---|
@@ -161,7 +161,7 @@ Two levels, and the cheap one is the one that matters for trust.
 ```bash
 git clone https://github.com/ahmadalzaro1/poomsae-coach && cd poomsae-coach
 python3 scripts/verify_claims.py --show
-# -> 81/81 README claims re-derived from committed artifacts
+# -> 87/87 README claims re-derived from committed artifacts
 ```
 
 **2. Re-run the whole pipeline (dataset + pose models):**
@@ -179,6 +179,39 @@ re-derives poses for all 16 clips with **both** estimators (that pairwise disagr
 tolerance), and caches them to `out/elbow_signal/`, so a second run is orders of magnitude
 cheaper.
 
+## The mask travels: eight forms, eight measurements
+
+The gate is measured on one athlete, so **verdicts stay on one form**. The measurement does not need a
+gate, and it runs on every clip in the dataset — eight forms, frontal camera, frame by frame against
+each clip's own published annotation (`out/form_tour.json`, `scripts/build_form_tour.py`):
+
+| form | frames | \|Δ\| p50 | \|Δ\| p95 | frames past 60° | cell carrying the worst 5 s |
+|---|---:|---:|---:|---:|---|
+| Taegeuk 1 Jang | 768 | 1.1° | 19.9° | 121 (16%) | right elbow |
+| Taegeuk 2 Jang | 884 | 1.1° | 24.7° | 185 (21%) | left elbow |
+| Taegeuk 3 Jang | 1,064 | 1.1° | 22.7° | 366 (34%) | right elbow |
+| Taegeuk 4 Jang | 1,034 | 1.6° | 26.6° | 313 (30%) | left shoulder |
+| Taegeuk 5 Jang | 1,053 | 1.4° | 28.3° | 368 (35%) | left elbow |
+| Taegeuk 6 Jang | 1,194 | 1.0° | 16.3° | 291 (24%) | left elbow |
+| Taegeuk 7 Jang | 1,203 | 1.1° | 20.4° | 210 (17%) | right knee |
+| Taegeuk 8 Jang | 1,464 | 1.9° | 26.7° | 316 (22%) | left elbow |
+| **all eight** | **8,664** | **1.0–1.9°** | **16.3–28.3°** | **2,170 (25.0%)** | elbows in 6 of 8 |
+
+Two things to read here. A median between one and two degrees says the mask sits on the athlete and
+the angle convention agrees with the annotation's. The last column says something else: on a quarter of
+all frames, one **arm** cell disagrees by more than 60° between two estimators looking at the same
+pixels — MediaPipe failing on an arm that is foreshortened or occluded, not an athlete moving 60°.
+Those frames are excluded from p50/p95 and counted separately, because a tour that averaged them in
+would be publishing a margin it never measured.
+
+That is why forms 2–8 carry **no verdict**: the self-referenced gate removes this athlete's own habit
+and the estimator band removes frames the estimators disagree on, and neither is measured here. The
+clips on the [worked example page](https://ahmadalzaro1.github.io/poomsae-coach/) show the failure
+frame in grey, excluded, rather than as a coaching finding.
+
+The tour is deliberately **outside the 23-step log**: like step 11 it needs the 280 MB dataset, so it
+is not part of what the packaged tree certifies — its own numbers are hashed in `out/manifest.sha256`.
+
 ## It reproduces, and it says which part reproduces
 
 A full `run_all.sh` from this tree completed **23/23 steps, 0 failures**. Comparing that fresh run
@@ -186,7 +219,7 @@ against the committed artifacts, with only run-timing fields removed:
 
 ```
 python3 scripts/check_reproducible.py
-22/22 artifacts reproduce (5 run-timing fields ignored)
+31/31 artifacts reproduce (5 run-timing fields ignored)
 ```
 
 Ignored as run timing — a measurement of the machine, not of the athlete: `extraction_ms_per_frame`
