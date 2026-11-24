@@ -28,5 +28,5 @@ jobs:
             echo "::error::dataset tensors or model weights are tracked in this repo"
             exit 1
           fi
-          test "$(git ls-files | grep -c '^media/.*\.mp4$')" -eq 2
-          echo "only the two attributed demo clips are tracked"
+          test "$(git ls-files | grep -c '^media/.*\.mp4$')" -eq 10
+          echo "10 attributed clips tracked: 2 demos + 8 form-tour excerpts"
