@@ -64,6 +64,22 @@ trajectory spread and a classification result, not fault labels. Statistically t
 demonstration with measured floors; the honest next step is a second athlete performing the same
 form twice, which would turn §1 from "artefact" into "false-positive rate".
 
+## 9. On a quarter of all frames, the 2D mask cannot see the arm
+
+The eight-form tour scores **2,170 of 8,664 frames (25.0%)** as gross pose
+failures: one arm cell whose two estimators disagree by 60° or more on the same pixels. Excluding
+them buys a median of 1.0–1.9° and a p95 of 16.3–28.3°; including them
+would have bought a worse-looking tail and no more truth.
+
+This is the honest ceiling of the measurement layer, and it is why the band condition exists in the
+attribution layer: on an occluded arm the estimator's own disagreement is larger than any coaching
+threshold, so no threshold applied there means anything. It also bounds what a two-camera version of
+this could claim until the arm is tracked in 3D rather than inferred in 2D.
+
+Corollary, and it is a rule not a caveat: **verdicts are published for Taegeuk 1 Jang only.** Seven
+forms have measurements and no judgement, because the gate needs that athlete's repeats. A tour that
+labelled faults on form 5 would be borrowing another athlete's scale and calling it a finding.
+
 ## What would change the verdict
 
 | evidence | would upgrade | would downgrade |

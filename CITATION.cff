@@ -8,7 +8,9 @@ abstract: >-
   A poomsae form checker that separates measurement tolerance from fault attribution: each
   athlete is compared against their own median joint deviation, so a systematic style or camera
   bias is reported as style rather than as a mistake. Includes a four-arm certification of the
-  resulting gate, the published detector floor, and machine-checked claims.
+  resulting gate, the published detector floor, a frame-by-frame measurement of the mask against
+  the dataset's own annotations on all eight forms (with the frames the 2D estimator cannot see
+  reported rather than averaged), and machine-checked claims.
 keywords:
   - taekwondo
   - poomsae

@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -172,6 +173,35 @@ def main(show=False):
     check_eq("release: soften", rel["soften"], 6)
     check_eq("release: withhold", rel["withhold"], 1)
 
+    tour = load("form_tour.json")
+
+    # --- the eight-form tour as *written* in the two docs that quote it: the table must equal the
+    # artifact cell for cell, in both layouts, or the doc is retyped rather than derived
+    def _readme_rows():
+        txt = open(os.path.join(ROOT, "README.md")).read()
+        found = {}
+        for m in re.finditer(r"\| Taegeuk (\d) Jang \| ([\d,]+) \| ([\d.]+)° \| ([\d.]+)° \| ([\d,]+) \(", txt):
+            found[int(m.group(1))] = (int(m.group(2).replace(",", "")), float(m.group(3)),
+                                      float(m.group(4)), int(m.group(5).replace(",", "")))
+        return found
+
+    def _results_rows():
+        txt = open(os.path.join(ROOT, "docs/RESULTS.md")).read()
+        found = {}
+        for m in re.finditer(r"\| Taegeuk (\d) Jang \| ([\d,]+) \| ([\d,]+) \| ([\d.]+)° \| ([\d.]+)° \|", txt):
+            found[int(m.group(1))] = (int(m.group(2).replace(",", "")), float(m.group(4)),
+                                      float(m.group(5)), int(m.group(3).replace(",", "")))
+        return found
+
+    for path, rows in (("README.md", _readme_rows()), ("docs/RESULTS.md", _results_rows())):
+        check_eq(f"{path}: all eight tour rows present", len(rows), 8)
+        drift = [n for n, r in ((r["form"], r) for r in tour)
+                 if rows.get(n) != (r["agreement"]["frames_compared"],
+                                    r["agreement"]["p50_abs_delta_deg"],
+                                    r["agreement"]["p95_abs_delta_deg"],
+                                    r["agreement"]["frames_gross"])]
+        check_eq(f"{path}: tour rows equal out/form_tour.json (drifted: {drift or 'none'})", drift, [])
+
     # --- the eight-form tour: a measurement that travels, and the frames it drops
     tour = load("form_tour.json")
     check_eq("tour covers 8 forms", len(tour), 8)
@@ -212,7 +242,7 @@ def main(show=False):
             print(f"{'OK  ' if ok else 'FAIL'} {label:52s} {detail}")
 
     bad = [c for c in CHECKS if not c[1]]
-    print(f"\n{len(CHECKS) - len(bad)}/{len(CHECKS)} README claims re-derived from committed artifacts")
+    print(f"\n{len(CHECKS) - len(bad)}/{len(CHECKS)} documented claims re-derived from committed artifacts")
     if bad:
         print("\nDRIFT (fix the README or the artifact, not this check):")
         for label, _, detail in bad:

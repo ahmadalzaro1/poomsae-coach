@@ -13,8 +13,9 @@ committed, because that is the only part that can be redistributed legally.
   <https://doi.org/10.17632/bjy7vr4xkt.1>. National Kaohsiung University of Science and Technology.
 - **Licence:** CC BY 4.0 per the dataset page. Attribution text required by the licence is in
   [ATTRIBUTION.md](../ATTRIBUTION.md).
-- **Not committed because:** 280 MB of video has no place in a git history. The two demo clips
-  in `media/` are derived from it and *are* committed, with attribution.
+- **Not committed because:** 280 MB of video has no place in a git history. Ten derived clips
+  in `media/` are committed with attribution: the two demos plus the eight five-second form-tour
+  excerpts. Derived artifacts and their hashes are in `out/`.
 - **How to get it:** `python scripts/fetch_data.py` (prints the DOI and, if the archive is
   present locally, verifies the expected directory shape), or download manually from the DOI
   page and unpack to `data/Data/video/Taegeuk_{1st..8th}/{Frontal,Lateral}/`.
@@ -57,6 +58,6 @@ models this report measured. Estimates quoted in this repo were produced with Me
 
 ## Reproducibility note
 
-`scripts/verify_claims.py` re-derives the 73 headline numbers from the committed JSON files with
-no dataset, no models and no network. The full pipeline (`run_all.sh`, 23 steps) needs datasets 1
+`scripts/verify_claims.py` re-derives every documented number — the tables in `README.md` and
+`docs/RESULTS.md` included — from the committed JSON files with no dataset, no models and no network. The full pipeline (`run_all.sh`, 23 steps) needs datasets 1
 and 2 above and fails loudly if they are absent — it never silently writes an empty result.

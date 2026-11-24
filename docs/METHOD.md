@@ -96,16 +96,43 @@ effective[j] = max(tolerance[j], GATE_K * floor[j])
 ## 6. Presentation is downstream of the numbers
 
 `make_card.py` writes the coach card. `render_video.py` draws the overlay and **reads its
-thresholds from the card's `effective_threshold_deg`** — it carries no table of its own, and the
-HUD prints both numbers as `tol 18 / gate 21 deg`. This is not stylistic: an earlier build had a
+thresholds from the gate the card's adjudicator applies** — it carries no table of its own, and the
+HUD prints all three numbers as `tol 18 / floor 21 / gate 28 deg`. This is not stylistic: an earlier build had a
 private `{"R_elbow": 25.0, ...}` table in the renderer, so a 21.5° elbow that the card called a
 fault was drawn amber as "close". The video is the artefact a coach actually trusts, so a second
 threshold table in presentation code is a correctness bug.
 
+The distinction that cost a published error: `effective_threshold_deg` is `max(tolerance, k·floor)`
+and is a **lower bound**; the number that decides is `k · scale_deg` for that athlete and that cell.
+Printing the lower bound as "gate" is how a video came to disagree with its own card. `resolved_gates()`
+now derives the per-cell gate from `gate_k` and `scale_deg`, and the floor is only a fallback.
+
 `build_demo_page.py` generates `out/demo.html` with three pills per cell — `fault`,
 `own offset`, `within noise` — from the same JSON.
 
-## 7. What was refused
+## 7. The same mask on the rest of the dataset
+
+`scripts/build_form_tour.py` runs steps 1–3 unchanged on the remaining frontal clips, one form at a
+time: MediaPipe on the raw video, 12 keypoints, 9 joint angles, then our angles minus the published
+annotation of the same clip, frame by frame. No DTW, no attribution, no gate — the question is only
+whether the measurement travels and where it stops working.
+
+Two rules were added to the tour after the first render, both because the naive version published a
+number it had not measured:
+
+- **A gross-failure cutoff of 60°.** An elbow does not move 60° between two views of the same frame;
+  an estimator losing a foreshortened arm does. Frames past the cutoff are counted, excluded from
+  p50/p95 and drawn grey in the clip.
+- **A tracking check before blaming the detector.** If the landmark centroid sits within 0.2% of the
+  annotation's, the body is tracked and the failure is the arm. That check separated "wrong person in
+  frame" from "arm occluded", which look identical in a single overlay.
+
+Outputs: `out/form_tour.json`, `out/form_tour_<n>.json`, `out/pose_form<n>_frontal.csv`, and the eight
+clips in `media/`. The tour is **outside** `run_all.sh`: like step 11 it needs the 280 MB dataset, so
+it is not part of what the packaged tree certifies, and its numbers are hashed in
+`out/manifest.sha256` instead.
+
+## 8. What was refused
 
 Each refusal is a committed artifact, not a paragraph:
 

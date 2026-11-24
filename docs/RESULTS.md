@@ -1,7 +1,8 @@
 # Results
 
 Every value here is re-derived from a committed artifact by `python3 scripts/verify_claims.py`
-(63/63). Nothing in this file is typed from memory.
+(91/91 checks). Nothing in this file is typed from memory, and the tables below are
+cross-checked against `out/*.json` by that script — including the eight-form table in §G.
 
 ## A. The gate, certified on four arms
 
@@ -101,3 +102,32 @@ win". The 0.1276 shuffled control is what stops the 0.98 from being self-congrat
 `out/self_reference.json`, `out/card_sameview.json`, `out/card_crossview.json` are byte-identical
 across consecutive runs of step 14–18. Release decisions are cached by SHA-256 of their inputs, so
 the LLM advice layer cannot introduce run-to-run drift into a deterministic verdict.
+
+## G. The same mask on the other seven forms
+
+`out/form_tour.json`, built by `scripts/build_form_tour.py`: identical extraction, identical angle
+convention, identical annotation comparison, run on every frontal clip in the dataset.
+
+| form | frames compared | frames excluded (>60°) | \|Δ\| p50 | \|Δ\| p95 | 5 s window | cell carrying it |
+|---|---:|---:|---:|---:|---:|---|
+| Taegeuk 1 Jang | 768 | 121 | 1.1° | 19.9° | 18.0 s | `R_elbow` |
+| Taegeuk 2 Jang | 884 | 185 | 1.1° | 24.7° | 20.5 s | `L_elbow` |
+| Taegeuk 3 Jang | 1,064 | 366 | 1.1° | 22.7° | 18.3 s | `R_elbow` |
+| Taegeuk 4 Jang | 1,034 | 313 | 1.6° | 26.6° | 18.1 s | `L_shoulder` |
+| Taegeuk 5 Jang | 1,053 | 368 | 1.4° | 28.3° | 20.1 s | `L_elbow` |
+| Taegeuk 6 Jang | 1,194 | 291 | 1.0° | 16.3° | 26.3 s | `L_elbow` |
+| Taegeuk 7 Jang | 1,203 | 210 | 1.1° | 20.4° | 22.4 s | `R_knee` |
+| Taegeuk 8 Jang | 1,464 | 316 | 1.9° | 26.7° | 35.0 s | `L_elbow` |
+| **all eight** | **8,664** | **2,170 (25.0%)** | **1.0–1.9°** | **16.3–28.3°** | — | elbows in 6 of 8 |
+
+`frames excluded` are frames where **one cell alone** disagrees by 60° or more — at that size the
+disagreement is a 2D pose failure (an arm foreshortened toward the camera or lost behind the torso),
+not a body moving. They are removed from p50/p95 and reported in their own column instead of being
+averaged away; the clips on the site draw them grey and label them.
+
+The torso check that licenses that reading: our landmark centroid sits within **0.1–0.2%** of the
+annotation's on all eight forms (p95 ≤ 2.5%), so the body is tracked and the arm is what fails.
+
+**No verdicts are published for forms 2–8.** The gate needs an athlete's own repeats on the same
+cell; this release measured one athlete's, on Taegeuk 1 Jang. Measurement travels, judgement does not.
+

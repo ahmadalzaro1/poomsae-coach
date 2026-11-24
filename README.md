@@ -112,7 +112,7 @@ that camera geometry**, and the card labels them that way instead of blaming the
 ## Certified behaviour, not claimed behaviour
 
 Every row below is re-derived from committed artifacts by `python3 scripts/verify_claims.py`
-(87/87 checks; no dataset, no models, no network).
+(91/91 checks; no dataset, no models, no network).
 
 | arm | old gate (raw `|delta| > tol`) | self-referenced layer |
 |---|---:|---|
@@ -161,7 +161,7 @@ Two levels, and the cheap one is the one that matters for trust.
 ```bash
 git clone https://github.com/ahmadalzaro1/poomsae-coach && cd poomsae-coach
 python3 scripts/verify_claims.py --show
-# -> 87/87 README claims re-derived from committed artifacts
+# -> 91/91 documented claims re-derived from committed artifacts
 ```
 
 **2. Re-run the whole pipeline (dataset + pose models):**
@@ -251,11 +251,14 @@ poomsae/            the pipeline — one module per claim, so every number has a
   between_athlete.py 94 athletes, 100-phase trajectory spread (the human floor)
   make_card.py      the coach card — table plus "why a deviation is not a fault"
   render_video.py   the overlay video; reads thresholds from the card, never its own table
+  pose_video.py     raw video -> landmarks -> pose CSV -> cards
   build_demo_page.py the interactive page (out/demo.html)
-out/                committed artifacts: cards, JSON, coach card, demo page, pose CSV
-media/              the two demo videos + stills
+out/                committed artifacts: cards, JSON, coach card, demo page, pose CSVs,
+                    form-tour JSON, manifest.sha256, run_all.log
+media/              ten attributed clips (2 demos + 8 form-tour excerpts) and their stills
 docs/               METHOD, RESULTS, LIMITATIONS, DATA, PRIOR-ART
-scripts/            verify_claims.py (the trust gate), check_links.py, fetch_data.py, fetch_models.py
+scripts/            verify_claims.py (the trust gate), check_reproducible.py, check_links.py,
+                    build_site.py, build_form_tour.py, fetch_data.py, fetch_models.py
 .github/workflows/  CI: re-derive every claim, check every link, refuse committed corpora
 run_all.sh          23 steps, start to finish
 ```
