@@ -216,6 +216,10 @@ def main() -> int:
     c3 = eight["shuffled_control"]["mean"]
 
     K = float(sr.get("gate_k") or 2.5)
+    def sgn(v):
+        return f"{v:+.1f}".replace("-", "\u2212")
+    def sgn8(v):
+        return f"{v:+.3f}".replace("-", "\u2212")
     n_moves = int(sb["n_moves"]["value"] if isinstance(sb["n_moves"], dict) else sb["n_moves"])
     assert n_moves == len(same_card["moves"]), "n_moves disagrees with the card it describes"
     floor_of = lambda j: gate.get(j, tol.get(j, 15.0))
@@ -264,7 +268,7 @@ def main() -> int:
 
     def deg(v, nd=1):
         try:
-            return f"{float(v):.{nd}f}°"
+            return f"{float(v):.{nd}f}°".replace("-", "\u2212")
         except (TypeError, ValueError):
             return "—"
 
@@ -464,37 +468,41 @@ def main() -> int:
 <section id="quiet">
   <p class="s-label">03 · What it refuses</p>
   <h2>Most of the work is deciding what not to say</h2>
-  <p class="body">Cases built to make it look careless, plus four rival approaches. Each refusal is a
-  measurement, not a promise.</p>
+  <p class="body">Cases built to make it look careless, plus the rival approaches at the end. Each
+  refusal is a measurement, not a promise. A reading is one joint at one moment; the cut-off is that
+  athlete's own gate, from section 01.</p>
   <ul>
-    <li><b>Grading itself.</b> As their own reference there is nothing to find: without a personal
-      baseline {clean['old_gate_flags']} readings get flagged, with one
-      <b>{clean['faults']} remain ({clean['faults'] / cells * 100:.2f}%)</b> — the noise floor, not
-      an accuracy figure.</li>
-    <li><b>Calling a style a mistake.</b> +20° elbow, −15° knee added on purpose:
-      <b>{style['style']} readings come back labelled style</b>, the amounts recovered as
-      {style['offset_recovery_deg']['R_elbow']:+.1f}° and
-      {style['offset_recovery_deg']['L_knee']:+.1f}°.</li>
-    <li><b>Faults just under the gate.</b> Added at 0.5× and 0.9× of it: no detections at either
-      size. It stays silent instead of guessing.</li>
-    <li><b>Faults just over the gate.</b> Every judgeable reading is caught
-      ({sweep0['1.05x']['detection_rate_judgeable']:.2f}); counting the
+    <li><b>Grading itself.</b> With the student as their own reference there is nothing to find:
+      without a personal baseline {clean['old_gate_flags']} readings get flagged, with one
+      <b>{clean['faults']} remain ({clean['faults'] / cells * 100:.2f}%)</b> — the tool's noise floor,
+      not an accuracy figure.</li>
+    <li><b>Calling a style a mistake.</b> An extra <b>+20°</b> at the elbow and <b>−15°</b> at the
+      knee, added on purpose: <b>{style['style']} readings come back labelled style</b>, and the
+      added amounts come back as
+      <b>{sgn(style['offset_recovery_deg']['R_elbow'])}°</b> and
+      <b>{sgn(style['offset_recovery_deg']['L_knee'])}°</b>.</li>
+    <li><b>Mistakes just below the cut-off.</b> Injected at half and nine-tenths of it:
+      <b>no detections at either size</b>. It stays silent rather than guessing.</li>
+    <li><b>Mistakes just above the cut-off.</b> <b>Every reading it can assess is detected</b>
+(a detection rate of <b>{sweep0['1.05x']['detection_rate_judgeable']:.2f}</b>); counting the
       {sweep0['1.05x']['band_blind']} it cannot judge as misses gives
-      <b>{sweep0['1.05x']['detection_rate']:.3f}</b>. On a real baseline only
-      {sweepm['1.05x']['detection_rate_judgeable']:.2f} — the {tol_r:.0f}° already carried swallows
-      part of the added {gate_r_resolved:.0f}°.</li>
-    <li><b>Three rival approaches.</b> 3D responds less than flat video
-      ({c3d['range_ratio_3d_over_2d']:.2f}× range, signal-to-noise
-      {c3d['signal_noise']['snr_3d']:.2f} vs {c3d['signal_noise']['snr_2d']:.2f}). A learned boundary
-      separates at {lg_auc:.3f} but false-alarms {lg_fpr:.0%}. A language model scores {jev_blind:.3f}
-      blind, {jev_single:.3f} per reading: advice, never a verdict.</li>
-    <li><b>A universal threshold.</b> Elbow spread reaches {ba_traj['elbow_traj_sd_max']:.0f}° across
-      94 players, which is why no number here is applied the same way to everybody.</li>
+      <b>{sweep0['1.05x']['detection_rate']:.3f}</b>. On a real measured baseline the rate is
+      <b>{sweepm['1.05x']['detection_rate_judgeable']:.2f}</b>: the {tol_r:.0f}° the athlete already
+      carries absorbs part of the {gate_r_resolved:.0f}° it is given.</li>
+    <li><b>Three rival approaches.</b> Measuring in 3D responds less than flat video
+      ({c3d['range_ratio_3d_over_2d']:.2f}× the range; signal-to-noise
+      {c3d['signal_noise']['snr_3d']:.2f} against {c3d['signal_noise']['snr_2d']:.2f}). A learned
+      cut-off separates real from injected at <b>{lg_auc:.3f}</b> AUC — 1.0 is perfect — but
+      false-alarms <b>{lg_fpr:.0%}</b> of the time. A language model scores <b>{jev_blind:.3f}</b> with no
+      reference reading and <b>{jev_single:.3f}</b> given one: advice, never a verdict.</li>
+    <li><b>One cut-off for everybody.</b> Elbow angles vary by up to
+      <b>{ba_traj['elbow_traj_sd_max']:.0f}°</b> across the 94 athletes in the separate labelled
+      dataset, so no single number fits them all — which is why every cut-off here is personal.</li>
   </ul>
-  <p class="after">The 94-player classification experiment, for completeness: {eight_mean:.4f} over
-  {eight['n_performances']} performances, against {c1:.4f} for nearest-neighbour, {c2:.4f} on a
-  single frame, {c3:.4f} on shuffled labels. {eight_mean - c1:+.3f} over the simple baseline is the
-  honest reading of that result.</p>
+  <p class="after">The classification experiment on that same 94-athlete data, for completeness:
+  <b>{eight_mean:.4f}</b> over {eight['n_performances']} performances, against {c1:.4f} for
+  nearest-neighbour, {c2:.4f} on a single frame and {c3:.4f} on shuffled labels.
+  <b>{sgn8(eight_mean - c1)}</b> over the simple baseline is the honest reading of that result.</p>
 </section>
 
 <section id="forms">
