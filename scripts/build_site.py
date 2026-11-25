@@ -394,8 +394,8 @@ def main() -> int:
 <section class="night" id="watch">
   <p class="s-label">01 · Watch it work</p>
   <h2>One athlete, two references</h2>
-  <p class="body">Same athlete, same video. Only the reference changed — filmed from their side on
-  the left, from the far side of the room on the right.</p>
+  <p class="body">One performance, judged twice. Only the reference changed: on the left it was
+  filmed from the athlete's own side, on the right from the far side of the room.</p>
 
   <div class="clips">
     <figure>
@@ -403,16 +403,17 @@ def main() -> int:
         <source src="media/demo_sameview.mp4" type="video/mp4">
         <a href="media/demo_sameview.mp4">Download the clip</a>
       </video>
-      <figcaption><b>Same side.</b> <b>{sbv['fault']} mistakes</b> across 19 moves;
-      {sbv['noise']} readings match the athlete's own baseline.</figcaption>
+      <figcaption><b>Same side.</b> <b>{sbv['fault']} of {cells} readings</b> are flagged as mistakes
+      across {n_moves} moves; the other {sbv['noise']} match the athlete's own baseline.</figcaption>
     </figure>
     <figure>
       <video controls preload="metadata" poster="media/frame_crossview.png" playsinline>
         <source src="media/demo_crossview.mp4" type="video/mp4">
         <a href="media/demo_crossview.mp4">Download the clip</a>
       </video>
-      <figcaption><b>Other side.</b> The camera angle alone shifts readings
-      {cross_card['mean_abs_delta']:.1f}°, so <b>{cbv['style']} become the athlete's own offset</b>.
+      <figcaption><b>Other side.</b> The reference camera angle alone shifts readings by
+      {cross_card['mean_abs_delta']:.1f}°, so <b>{cbv['style']} readings</b> are accounted for by the athlete's
+      own offset.
       Anything still flagged here is in
       <a href="{REPO}/blob/main/docs/RESULTS.md">RESULTS</a>, not a verdict.</figcaption>
     </figure>
@@ -420,22 +421,24 @@ def main() -> int:
 
   <h3 class="t-head">How the threshold is chosen</h3>
   <div class="thresholds">
-    <div><span class="n">tolerance</span><span class="d">The smallest difference worth noticing at
-      all: <b>{tol_r:.0f}°</b> at the elbow.</span></div>
-    <div><span class="n">floor</span><span class="d">The smallest threshold anyone may apply to
-      this data, raised where the tool's own error demands it: <b>{gate_r:.1f}°</b>. A lower bound —
+    <div><span class="n">tolerance</span><span class="d">Two ways of measuring the same elbow angle
+      disagree by this much, so anything smaller is noise: <b>{tol_r:.0f}°</b>.</span></div>
+    <div><span class="n">floor</span><span class="d">The smallest cut-off this data can support once
+      the tool's own error is accounted for: <b>{gate_r:.1f}°</b>. A lower bound —
       <b>never the deciding number</b>.</span></div>
-    <div><span class="n">gate</span><span class="d">What this athlete's own variation demands:
-      <b>{K:g} × how much their elbow varies between repeats</b> — <b>{gate_r_resolved:.1f}°</b>.
-      This one decides.</span></div>
+    <div><span class="n">cut-off</span><span class="d"><b>{K:g} × {gate_r_resolved / K:.2f}°</b> —
+      how much their elbow angle varies between their own repeats — giving
+      <b>{gate_r_resolved:.1f}°</b>. This is the number that decides.</span></div>
   </div>
-  <p class="after">Each clip prints all three in that order, so the video cannot disagree with the
-  numbers that produced it. Fullscreen to read them.</p>
+  <p class="after">Both stills come from the same footage: the two alignments split the moves
+  differently, so the move numbers do not match. Each clip shows all three numbers in the order
+  above, taken from the same files this table is built from. Open a clip full screen to read
+  them.</p>
 </section>
 
 <section id="caught">
   <p class="s-label">02 · What it caught</p>
-  <h2>{sbv['fault']} readings passed every test. {len(refused_judgeable)} cleared the minimum and
+  <h2>{sbv['fault']} readings passed every test. Another {len(refused_judgeable)} cleared the minimum and
   were still refused.</h2>
   <p class="body">Four conditions, all required: clear the tolerance, remove the athlete's own
   offset, beat {K:g} × their variation on that joint, beat the measurement band.</p>
@@ -469,8 +472,7 @@ def main() -> int:
   <p class="s-label">03 · What it refuses</p>
   <h2>Most of the work is deciding what not to say</h2>
   <p class="body">Cases built to make it look careless, plus the rival approaches at the end. Each
-  refusal is a measurement, not a promise. A reading is one joint at one moment; the cut-off is that
-  athlete's own gate, from section 01.</p>
+  refusal is a measurement, not a promise. A reading is one joint at one moment; the cut-off is the one defined in section 01.</p>
   <ul>
     <li><b>Grading itself.</b> With the student as their own reference there is nothing to find:
       without a personal baseline {clean['old_gate_flags']} readings get flagged, with one
