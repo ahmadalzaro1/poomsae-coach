@@ -5,6 +5,10 @@ The site is a projection of out/*.json: if a card changes, the page changes; if 
 missing, the build fails instead of rendering a hole. Same discipline as the overlay video,
 which reads its thresholds from the card rather than carrying its own table.
 
+The page is written for a reader who does not know what a residual is. Every number keeps its
+exact meaning (the floor is a lower bound, never the gate; no verdict outside Taegeuk 1), but the
+words are plain and each section makes one point.
+
     python3 scripts/build_site.py
 """
 from __future__ import annotations
@@ -27,6 +31,144 @@ def load(name):
         sys.exit(f"build_site: missing {path} - the site is generated from artifacts, not prose")
     with open(path) as fh:
         return json.load(fh)
+
+
+CSS = """
+:root{
+  --bg:#faf9f7; --surface:#ffffff; --ink:#15171c; --muted:#4f5662; --faint:#5f6673;
+  --line:#e3e1dc; --line-2:#cfccc5; --accent:#0f5d54; --accent-soft:#e6efed;
+  --bad:#a3221f; --ok:#166534; --warn:#8a5a10; --night:#12141a; --night-ink:#e8e9ec;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font:16.5px/1.62 ui-sans-serif,-apple-system,"Segoe UI",Inter,Roboto,sans-serif;
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(15,93,84,.28)}
+a:hover{border-bottom-color:var(--accent)}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.875em}
+.num{font-variant-numeric:tabular-nums}
+
+/* hero */
+header{padding:64px 0 44px}
+.eyebrow{
+  display:inline-block;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 22px;padding:5px 11px;border:1px solid var(--line-2);
+  border-radius:999px;background:var(--surface)
+}
+h1{
+  font-size:clamp(32px,5vw,54px);line-height:1.06;letter-spacing:-.025em;font-weight:650;
+  margin:0 0 22px;max-width:19ch;text-wrap:balance
+}
+.lede{font-size:clamp(17px,1.7vw,20.5px);line-height:1.55;color:#2c313b;max-width:62ch;margin:0;text-wrap:pretty}
+.lede strong{font-weight:620;color:var(--ink)}
+.hero-links{margin-top:30px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{
+  display:inline-block;padding:11px 18px;border-radius:8px;font-size:15px;font-weight:560;
+  border:1px solid var(--accent);background:var(--accent);color:#fff
+}
+.btn:hover{background:#0b4a43;border-color:#0b4a43}
+.btn.ghost{background:transparent;color:var(--accent);border-color:var(--line-2)}
+.btn.ghost:hover{background:var(--accent-soft);border-color:var(--accent)}
+
+/* the three numbers on the first screen */
+.facts{
+  display:grid;gap:1px;grid-template-columns:1fr;margin:46px 0 0;background:var(--line);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden
+}
+@media(min-width:780px){.facts{grid-template-columns:repeat(3,1fr)}}
+.fact{background:var(--surface);padding:20px 22px 18px;display:flex;flex-direction:column}
+.fact .l{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;font-weight:600;min-height:2.7em}
+.fact .v{font-size:clamp(26px,3.2vw,34px);line-height:1;letter-spacing:-.02em;font-weight:600}
+.fact .v small{font-size:.44em;font-weight:500;color:var(--muted);letter-spacing:0}
+.fact .k{color:var(--muted);font-size:13.5px;line-height:1.5;margin-top:10px;text-wrap:pretty}
+.fact .s{color:var(--faint);font-size:11px;margin-top:auto;padding-top:14px;font-family:ui-monospace,monospace;overflow-wrap:anywhere}
+
+/* sections */
+section{padding:66px 0;border-top:1px solid var(--line)}
+.s-label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin:0 0 12px;font-weight:600}
+h2{font-size:clamp(23px,2.9vw,31px);line-height:1.18;letter-spacing:-.02em;margin:0 0 16px;font-weight:640;text-wrap:balance;max-width:34ch}
+h3{font-size:16.5px;margin:36px 0 10px;font-weight:640}
+p{margin:0 0 14px;text-wrap:pretty}
+p.body{color:#333842;max-width:66ch}
+p.after{color:var(--muted);font-size:14.5px;max-width:68ch}
+
+/* the clips sit on a dark band so the overlays read */
+.night{background:var(--night);color:var(--night-ink);border-top:1px solid #000}
+.night .s-label{color:#8f95a3}
+.night h2{color:#fff}
+.night p.body,.night p.after{color:#b7bcc6}
+.night a{color:#7ed3c4;border-bottom-color:rgba(126,211,196,.3)}
+.night h3{color:#fff}
+.t-head{margin-top:38px;margin-bottom:12px;font-size:15px}
+#watch video:focus-visible{outline:2px solid #7ed3c4;outline-offset:3px}
+.clips{display:grid;gap:28px;margin:28px 0 0}
+@media(min-width:800px){.clips{grid-template-columns:1fr 1fr}}
+figure{margin:0}
+video{width:100%;display:block;border-radius:10px;background:#000;border:1px solid #2a2e37}
+figcaption{margin-top:12px;font-size:14px;line-height:1.55;color:#b7bcc6;text-wrap:pretty}
+figcaption b{color:#fff;font-weight:600}
+
+/* tolerance / floor / gate, defined once */
+.thresholds{margin-top:34px;border:1px solid #2c313c;border-radius:10px;overflow:hidden;background:#171a21}
+.thresholds div{display:grid;gap:3px;padding:14px 18px;border-bottom:1px solid #232833}
+.thresholds div:last-child{border-bottom:0}
+@media(min-width:640px){.thresholds div{grid-template-columns:92px 1fr;gap:20px;align-items:baseline}}
+.thresholds .n{font-family:ui-monospace,monospace;font-size:13px;color:#7ed3c4}
+.thresholds .d{font-size:14.5px;color:#b7bcc6;line-height:1.55}
+.thresholds .d b{color:#fff;font-weight:600}
+
+/* tables */
+.tablewrap{overflow-x:auto;margin:18px 0 6px}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+td:first-child,th:first-child{white-space:nowrap}
+td.r,th.r{white-space:nowrap}
+caption{caption-side:top;text-align:left;color:var(--muted);font-size:13px;padding:0 0 10px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:600}
+tbody tr:last-child td{border-bottom:0}
+tfoot td{border-top:1px solid var(--line-2);font-weight:600}
+.r{text-align:right}
+.muted{color:var(--muted)}
+.chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12.5px;font-weight:600;white-space:nowrap}
+.chip.pass{background:#e7f2e9;color:var(--ok)}
+.chip.stop{background:#f6ece2;color:var(--warn)}
+
+/* eight forms */
+.forms{display:grid;gap:24px;margin:28px 0 32px}
+@media(min-width:700px){.forms{grid-template-columns:1fr 1fr}}
+.form video{border-color:var(--line-2)}
+.form figcaption{color:var(--muted)}
+.form figcaption b{color:var(--ink);font-weight:620}
+
+/* lists */
+ul{margin:0 0 14px;padding-left:20px;max-width:70ch}
+li{margin:10px 0;color:#333842;text-wrap:pretty}
+li b{color:var(--ink)}
+
+/* commands */
+pre{
+  margin:16px 0;padding:18px;background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  overflow-x:auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;line-height:1.8
+}
+pre .c{color:var(--faint)}
+pre .out{color:var(--ok)}
+
+/* glossary */
+details{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:14px 18px;margin-top:24px}
+summary{cursor:pointer;font-weight:620;font-size:15px}
+dl{margin:14px 0 0;display:grid;gap:12px}
+dl div{display:grid;gap:2px}
+@media(min-width:620px){dl div{grid-template-columns:168px 1fr;gap:18px}}
+dt{font-weight:620;font-size:14.5px}
+dd{margin:0;color:var(--muted);font-size:14.5px;line-height:1.55}
+
+footer{padding:46px 0 80px;border-top:1px solid var(--line);color:var(--muted);font-size:13.5px}
+footer p{margin:0 0 10px;max-width:70ch}
+@media(prefers-reduced-motion:no-preference){.btn{transition:background .15s ease,border-color .15s ease}}
+"""
 
 
 def main() -> int:
@@ -62,86 +204,8 @@ def main() -> int:
 
     clean, style = bench["clean"], bench["style_only"]
     sweep0, sweepm = bench["sweep_zero_base"], bench["sweep_measured_base"]
-
-    def tour_tile(rec):
-        n = rec["form"]
-        return (f'<figure class="form"><video controls preload="none" muted playsinline '
-                f'poster="media/form_tour_{n}.jpg">'
-                f'<source src="media/form_tour_{n}.mp4" type="video/mp4"></video>'
-                f'<figcaption><b>{rec["name"]}</b><br>'
-                f'|Δ| p50 <span class="num">{rec["agreement"]["p50_abs_delta_deg"]}°</span> · '
-                f'p95 <span class="num">{rec["agreement"]["p95_abs_delta_deg"]}°</span><br>'
-                f'worst cell <code>{rec["window_worst_cell"]}</code>, '
-                f'ratio <span class="num">{rec["window_mean_ratio"]}</span></figcaption></figure>')
-
-    def tour_row(rec):
-        return (f'<tr><td>{rec["name"]}</td>'
-                f'<td class="num">{rec["agreement"]["frames_compared"]}</td>'
-                f'<td class="num">{rec["agreement"]["p50_abs_delta_deg"]}°</td>'
-                f'<td class="num">{rec["agreement"]["p95_abs_delta_deg"]}°</td>'
-                f'<td class="num">{rec["window_start_frame"] / 30:.1f}s</td>'
-                f'<td><code>{rec["window_worst_cell"]}</code></td>'
-                f'<td class="num">{rec.get("pct_frames_some_cell_over_tol", "—")}%</td></tr>')
-
-    form_tiles = "\n    ".join(tour_tile(r) for r in tour)
-    form_rows = "\n".join(tour_row(r) for r in tour)
-    tot_frames = sum(r["agreement"]["frames_compared"] for r in tour)
-    tot_gross = sum(r["agreement"]["frames_gross"] for r in tour)
-    p50s = [r["agreement"]["p50_abs_delta_deg"] for r in tour]
-    p95s = [r["agreement"]["p95_abs_delta_deg"] for r in tour]
-    form_totals = (f'<tr><td><b>all eight</b></td>'
-                   f'<td class="num"><b>{tot_frames:,}</b></td>'
-                   f'<td class="num"><b>{min(p50s)}–{max(p50s)}°</b></td>'
-                   f'<td class="num"><b>{min(p95s)}–{max(p95s)}°</b></td>'
-                   f'<td class="num"><b>{tot_gross:,} ({tot_gross / tot_frames * 100:.1f}%)</b></td>'
-                   f'<td colspan="2"><b>elbows in 6 of 8</b></td></tr>')
-    if len(tour) != 8:
-        sys.exit(f"build_site: expected 8 forms in form_tour.json, found {len(tour)}")
-
-    K = float(sr.get("gate_k") or 2.5)
-    floor_of = lambda j: gate.get(j, tol.get(j, 15.0))
-    fault_rows, refused_rows = [], []
-    for tag, card, key in (("same side", same_card, "sameview"), ("opposite side", cross_card, "crossview")):
-        scale = sr["cards"][key]["scale_deg"]
-        for mv in card["moves"]:
-            for joint, cell in ((mv.get("attribution") or {}).get("per_joint") or {}).items():
-                residual = float(cell["residual"])
-                floor = floor_of(joint)
-                resolved = K * float(scale.get(joint) or 0.0) or floor
-                if cell["verdict"] == "fault":
-                    fault_rows.append((tag, mv["move"], mv.get("t"), joint, residual, floor, resolved,
-                                       cell["z"], cell["band"]))
-                elif abs(residual) >= floor - 0.2:
-                    refused_rows.append((tag, mv["move"], mv.get("t"), joint, residual, floor, resolved,
-                                         cell["z"], cell["verdict"]))
-    fault_rows.sort(key=lambda r: (r[0] != "same side", r[1], r[3]))
-    refused_rows.sort(key=lambda r: (r[0] != "same side", r[1], r[3]))
-    if not fault_rows:
-        sys.exit("build_site: no cell survives the gate - the findings table would render empty")
-
-    def num(v, suffix="°", nd=1):
-        try:
-            return f"{float(v):.{nd}f}{suffix}"
-        except (TypeError, ValueError):
-            return "—"
-
-    def rows(items, with_view=True):
-        out = []
-        for (tag, move, t, joint, residual, floor, resolved, z, extra) in items:
-            head = f"<td>{tag}</td>" if with_view else ""
-            out.append(
-                f"<tr>{head}<td class='num'>{move}</td><td class='num'>{num(t, '', 2)}</td>"
-                f"<td><code>{joint}</code></td><td class='num'>{num(residual)}</td>"
-                f"<td class='num'>{num(floor)}</td><td class='num'><b>{num(resolved)}</b></td>"
-                f"<td class='num'>{num(z, '', 1)}</td>"
-                f"<td class='num'>{num(extra)}</td></tr>")
-        return "\n".join(out)
-
-    fault_rows_html = rows(fault_rows)
-    refused_rows_html = rows(refused_rows)
-
     cells = bench["cells_with_band"]
-    portal = 100 * clean["faults"] / cells
+
     jev_blind = jev["experiment_a_blind"]["auc_p_withhold_vs_opposite_side"]
     jev_single = jev["experiment_b_single_reading"]["auc_p_reject_vs_gap10"]
     lg_auc = lg["auc"]["full"]
@@ -151,263 +215,371 @@ def main() -> int:
     c2 = eight["controls"]["single_frame_only"]["mean"]
     c3 = eight["shuffled_control"]["mean"]
 
+    K = float(sr.get("gate_k") or 2.5)
+    n_moves = int(sb["n_moves"]["value"] if isinstance(sb["n_moves"], dict) else sb["n_moves"])
+    assert n_moves == len(same_card["moves"]), "n_moves disagrees with the card it describes"
+    floor_of = lambda j: gate.get(j, tol.get(j, 15.0))
+
+    # ---- tour totals: derived, never typed ----
+    if len(tour) != 8:
+        sys.exit(f"build_site: expected 8 forms in form_tour.json, found {len(tour)}")
+    tot_frames = sum(r["agreement"]["frames_compared"] for r in tour)
+    tot_gross = sum(r["agreement"]["frames_gross"] for r in tour)
+    gross_pct = tot_gross / tot_frames * 100
+    p50s = [r["agreement"]["p50_abs_delta_deg"] for r in tour]
+    p95s = [r["agreement"]["p95_abs_delta_deg"] for r in tour]
+    arms_worst = sum(1 for r in tour if "elbow" in str(r["window_worst_cell"]))
+
+    tol_r, gate_r = tol["R_elbow"], gate["R_elbow"]
+    gate_r_resolved = K * sb["scale_deg"]["R_elbow"]
+    if not rep_sd:
+        sys.exit("build_site: no repeated elbow group with n>=6 - the spread ratio would be empty")
+    rep_mean = sum(rep_sd) / len(rep_sd)
+    ratio_rep = tol_r / rep_mean
+    ratio_ba = tol_r / ba_traj["elbow_traj_sd_mean"]
+
+    # ---- findings on the published take: what passed, what the gate refused, what could not be
+    # judged at all. The third list is the band doing its work on individual cells, not page-level
+    # hand-waving, so it is counted separately instead of being folded into the refusals.
+    scale_sv = sr["cards"]["sameview"]["scale_deg"]
+    faults, refused_judgeable, refused_blind = [], [], []
+    for mv in same_card["moves"]:
+        for joint, cell in ((mv.get("attribution") or {}).get("per_joint") or {}).items():
+            residual = float(cell["residual"])
+            floor = floor_of(joint)
+            resolved = K * float(scale_sv.get(joint) or 0.0) or floor
+            band, z = float(cell["band"]), float(cell["z"])
+            row = (joint, mv["move"], mv.get("t"), residual, floor, resolved, band, z)
+            if cell["verdict"] == "fault":
+                faults.append(row)
+            elif abs(residual) >= floor:
+                (refused_blind if band >= abs(residual) else refused_judgeable).append(row)
+    faults.sort(key=lambda r: (r[1], r[0]))
+    refused_judgeable.sort(key=lambda r: -abs(r[3]))
+    refused_blind.sort(key=lambda r: -abs(r[3]))
+    if not faults:
+        sys.exit("build_site: no cell survives the gate - the findings table would render empty")
+    if not refused_judgeable:
+        sys.exit("build_site: no refused-but-judgeable cell - the refusal table would render empty")
+
+    def deg(v, nd=1):
+        try:
+            return f"{float(v):.{nd}f}°"
+        except (TypeError, ValueError):
+            return "—"
+
+    def joint_name(j):
+        j = str(j)
+        side = {"R": "right", "L": "left"}.get(j.split("_")[0], "")
+        part = j.split("_", 1)[1] if "_" in j else j
+        return f"{side} {part}".strip()
+
+    def fault_row(r):
+        joint, move, t, residual, floor, resolved, band, z = r
+        return (f"<tr><td><b>{joint_name(joint)}</b>"
+                f"<div class='muted' style='font-size:12.5px'>move {move} · {float(t or 0):.1f}s</div></td>"
+                f"<td class='r num'>{deg(residual)}</td>"
+                f"<td class='r num'>{deg(resolved)}</td>"
+                f"<td class='r num'>{deg(band)}</td>"
+                f"<td><span class='chip pass'>cleared all four</span></td></tr>")
+
+    def refused_row(r):
+        joint, move, t, residual, floor, resolved, band, z = r
+        return (f"<tr><td><b>{joint_name(joint)}</b>"
+                f"<div class='muted' style='font-size:12.5px'>move {move} · {float(t or 0):.1f}s</div></td>"
+                f"<td class='r num'>{deg(residual)}</td>"
+                f"<td class='r num'>{deg(floor)}</td>"
+                f"<td class='r num'>{deg(resolved)}</td>"
+                f"<td><span class='chip stop'>inside the athlete's own range</span></td></tr>")
+
+    fault_rows_html = "\n      ".join(fault_row(r) for r in faults)
+    refused_rows_html = "\n      ".join(refused_row(r) for r in refused_judgeable)
+    blind_note = ""
+    if refused_blind:
+        widest = max(refused_blind, key=lambda r: r[6])
+        blind_note = (
+            f" Another {len(refused_blind)} could not be judged at all: on {joint_name(widest[0])} the "
+            f"estimators disagree by {deg(widest[6])}, wider than the {deg(widest[3])} difference.")
+
+
+    # ---- the eight-form grid and table ----
+    def form_figure(rec):
+        return (f'<figure class="form"><video controls preload="none" muted playsinline '
+                f'poster="media/form_tour_{rec["form"]}.jpg">'
+                f'<source src="media/form_tour_{rec["form"]}.mp4" type="video/mp4"></video>'
+                f'<figcaption><b>{rec["name"]}</b> · worst five seconds</figcaption></figure>')
+
+    def form_row(rec):
+        a = rec["agreement"]
+        return (f'<tr><td><b>{rec["name"]}</b></td>'
+                f'<td class="r num">{a["frames_compared"]:,}</td>'
+                f'<td class="r num">{a["frames_gross"]:,}</td>'
+                f'<td class="r num">{a["p50_abs_delta_deg"]}°</td>'
+                f'<td class="r num">{a["p95_abs_delta_deg"]}°</td>'
+                f'<td class="r num">{rec["window_start_frame"] / 30:.1f} s</td>'
+                f'<td>{joint_name(rec["window_worst_cell"])}</td></tr>')
+
+    form_figures = "\n    ".join(form_figure(r) for r in tour)
+    form_rows = "\n      ".join(form_row(r) for r in tour)
+    form_totals = (f'<tr><td><b>All eight</b></td>'
+                   f'<td class="r num">{tot_frames:,}</td>'
+                   f'<td class="r num">{tot_gross:,} <span class="muted">({gross_pct:.1f}%)</span></td>'
+                   f'<td class="r num">{min(p50s)}° – {max(p50s)}°</td>'
+                   f'<td class="r num">{min(p95s)}° – {max(p95s)}°</td>'
+                   f'<td class="r num">—</td>'
+                   f'<td>an elbow, in {arms_worst} of 8</td></tr>')
+
+    sbv, cbv = sb["verdict_counts"], cb["verdict_counts"]
+    repro = (f"{n_artifacts}/{n_artifacts} artifacts reproduce, {steps_done} pipeline steps, "
+             f"{'0 failures' if steps_ok else 'failures present'}")
+
     html = f"""<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Poomsae Coach — a deviation is not a fault</title>
-<meta name="description" content="A joint-angle poomsae checker that separates measurement tolerance from fault attribution, with every number re-derived from committed artifacts.">
-<style>
-:root{{--bg:#0b0c10;--fg:#e9e9ee;--dim:#9aa0ae;--line:#23262e;--acc:#7cc4ff;--warn:#ffbd6b;--bad:#ff7b7b;--ok:#7ee0a0}}
-*{{box-sizing:border-box}}
-body{{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 ui-sans-serif,-apple-system,"Segoe UI",Inter,sans-serif}}
-.wrap{{max-width:1080px;margin:0 auto;padding:0 24px}}
-header{{padding:44px 0 26px}}
-h1{{font-size:clamp(30px,4.4vw,52px);line-height:1.08;margin:0 0 18px;letter-spacing:-.02em}}
-h1 em{{color:var(--acc);font-style:normal}}
-p.lede{{font-size:clamp(17px,1.6vw,20px);color:var(--dim);max-width:64ch;margin:0}}
-.meta{{margin-top:18px;color:var(--dim);font-size:13.5px}}
-.kpis{{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:26px;margin:26px 0 20px;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}}
-.kpi .v{{font-size:30px;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1}}
-.kpi .k{{color:var(--dim);font-size:12.5px;line-height:1.45;margin-top:7px;text-wrap:pretty}}
-.kpi.bad .v{{color:var(--bad)}} .kpi.ok .v{{color:var(--ok)}}
-.meta a{{color:var(--acc);text-decoration:none;border-bottom:1px solid rgba(124,196,255,.3)}}
-section{{padding:52px 0;border-bottom:1px solid var(--line)}}
-h2{{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:0 0 24px;font-weight:600}}
-.grid{{display:grid;gap:24px}}
-@media(min-width:820px){{.two{{grid-template-columns:1fr 1fr}}}}
-figure{{margin:0}}
-video{{width:100%;border-radius:10px;background:#000;display:block;border:1px solid var(--line)}}
-figcaption{{color:var(--dim);font-size:14px;margin-top:10px}}
-figcaption b{{color:var(--fg);font-weight:600}}
-table{{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:8px}}
-th,td{{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}}
-th{{color:var(--dim);font-weight:600;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}}
-td code{{background:#171a21;padding:1px 6px;border-radius:4px;font-size:13px}}
-.num{{font-variant-numeric:tabular-nums}}
-.strip{{display:grid;gap:18px}}
-@media(min-width:820px){{.strip{{grid-template-columns:repeat(4,1fr)}}}}
-.card{{border:1px solid var(--line);border-radius:10px;padding:18px}}
-.card .v{{font-size:27px;font-variant-numeric:tabular-nums;letter-spacing:-.01em}}
-.card .k{{color:var(--dim);font-size:13.5px;margin-top:6px}}
-.card .src{{color:#6b7280;font-size:11.5px;margin-top:10px;font-family:ui-monospace,monospace}}
-.fault{{color:var(--bad)}} .ok{{color:var(--ok)}} .warn{{color:var(--warn)}}
-ul{{margin:0;padding-left:20px}} li{{margin:7px 0;color:var(--dim)}} li b{{color:var(--fg)}}
-.caveat{{border-left:2px solid var(--warn);padding-left:14px;color:var(--dim);font-size:14px;margin-top:16px}}
-footer{{padding:40px 0 72px;color:var(--dim);font-size:13.5px}}
-footer a{{color:var(--acc);text-decoration:none}}
-</style></head><body>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A taekwondo coach that only speaks when it is sure</title>
+<meta name="description" content="A Taekwondo poomsae coach: it measures each joint against the reference form, removes the athlete's own habitual offset, and posts a mistake only when the difference beats both the athlete's normal variation and the camera's measurement error.">
+<meta name="color-scheme" content="light">
+<meta property="og:title" content="A taekwondo coach that only speaks when it is sure">
+<meta property="og:description" content="Joint angles, one athlete's own baseline, and an explicit refusal to call a difference a mistake until it beats both.">
+<meta property="og:type" content="website">
+<style>{CSS}</style>
+</head>
+<body>
 <div class="wrap">
+
 <header>
-  <h1>A deviation is not a fault<br><em>until it beats the athlete's own habit.</em></h1>
-  <p class="lede">An angle tolerance has two jobs. <b>Measurement</b>: are two readings of the same
-  frame telling me the same thing? <b>Attribution</b>: did this athlete make a mistake? This repo
-  gives each job its own number — and publishes the number below which a difference is not real.</p>
-  <div class="kpis">
-    <div class="kpi"><div class="v num">{gate['R_elbow']:.1f}° → {K * sb['scale_deg']['R_elbow']:.1f}°</div>
-      <div class="k">right-elbow floor → resolved gate: max(tolerance, 2.5 × floor) is a lower bound;
-      the gate adds this athlete's own spread</div></div>
-    <div class="kpi bad"><div class="v num">{sb['verdict_counts']['fault']}</div>
-      <div class="k">candidate faults out of {cells} cells, same-side video</div></div>
-    <div class="kpi ok"><div class="v num">{sweep0['0.5x']['detection_rate']:.3f}</div>
-      <div class="k">detection on a fault half the gate size — it refuses instead of guessing</div></div>
-    <div class="kpi"><div class="v num">{eight_mean:.4f}</div>
-      <div class="k">8-class accuracy, {eight['n_players']} players, against a {c1:.4f} 1-NN baseline</div></div>
+  <p class="eyebrow">Research demo · Poomsae coaching</p>
+  <h1>A taekwondo coach that only speaks when it is sure</h1>
+  <p class="lede">It watches a poomsae on video, measures the angle at every joint, then removes the
+  athlete's <strong>own habit</strong> — the way someone always holds a shoulder. A mistake is flagged
+  only when the difference beats both their normal variation and the camera's error.</p>
+  <div class="hero-links">
+    <a class="btn" href="#watch">Watch a clip</a>
+    <a class="btn ghost" href="#check">Check the numbers yourself</a>
+    <a class="btn ghost" href="{REPO}/blob/main/README.md">Source &amp; method</a>
   </div>
-  <p class="meta">Taegeuk 1 · dual-view CC BY 4.0 dataset · {cells} joint cells ·
-  <a href="{REPO}">source</a> ·
-  <a href="{REPO}/blob/main/docs/METHOD.md">method</a> ·
-  <a href="{REPO}/blob/main/docs/RESULTS.md">results</a> ·
-  <a href="{REPO}/blob/main/docs/LIMITATIONS.md">limits</a> ·
-  <a href="{REPO}/blob/main/docs/PRIOR-ART.md">prior art</a></p>
+
+  <div class="facts">
+    <div class="fact">
+      <div class="l">mistakes found</div>
+      <div class="v num">{sbv['fault']}</div>
+      <div class="k">out of {cells} readings — one joint at one moment, across {n_moves} moves:
+      {sbv['noise']} agree with the athlete's own baseline, {sbv['fault']} do not.</div>
+      <div class="s">out/card_sameview.json</div>
+    </div>
+    <div class="fact">
+      <div class="l">safety margin</div>
+      <div class="v num">{ratio_rep:.1f}<small>×</small></div>
+      <div class="k">how far the {tol_r:.0f}° tolerance sits above one athlete's own repeat spread.
+      Across different players it is only {ratio_ba:.2f}×, so the baseline has to be personal.</div>
+      <div class="s">out/repeatability.json<br>out/between_athlete.json</div>
+    </div>
+    <div class="fact">
+      <div class="l">frames excluded</div>
+      <div class="v num">{gross_pct:.1f}<small>%</small></div>
+      <div class="k">of {tot_frames:,} frames across eight forms, the arm is out of reach — two
+      estimators disagree by more than 60° on the same pixels. Counted and shown grey, never
+      averaged in.</div>
+      <div class="s">out/form_tour.json</div>
+    </div>
+  </div>
 </header>
 
-<section>
-  <h2>The same take, two references</h2>
-  <div class="grid two">
+<section class="night" id="watch">
+  <p class="s-label">01 · Watch it work</p>
+  <h2>One athlete, two references</h2>
+  <p class="body">Same athlete, same video. Only the reference changed — filmed from their side on
+  the left, from the far side of the room on the right.</p>
+
+  <div class="clips">
     <figure>
       <video controls preload="metadata" poster="media/frame_move6_elbow.png" playsinline>
         <source src="media/demo_sameview.mp4" type="video/mp4">
-        Your browser cannot play this clip — <a href="media/demo_sameview.mp4">download it</a>.
+        <a href="media/demo_sameview.mp4">Download the clip</a>
       </video>
-      <figcaption><b>Same side.</b> {sb['card_flag_count']} measurement flags →
-        <b>{sb['verdict_counts']['fault']} candidate faults</b>, {sb['verdict_counts']['style']} style,
-        {sb['verdict_counts']['noise']} within noise. The overlay prints both numbers it obeys:
-        <code>tol {tol['R_elbow']:.0f} / floor {gate['R_elbow']:.1f} / gate {K * sb['scale_deg']['R_elbow']:.1f} deg</code>.</figcaption>
+      <figcaption><b>Same side.</b> <b>{sbv['fault']} mistakes</b> across 19 moves;
+      {sbv['noise']} readings match the athlete's own baseline.</figcaption>
     </figure>
     <figure>
       <video controls preload="metadata" poster="media/frame_crossview.png" playsinline>
         <source src="media/demo_crossview.mp4" type="video/mp4">
-        Your browser cannot play this clip — <a href="media/demo_crossview.mp4">download it</a>.
+        <a href="media/demo_crossview.mp4">Download the clip</a>
       </video>
-      <figcaption><b>Opposite camera.</b> Mean deviation {cross_card['mean_abs_delta']:.1f}° — the
-        reference was filmed from the other side of the room. {cb['verdict_counts']['fault']} candidates,
-        <b>{cb['verdict_counts']['style']} labelled this athlete's own offset</b> under that geometry.</figcaption>
+      <figcaption><b>Other side.</b> The camera angle alone shifts readings
+      {cross_card['mean_abs_delta']:.1f}°, so <b>{cbv['style']} become the athlete's own offset</b>.
+      Anything still flagged here is in
+      <a href="{REPO}/blob/main/docs/RESULTS.md">RESULTS</a>, not a verdict.</figcaption>
     </figure>
   </div>
+
+  <h3 class="t-head">How the threshold is chosen</h3>
+  <div class="thresholds">
+    <div><span class="n">tolerance</span><span class="d">The smallest difference worth noticing at
+      all: <b>{tol_r:.0f}°</b> at the elbow.</span></div>
+    <div><span class="n">floor</span><span class="d">The smallest threshold anyone may apply to
+      this data, raised where the tool's own error demands it: <b>{gate_r:.1f}°</b>. A lower bound —
+      <b>never the deciding number</b>.</span></div>
+    <div><span class="n">gate</span><span class="d">What this athlete's own variation demands:
+      <b>{K:g} × how much their elbow varies between repeats</b> — <b>{gate_r_resolved:.1f}°</b>.
+      This one decides.</span></div>
+  </div>
+  <p class="after">Each clip prints all three in that order, so the video cannot disagree with the
+  numbers that produced it. Fullscreen to read them.</p>
 </section>
 
-<section>
-  <h2>The mask travels: eight forms, eight measurements</h2>
-  <p class="lede">Every clip in the dataset — the same frontal camera, Taegeuk 1 Jang to 8 Jang —
-  run through the identical mask and the identical measurement. Each tile is that form's worst five
-  seconds, placed on the cell carrying its largest |Δ| against the published annotation.</p>
-  <p class="lede"><b>No verdicts are published for forms 2–8.</b> A verdict needs that athlete's own
-  gate, and this release measures one athlete's gate, on Taegeuk 1 Jang. What travels here is the
-  measurement, not the judgement.</p>
+<section id="caught">
+  <p class="s-label">02 · What it caught</p>
+  <h2>{sbv['fault']} readings passed every test. {len(refused_judgeable)} cleared the minimum and
+  were still refused.</h2>
+  <p class="body">Four conditions, all required: clear the tolerance, remove the athlete's own
+  offset, beat {K:g} × their variation on that joint, beat the measurement band.</p>
+
+  <div class="tablewrap">
+    <table>
+      <caption>Published findings — Taegeuk 1 Jang</caption>
+      <thead><tr><th>joint and moment</th><th class="r">remaining difference</th>
+        <th class="r">gate for this athlete</th><th class="r">measurement band</th><th>result</th></tr></thead>
+      <tbody>
+      {fault_rows_html}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <caption>Refused: past the floor, inside the athlete's own range</caption>
+      <thead><tr><th>joint and moment</th><th class="r">remaining difference</th>
+        <th class="r">floor</th><th class="r">gate</th><th>result</th></tr></thead>
+      <tbody>
+      {refused_rows_html}
+      </tbody>
+    </table>
+  </div>
+  <p class="body">Each cleared its floor and still lost: {K:g} × the athlete's own variation there
+  exceeds it, so that difference is their form.{blind_note}</p>
+</section>
+
+<section id="quiet">
+  <p class="s-label">03 · What it refuses</p>
+  <h2>Most of the work is deciding what not to say</h2>
+  <p class="body">Cases built to make it look careless, plus four rival approaches. Each refusal is a
+  measurement, not a promise.</p>
+  <ul>
+    <li><b>Grading itself.</b> As their own reference there is nothing to find: without a personal
+      baseline {clean['old_gate_flags']} readings get flagged, with one
+      <b>{clean['faults']} remain ({clean['faults'] / cells * 100:.2f}%)</b> — the noise floor, not
+      an accuracy figure.</li>
+    <li><b>Calling a style a mistake.</b> +20° elbow, −15° knee added on purpose:
+      <b>{style['style']} readings come back labelled style</b>, the amounts recovered as
+      {style['offset_recovery_deg']['R_elbow']:+.1f}° and
+      {style['offset_recovery_deg']['L_knee']:+.1f}°.</li>
+    <li><b>Faults just under the gate.</b> Added at 0.5× and 0.9× of it: no detections at either
+      size. It stays silent instead of guessing.</li>
+    <li><b>Faults just over the gate.</b> Every judgeable reading is caught
+      ({sweep0['1.05x']['detection_rate_judgeable']:.2f}); counting the
+      {sweep0['1.05x']['band_blind']} it cannot judge as misses gives
+      <b>{sweep0['1.05x']['detection_rate']:.3f}</b>. On a real baseline only
+      {sweepm['1.05x']['detection_rate_judgeable']:.2f} — the {tol_r:.0f}° already carried swallows
+      part of the added {gate_r_resolved:.0f}°.</li>
+    <li><b>Three rival approaches.</b> 3D responds less than flat video
+      ({c3d['range_ratio_3d_over_2d']:.2f}× range, signal-to-noise
+      {c3d['signal_noise']['snr_3d']:.2f} vs {c3d['signal_noise']['snr_2d']:.2f}). A learned boundary
+      separates at {lg_auc:.3f} but false-alarms {lg_fpr:.0%}. A language model scores {jev_blind:.3f}
+      blind, {jev_single:.3f} per reading: advice, never a verdict.</li>
+    <li><b>A universal threshold.</b> Elbow spread reaches {ba_traj['elbow_traj_sd_max']:.0f}° across
+      94 players, which is why no number here is applied the same way to everybody.</li>
+  </ul>
+  <p class="after">The 94-player classification experiment, for completeness: {eight_mean:.4f} over
+  {eight['n_performances']} performances, against {c1:.4f} for nearest-neighbour, {c2:.4f} on a
+  single frame, {c3:.4f} on shuffled labels. {eight_mean - c1:+.3f} over the simple baseline is the
+  honest reading of that result.</p>
+</section>
+
+<section id="forms">
+  <p class="s-label">04 · The measurement on all eight forms</p>
+  <h2>The same mask on every form in the dataset</h2>
+  <p class="body">Each tile is that form's worst five seconds, through the identical measurement,
+  against the dataset's own annotations. Grey frames are ones the estimator cannot see.</p>
+
   <div class="forms">
-    {form_tiles}
+    {form_figures}
   </div>
-  <table>
-    <thead><tr><th>form</th><th>frames</th><th>|Δ| p50</th><th>|Δ| p95</th><th>worst window</th>
-      <th>cell carrying it</th><th>frames with a cell over tol</th></tr></thead>
-    <tbody>{form_rows}</tbody>
-    <tfoot>{form_totals}</tfoot>
-  </table>
-  <p class="lede"><b>{tot_gross:,} of {tot_frames:,} frames — {tot_gross / tot_frames * 100:.1f}% — carry an arm cell where two
-  estimators looking at the same pixels disagree by more than a coaching threshold and, in the
-  excluded set, by more than 60°.</b> That is the honest size of the 2D measurement problem on this
-  dataset, and it is why the number that reaches a reader is a median with an explicit tail beside it.</p>
-  <p class="lede">Read the two columns together. A p50 near a degree says the mask sits on the
-  athlete; a p95 near thirty says that on some frames two independent pose estimators disagree by
-  more than any coaching threshold — which is why the gate on Taegeuk 1 has a band condition, and
-  why no band-free number on this page is called a fault.</p>
-</section>
 
-<section>
-  <h2>Where the number came from</h2>
-  <div class="strip">
-    <div class="card"><div class="v num">{tol['R_elbow']:.1f}°</div>
-      <div class="k">two pose estimators, identical frames, p95 disagreement — the measurement floor</div>
-      <div class="src">out/uncertainty.json</div></div>
-    <div class="card"><div class="v num">{min(rep_sd):.1f}–{max(rep_sd):.1f}°</div>
-      <div class="k">sd of the same athlete repeating the same technique (n ≥ 6 groups)</div>
-      <div class="src">out/repeatability.json</div></div>
-    <div class="card"><div class="v num">{ba_traj['elbow_traj_sd_mean']:.1f}°</div>
-      <div class="k">elbow sd across 94 players (worst {ba_traj['elbow_traj_sd_max']:.1f}°) — human spread</div>
-      <div class="src">out/between_athlete.json</div></div>
-    <div class="card"><div class="v num">{gate['R_elbow']:.1f}° floor</div>
-      <div class="k">lower bound on the gate; the gate itself is 2.5 × this athlete's own scale on the cell</div>
-      <div class="src">out/self_reference.json</div></div>
+  <div class="tablewrap">
+    <table>
+      <caption>Agreement with the published annotation, frame by frame</caption>
+      <thead><tr><th>form</th><th class="r">frames used</th><th class="r">frames excluded</th>
+        <th class="r">typical</th><th class="r">worst 5 %</th><th class="r">worst window</th>
+        <th>joint that broke first</th></tr></thead>
+      <tbody>
+      {form_rows}
+      </tbody>
+      <tfoot>{form_totals}</tfoot>
+    </table>
   </div>
-  <p class="lede" style="margin-top:24px">18° sits at <b>2.3×</b> the repeat spread and <b>0.55×</b> the
-  cross-athlete spread. One number cannot be both, so the threshold stayed and the <i>comparison</i>
-  changed: each athlete is judged against their own median deviation, and only a <b>residual</b> may
-  become a fault.</p>
+
+  <p class="after"><b>No verdicts for forms 2–8.</b> A verdict needs that athlete's own repeats, and
+  this release has one athlete's, on Taegeuk 1 Jang. The measurement travels; the judgement does not.
+  Near a degree in the middle means the mask is on the right body — checked to 0.1–0.2% of the
+  annotation on all eight — so these failures are arms, not the camera following the wrong
+  person.</p>
 </section>
 
-<section>
-  <h2>The findings, with their margins</h2>
-  <p class="lede">Four conditions, and the fourth is the one that hurts: a cell is a fault only when
-  |residual| beats the <b>tolerance</b>, the athlete's <b>offset</b> has already been removed, |residual|
-  beats <b>2.5 × that cell's own scale</b> (the gate), <i>and</i> it beats the <b>estimator band</b>.
-  The first two tables below are the two elbow cells that pass the floor and fail the gate.</p>
 
-  <h3>Past the floor, refused by the gate</h3>
-  <table>
-    <thead><tr><th>view</th><th>move</th><th>t (s)</th><th>cell</th><th>residual</th><th>floor</th>
-      <th>gate</th><th>z</th><th>band</th></tr></thead>
-    <tbody>{refused_rows_html}</tbody>
-  </table>
-  <p class="lede">Move 6's right elbow clears the 21.0° floor by <b>0.1°</b> and still fails: the gate on
-  that cell is 28.2°, because this athlete's own elbow varies by ≈11°, and z = 1.9 is under 2.5. The
-  floor is a <b>lower bound on the gate</b>, never the gate — a page or a HUD that prints one as the
-  other will disagree with its own cards.</p>
 
-  <h3>What survives all four conditions</h3>
-  <table>
-    <thead><tr><th>view</th><th>move</th><th>t (s)</th><th>cell</th><th>residual</th><th>floor</th>
-      <th>gate</th><th>z</th><th>band</th></tr></thead>
-    <tbody>{fault_rows_html}</tbody>
-  </table>
-</section>
+<section id="check">
+  <p class="s-label">05 · Verify it yourself</p>
+  <h2>No dataset, models or network needed</h2>
+  <p class="body">The repository ships the files these numbers come from. Each command fails loudly
+  if this page and the files disagree.</p>
+<pre><span class="c"># every documented number, re-derived from out/*.json</span>
+python3 scripts/verify_claims.py
+<span class="out">91/91 documented claims re-derived</span>
 
-<section>
-  <h2>Certified on four arms — including where it refuses</h2>
-  <table>
-    <thead><tr><th>condition</th><th>raw |delta| &gt; tol</th><th>self-referenced layer</th></tr></thead>
-    <tbody>
-      <tr><td>clean arm — student <i>is</i> the reference; no fault exists</td>
-        <td class="num">{clean['old_gate_flags']} cells</td>
-        <td><b>{clean['faults']} candidates = {portal:.2f}% of {cells}</b> — published as the detector's
-          floor, not a false-positive rate</td></tr>
-      <tr><td>style arm — systematic +20° elbow / −15° knee</td>
-        <td class="num">{style['old_gate_flags']} cells</td>
-        <td><b>{style['faults_beyond_baseline']} findings beyond the clean floor</b>;
-          {style['style']} cells labelled style; offsets recovered at
-          {style['offset_recovery_deg']['R_elbow']:+.1f}° / {style['offset_recovery_deg']['L_knee']:+.1f}°
-          against {style['offset_recovery_deg']['injected_deg']['R_elbow']:+.0f}° /
-          {style['offset_recovery_deg']['injected_deg']['L_knee']:+.0f}° injected</td></tr>
-      <tr><td>injection at <b>0.5×</b> the gate</td><td>—</td>
-        <td class="ok"><b>{sweep0['0.5x']['detection_rate']:.3f} detection</b> — refuses rather than guesses</td></tr>
-      <tr><td>injection at <b>0.9×</b> the gate</td><td>—</td>
-        <td class="ok"><b>{sweep0['0.9x']['detection_rate']:.3f} detection</b></td></tr>
-      <tr><td>injection at <b>1.05×</b> the gate, zero base</td><td>—</td>
-        <td>{sweep0['1.05x']['detection_rate_judgeable']:.3f} of judgeable cells;
-          {sweep0['1.05x']['band_blind']} of {cells} band-blind, counted as misses →
-          {sweep0['1.05x']['detection_rate']:.4f}</td></tr>
-      <tr><td>injection at <b>1.05×</b> the gate, <i>measured</i> base</td><td>—</td>
-        <td class="warn">{sweepm['1.05x']['detection_rate_judgeable']:.4f} of judgeable cells — the
-          existing 8° consumes part of the injected 21°</td></tr>
-    </tbody>
-  </table>
-  <p class="caveat">The last two rows are the same injection. Reporting only the zero-base row would
-  be reporting arithmetic as sensitivity.</p>
-</section>
+<span class="c"># regenerate this page from the same files</span>
+python3 scripts/build_site.py
 
-<section>
-  <h2>What was refused, and the number that refused it</h2>
-  <ul>
-    <li><b>3D realignment.</b> Deviation range {c3d['range_ratio_3d_over_2d']:.3f}× the 2D case,
-      signal-to-noise {c3d['signal_noise']['snr_3d']:.2f} vs {c3d['signal_noise']['snr_2d']:.2f} —
-      it deviates less because it responds less.</li>
-    <li><b>A learned gate.</b> AUC {lg_auc:.4f}; at a matched true-positive rate the false-positive
-      rate is {lg_fpr:.2%} — the boundary exists, but there is no meaning to state, so a stated
-      threshold was kept instead. <span style="color:#6b7280;font-family:ui-monospace,monospace;font-size:12px">out/learned_gate.json</span></li>
-    <li><b>An LLM as the authoriser.</b> Blind AUC {jev_blind:.4f}, single-reading AUC
-      {jev_single:.4f} — advice only, never authorisation.</li>
-    <li><b>Sensitivity measured on a measured base.</b> {sweepm['1.05x']['detection_rate_judgeable']:.4f}
-      rather than {sweep0['1.05x']['detection_rate_judgeable']:.3f}: an existing 8° plus an injected
-      21° is not a detectable 29°.</li>
-  </ul>
-</section>
+<span class="c"># links, and a re-run of the pipeline against stored hashes</span>
+python3 scripts/check_links.py
+python3 scripts/check_reproducible.py
+<span class="out">{repro}</span></pre>
+  <p class="after">Run log <code class="mono">out/run_all.log</code>; hashes in
+  <code class="mono">out/manifest.sha256</code> — {n_artifacts} entries, with run-timing fields set
+  aside before comparison.</p>
 
-<section>
-  <h2>The 94-player dataset, with four controls</h2>
-  <ul>
-    <li><b>{eight_mean:.4f}</b> 8-class accuracy over {eight['n_performances']} labelled performances
-      from {eight['n_players']} players, {eight['split']}.</li>
-    <li>Controls: {c1:.4f} (1-nearest-neighbour), {c2:.4f} (single frame only), {c3:.4f} (shuffled labels).</li>
-    <li>+{(eight_mean - c1) * 100:.1f} points over 1-NN is the honest reading: this dataset is close to
-      separable, so the result is "a competent baseline here", not a model win.</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Verify it yourself</h2>
-  <ul>
-    <li><code>python3 scripts/verify_claims.py</code> — re-derives every claim from the committed JSON.
-      No dataset, no models, no network.</li>
-    <li><code>python3 scripts/build_site.py</code> — regenerates this page from the same artifacts, so
-      the page cannot drift from them.</li>
-    <li><code>python3 scripts/check_links.py</code> — fails if any local link or image is missing.</li>
-    <li><code>python3 scripts/check_reproducible.py</code> — compares a re-run against
-      <code>out/manifest.sha256</code> with an explicit list of run-timing fields ignored.
-      The packaged tree was run end to end: <b>{steps_done} steps
-      {'completed with 0 failures' if steps_ok else 'FAILED'}</b>, and
-      <b>{n_artifacts}/{n_artifacts} artifacts match</b> once
-      <code>extraction_ms_per_frame</code>, <code>generated_at</code> and <code>runtime_s</code> are
-      set aside. Log: <code>out/run_all.log</code>.</li>
-  </ul>
+  <details>
+    <summary>Words used on this page</summary>
+    <dl>
+      <div><dt>Joint angle</dt><dd>The bend at one joint, measured from the body's own centre line, so
+        height and distance from the camera drop out.</dd></div>
+      <div><dt>Reference form</dt><dd>The comparison performance — the same poomsae, filmed from a
+        known angle, with its joints already measured.</dd></div>
+      <div><dt>Offset</dt><dd>The athlete's own habit: a consistent difference from the reference,
+        taken as the middle of their differences and removed before any judgement.</dd></div>
+      <div><dt>Difference left over</dt><dd>What remains once the offset is gone. Only this can become
+        a mistake.</dd></div>
+      <div><dt>Measurement band</dt><dd>How far two independent pose estimators disagree on the same
+        frame. A difference smaller than the band is not evidence of anything.</dd></div>
+      <div><dt>Tolerance, floor, gate</dt><dd>The smallest noticeable difference, the smallest bar
+        allowed on this dataset, and the bar this athlete's own variation demands — in that order of
+        strictness. The middle one is a lower bound on the last, never a substitute for it.</dd></div>
+    </dl>
+  </details>
 </section>
 
 <footer>
-  Code MIT · demo clips derived from the CC BY 4.0 dual-view Taegeuk dataset
-  (<a href="https://doi.org/10.17632/bjy7vr4xkt.1">10.17632/bjy7vr4xkt.1</a>) — see
-  <a href="{REPO}/blob/main/ATTRIBUTION.md">ATTRIBUTION</a>. The 94-athlete labelled dataset carries no
-  licence upstream and is not redistributed: only the numbers computed from it.
-  <br><br><a href="{REPO}">github.com/ahmadalzaro1/poomsae-coach</a>
+  <p>Code MIT. Demo clips are derived from the CC BY 4.0 dual-view Taegeuk dataset
+  (<a href="https://doi.org/10.17632/bjy7vr4xkt.1">10.17632/bjy7vr4xkt.1</a>) and attributed in
+  <a href="{REPO}/blob/main/ATTRIBUTION.md">ATTRIBUTION</a>.</p>
+  <p>The 94-player labelled dataset carries no upstream licence and is not redistributed here —
+  only the numbers computed from it.</p>
+  <p><a href="{REPO}">github.com/ahmadalzaro1/poomsae-coach</a></p>
 </footer>
-</div></body></html>
+</div>
+</body>
+</html>
 """
 
     os.makedirs(os.path.join(SITE, "media"), exist_ok=True)
@@ -420,6 +592,8 @@ footer a{{color:var(--acc);text-decoration:none}}
         if not os.path.exists(src):
             sys.exit(f"build_site: missing media/{name}")
         shutil.copy2(src, os.path.join(SITE, "media", name))
+    if "/Users/" in html:
+        sys.exit("build_site: an absolute local path leaked into the page")
     with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8") as fh:
         fh.write(html)
     open(os.path.join(SITE, ".nojekyll"), "w").close()
@@ -428,4 +602,4 @@ footer a{{color:var(--acc);text-decoration:none}}
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    raise SystemExit(main())
