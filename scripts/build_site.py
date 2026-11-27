@@ -33,144 +33,6 @@ def load(name):
         return json.load(fh)
 
 
-CSS = """
-:root{
-  --bg:#faf9f7; --surface:#ffffff; --ink:#15171c; --muted:#4f5662; --faint:#5f6673;
-  --line:#e3e1dc; --line-2:#cfccc5; --accent:#0f5d54; --accent-soft:#e6efed;
-  --bad:#a3221f; --ok:#166534; --warn:#8a5a10; --night:#12141a; --night-ink:#e8e9ec;
-}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0;background:var(--bg);color:var(--ink);
-  font:16.5px/1.62 ui-sans-serif,-apple-system,"Segoe UI",Inter,Roboto,sans-serif;
-}
-.wrap{max-width:960px;margin:0 auto;padding:0 24px}
-a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(15,93,84,.28)}
-a:hover{border-bottom-color:var(--accent)}
-code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.875em}
-.num{font-variant-numeric:tabular-nums}
-
-/* hero */
-header{padding:64px 0 44px}
-.eyebrow{
-  display:inline-block;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;
-  color:var(--muted);margin:0 0 22px;padding:5px 11px;border:1px solid var(--line-2);
-  border-radius:999px;background:var(--surface)
-}
-h1{
-  font-size:clamp(32px,5vw,54px);line-height:1.06;letter-spacing:-.025em;font-weight:650;
-  margin:0 0 22px;max-width:19ch;text-wrap:balance
-}
-.lede{font-size:clamp(17px,1.7vw,20.5px);line-height:1.55;color:#2c313b;max-width:62ch;margin:0;text-wrap:pretty}
-.lede strong{font-weight:620;color:var(--ink)}
-.hero-links{margin-top:30px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.btn{
-  display:inline-block;padding:11px 18px;border-radius:8px;font-size:15px;font-weight:560;
-  border:1px solid var(--accent);background:var(--accent);color:#fff
-}
-.btn:hover{background:#0b4a43;border-color:#0b4a43}
-.btn.ghost{background:transparent;color:var(--accent);border-color:var(--line-2)}
-.btn.ghost:hover{background:var(--accent-soft);border-color:var(--accent)}
-
-/* the three numbers on the first screen */
-.facts{
-  display:grid;gap:1px;grid-template-columns:1fr;margin:46px 0 0;background:var(--line);
-  border:1px solid var(--line);border-radius:12px;overflow:hidden
-}
-@media(min-width:780px){.facts{grid-template-columns:repeat(3,1fr)}}
-.fact{background:var(--surface);padding:20px 22px 18px;display:flex;flex-direction:column}
-.fact .l{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;font-weight:600;min-height:2.7em}
-.fact .v{font-size:clamp(26px,3.2vw,34px);line-height:1;letter-spacing:-.02em;font-weight:600}
-.fact .v small{font-size:.44em;font-weight:500;color:var(--muted);letter-spacing:0}
-.fact .k{color:var(--muted);font-size:13.5px;line-height:1.5;margin-top:10px;text-wrap:pretty}
-.fact .s{color:var(--faint);font-size:11px;margin-top:auto;padding-top:14px;font-family:ui-monospace,monospace;overflow-wrap:anywhere}
-
-/* sections */
-section{padding:66px 0;border-top:1px solid var(--line)}
-.s-label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin:0 0 12px;font-weight:600}
-h2{font-size:clamp(23px,2.9vw,31px);line-height:1.18;letter-spacing:-.02em;margin:0 0 16px;font-weight:640;text-wrap:balance;max-width:34ch}
-h3{font-size:16.5px;margin:36px 0 10px;font-weight:640}
-p{margin:0 0 14px;text-wrap:pretty}
-p.body{color:#333842;max-width:66ch}
-p.after{color:var(--muted);font-size:14.5px;max-width:68ch}
-
-/* the clips sit on a dark band so the overlays read */
-.night{background:var(--night);color:var(--night-ink);border-top:1px solid #000}
-.night .s-label{color:#8f95a3}
-.night h2{color:#fff}
-.night p.body,.night p.after{color:#b7bcc6}
-.night a{color:#7ed3c4;border-bottom-color:rgba(126,211,196,.3)}
-.night h3{color:#fff}
-.t-head{margin-top:38px;margin-bottom:12px;font-size:15px}
-#watch video:focus-visible{outline:2px solid #7ed3c4;outline-offset:3px}
-.clips{display:grid;gap:28px;margin:28px 0 0}
-@media(min-width:800px){.clips{grid-template-columns:1fr 1fr}}
-figure{margin:0}
-video{width:100%;display:block;border-radius:10px;background:#000;border:1px solid #2a2e37}
-figcaption{margin-top:12px;font-size:14px;line-height:1.55;color:#b7bcc6;text-wrap:pretty}
-figcaption b{color:#fff;font-weight:600}
-
-/* tolerance / floor / gate, defined once */
-.thresholds{margin-top:34px;border:1px solid #2c313c;border-radius:10px;overflow:hidden;background:#171a21}
-.thresholds div{display:grid;gap:3px;padding:14px 18px;border-bottom:1px solid #232833}
-.thresholds div:last-child{border-bottom:0}
-@media(min-width:640px){.thresholds div{grid-template-columns:92px 1fr;gap:20px;align-items:baseline}}
-.thresholds .n{font-family:ui-monospace,monospace;font-size:13px;color:#7ed3c4}
-.thresholds .d{font-size:14.5px;color:#b7bcc6;line-height:1.55}
-.thresholds .d b{color:#fff;font-weight:600}
-
-/* tables */
-.tablewrap{overflow-x:auto;margin:18px 0 6px}
-table{width:100%;border-collapse:collapse;font-size:14.5px}
-td:first-child,th:first-child{white-space:nowrap}
-td.r,th.r{white-space:nowrap}
-caption{caption-side:top;text-align:left;color:var(--muted);font-size:13px;padding:0 0 10px}
-th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:600}
-tbody tr:last-child td{border-bottom:0}
-tfoot td{border-top:1px solid var(--line-2);font-weight:600}
-.r{text-align:right}
-.muted{color:var(--muted)}
-.chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12.5px;font-weight:600;white-space:nowrap}
-.chip.pass{background:#e7f2e9;color:var(--ok)}
-.chip.stop{background:#f6ece2;color:var(--warn)}
-
-/* eight forms */
-.forms{display:grid;gap:24px;margin:28px 0 32px}
-@media(min-width:700px){.forms{grid-template-columns:1fr 1fr}}
-.form video{border-color:var(--line-2)}
-.form figcaption{color:var(--muted)}
-.form figcaption b{color:var(--ink);font-weight:620}
-
-/* lists */
-ul{margin:0 0 14px;padding-left:20px;max-width:70ch}
-li{margin:10px 0;color:#333842;text-wrap:pretty}
-li b{color:var(--ink)}
-
-/* commands */
-pre{
-  margin:16px 0;padding:18px;background:var(--surface);border:1px solid var(--line);border-radius:10px;
-  overflow-x:auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;line-height:1.8
-}
-pre .c{color:var(--faint)}
-pre .out{color:var(--ok)}
-
-/* glossary */
-details{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:14px 18px;margin-top:24px}
-summary{cursor:pointer;font-weight:620;font-size:15px}
-dl{margin:14px 0 0;display:grid;gap:12px}
-dl div{display:grid;gap:2px}
-@media(min-width:620px){dl div{grid-template-columns:168px 1fr;gap:18px}}
-dt{font-weight:620;font-size:14.5px}
-dd{margin:0;color:var(--muted);font-size:14.5px;line-height:1.55}
-
-footer{padding:46px 0 80px;border-top:1px solid var(--line);color:var(--muted);font-size:13.5px}
-footer p{margin:0 0 10px;max-width:70ch}
-@media(prefers-reduced-motion:no-preference){.btn{transition:background .15s ease,border-color .15s ease}}
-"""
-
-
 def main() -> int:
     sr = load("self_reference.json")
     same_card = load("card_sameview.json")
@@ -281,20 +143,20 @@ def main() -> int:
     def fault_row(r):
         joint, move, t, residual, floor, resolved, band, z = r
         return (f"<tr><td><b>{joint_name(joint)}</b>"
-                f"<div class='muted' style='font-size:12.5px'>move {move} · {float(t or 0):.1f}s</div></td>"
+                f"<div class='cell-detail'>Move {move} · {float(t or 0):.1f}s</div></td>"
                 f"<td class='r num'>{deg(residual)}</td>"
                 f"<td class='r num'>{deg(resolved)}</td>"
                 f"<td class='r num'>{deg(band)}</td>"
-                f"<td><span class='chip pass'>cleared all four</span></td></tr>")
+                f"<td><span class='result'>Cleared all four</span></td></tr>")
 
     def refused_row(r):
         joint, move, t, residual, floor, resolved, band, z = r
         return (f"<tr><td><b>{joint_name(joint)}</b>"
-                f"<div class='muted' style='font-size:12.5px'>move {move} · {float(t or 0):.1f}s</div></td>"
+                f"<div class='cell-detail'>Move {move} · {float(t or 0):.1f}s</div></td>"
                 f"<td class='r num'>{deg(residual)}</td>"
                 f"<td class='r num'>{deg(floor)}</td>"
                 f"<td class='r num'>{deg(resolved)}</td>"
-                f"<td><span class='chip stop'>inside the athlete's own range</span></td></tr>")
+                f"<td><span class='result'>Within usual range</span></td></tr>")
 
     fault_rows_html = "\n      ".join(fault_row(r) for r in faults)
     refused_rows_html = "\n      ".join(refused_row(r) for r in refused_judgeable)
@@ -309,7 +171,7 @@ def main() -> int:
     # ---- the eight-form grid and table ----
     def form_figure(rec):
         return (f'<figure class="form"><video controls preload="none" muted playsinline '
-                f'poster="media/form_tour_{rec["form"]}.jpg">'
+                f'poster="media/form_tour_{rec["form"]}.jpg" aria-label="{rec["name"]} measurement clip">'
                 f'<source src="media/form_tour_{rec["form"]}.mp4" type="video/mp4"></video>'
                 f'<figcaption><b>{rec["name"]}</b> · worst five seconds</figcaption></figure>')
 
@@ -333,6 +195,10 @@ def main() -> int:
                    f'<td class="r num">—</td>'
                    f'<td>an elbow, in {arms_worst} of 8</td></tr>')
 
+    # The hero still shows move 6 in the same-side demo.
+    low_block = next(move for move in same_card["moves"] if move["move"] == 6)
+    elbow_residual = low_block["attribution"]["per_joint"]["R_elbow"]["residual"]
+
     sbv, cbv = sb["verdict_counts"], cb["verdict_counts"]
     repro = (f"{n_artifacts}/{n_artifacts} artifacts reproduce, {steps_done} pipeline steps, "
              f"{'0 failures' if steps_ok else 'failures present'}")
@@ -342,64 +208,98 @@ def main() -> int:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>A taekwondo coach that only speaks when it is sure</title>
+<title>Poomsae Coach | Syntax Labs</title>
 <meta name="description" content="A Taekwondo poomsae coach: it measures each joint against the reference form, removes the athlete's own habitual offset, and posts a mistake only when the difference beats both the athlete's normal variation and the camera's measurement error.">
 <meta name="color-scheme" content="light">
-<meta property="og:title" content="A taekwondo coach that only speaks when it is sure">
+<meta property="og:title" content="Poomsae Coach | Syntax Labs">
 <meta property="og:description" content="Joint angles, one athlete's own baseline, and an explicit refusal to call a difference a mistake until it beats both.">
 <meta property="og:type" content="website">
-<style>{CSS}</style>
+<link rel="canonical" href="https://ahmadalzaro1.github.io/poomsae-coach/">
+<meta property="og:image" content="https://ahmadalzaro1.github.io/poomsae-coach/media/frame_move6_elbow.png">
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
-<div class="wrap">
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="https://thesyntaxlabs.com/">Syntax Labs</a>
+    <nav aria-label="Project links">
+      <a href="https://thesyntaxlabs.com/work">All work</a>
+      <a href="{REPO}">GitHub</a>
+    </nav>
+  </div>
+</header>
 
-<header>
-  <p class="eyebrow">Research demo · Poomsae coaching</p>
-  <h1>A taekwondo coach that only speaks when it is sure</h1>
-  <p class="lede">It watches a poomsae on video, measures the angle at every joint, then removes the
-  athlete's <strong>own habit</strong> — the way someone always holds a shoulder. A mistake is flagged
-  only when the difference beats both their normal variation and the camera's error.</p>
-  <div class="hero-links">
-    <a class="btn" href="#watch">Watch a clip</a>
-    <a class="btn ghost" href="#check">Check the numbers yourself</a>
-    <a class="btn ghost" href="{REPO}/blob/main/README.md">Source &amp; method</a>
+<main id="main">
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <h1>Poomsae Coach</h1>
+          <p class="lede">The demo reviews Taekwondo form against an athlete's own repeats. It flags
+          differences that exceed both their usual variation and the camera's measurement error.</p>
+          <div class="hero-links">
+            <a class="btn primary" href="#watch">Watch the demo</a>
+            <a class="btn" href="#caught">See the findings</a>
+          </div>
+        </div>
+        <figure class="hero-figure">
+          <a class="hero-still" href="#watch" aria-label="Watch the joint-angle demo">
+            <img src="media/frame_move6_elbow.png" width="1280" height="720" fetchpriority="high"
+              alt="An athlete performing a low block, with measured joints and elbow feedback overlaid.">
+          </a>
+          <figcaption>
+            <b>Taegeuk 1 Jang · Low block</b>
+            <span>Right elbow: <strong>{deg(abs(elbow_residual))}</strong> after baseline correction,
+            below this athlete's <strong>{deg(gate_r_resolved)}</strong> threshold.</span>
+          </figcaption>
+        </figure>
+      </div>
+      <nav class="section-index" aria-label="On this page">
+        <a href="#watch">Compare the clips</a>
+        <a href="#caught">Findings</a>
+        <a href="#quiet">Confidence limits</a>
+        <a href="#forms">All eight forms</a>
+        <a href="#check">Reproduce the results</a>
+      </nav>
+    </div>
   </div>
 
-  <div class="facts">
+  <div class="facts wrap">
     <div class="fact">
-      <div class="l">mistakes found</div>
+      <div class="l">Readings flagged</div>
       <div class="v num">{sbv['fault']}</div>
       <div class="k">out of {cells} readings — one joint at one moment, across {n_moves} moves:
       {sbv['noise']} agree with the athlete's own baseline, {sbv['fault']} do not.</div>
-      <div class="s">out/card_sameview.json</div>
+      <a class="fact-source" href="{REPO}/blob/main/out/card_sameview.json">Same-side measurements</a>
     </div>
     <div class="fact">
-      <div class="l">safety margin</div>
+      <div class="l">Tolerance vs. repeat spread</div>
       <div class="v num">{ratio_rep:.1f}<small>×</small></div>
       <div class="k">how far the {tol_r:.0f}° tolerance sits above one athlete's own repeat spread.
       Across different players it is only {ratio_ba:.2f}×, so the baseline has to be personal.</div>
-      <div class="s">out/repeatability.json<br>out/between_athlete.json</div>
+      <div class="fact-source"><a href="{REPO}/blob/main/out/repeatability.json">Repeat measurements</a>
+      and <a href="{REPO}/blob/main/out/between_athlete.json">between-athlete comparisons</a></div>
     </div>
     <div class="fact">
-      <div class="l">frames excluded</div>
+      <div class="l">Frames excluded</div>
       <div class="v num">{gross_pct:.1f}<small>%</small></div>
       <div class="k">of {tot_frames:,} frames across eight forms, the arm is out of reach — two
       estimators disagree by more than 60° on the same pixels. Counted and shown grey, never
       averaged in.</div>
-      <div class="s">out/form_tour.json</div>
+      <a class="fact-source" href="{REPO}/blob/main/out/form_tour.json">Eight-form measurements</a>
     </div>
   </div>
-</header>
 
-<section class="night" id="watch">
-  <p class="s-label">01 · Watch it work</p>
+<section class="evidence-section night" id="watch">
+  <div class="wrap">
   <h2>One athlete, two references</h2>
-  <p class="body">One performance, judged twice. Only the reference changed: on the left it was
-  filmed from the athlete's own side, on the right from the far side of the room.</p>
+  <p class="body">Both clips show the same performance. The first uses a reference filmed from the athlete's side.
+  The second uses a reference filmed from the far side of the room.</p>
 
   <div class="clips">
     <figure>
-      <video controls preload="metadata" poster="media/frame_move6_elbow.png" playsinline>
+      <video controls preload="none" poster="media/frame_move6_elbow.png" aria-label="Same-side reference demo" playsinline>
         <source src="media/demo_sameview.mp4" type="video/mp4">
         <a href="media/demo_sameview.mp4">Download the clip</a>
       </video>
@@ -407,7 +307,7 @@ def main() -> int:
       across {n_moves} moves; the other {sbv['noise']} match the athlete's own baseline.</figcaption>
     </figure>
     <figure>
-      <video controls preload="metadata" poster="media/frame_crossview.png" playsinline>
+      <video controls preload="none" poster="media/frame_crossview.png" aria-label="Other-side reference demo" playsinline>
         <source src="media/demo_crossview.mp4" type="video/mp4">
         <a href="media/demo_crossview.mp4">Download the clip</a>
       </video>
@@ -419,14 +319,14 @@ def main() -> int:
     </figure>
   </div>
 
-  <h3 class="t-head">How the threshold is chosen</h3>
+  <h3 class="t-head" id="threshold">How the threshold is chosen</h3>
   <div class="thresholds">
-    <div><span class="n">tolerance</span><span class="d">Two ways of measuring the same elbow angle
+    <div><span class="n">Tolerance</span><span class="d">Two ways of measuring the same elbow angle
       disagree by this much, so anything smaller is noise: <b>{tol_r:.0f}°</b>.</span></div>
-    <div><span class="n">floor</span><span class="d">The smallest cut-off this data can support once
+    <div><span class="n">Floor</span><span class="d">The smallest cut-off this data can support once
       the tool's own error is accounted for: <b>{gate_r:.1f}°</b>. A lower bound —
       <b>never the deciding number</b>.</span></div>
-    <div><span class="n">cut-off</span><span class="d"><b>{K:g} × {gate_r_resolved / K:.2f}°</b> —
+    <div><span class="n">Personal threshold</span><span class="d"><b>{K:g} × {gate_r_resolved / K:.2f}°</b> —
       how much their elbow angle varies between their own repeats — giving
       <b>{gate_r_resolved:.1f}°</b>. This is the number that decides.</span></div>
   </div>
@@ -434,18 +334,20 @@ def main() -> int:
   differently, so the move numbers do not match. Each clip shows all three numbers in the order
   above, taken from the same files this table is built from. Open a clip full screen to read
   them.</p>
+  </div>
 </section>
 
-<section id="caught">
-  <p class="s-label">02 · What it caught</p>
-  <h2>{sbv['fault']} readings passed every test. Another {len(refused_judgeable)} cleared the minimum and
-  were still refused.</h2>
+<section class="evidence-section" id="caught">
+  <div class="wrap">
+  <h2>What the coach flagged</h2>
+  <p class="body">{sbv['fault']} readings passed every test. Another {len(refused_judgeable)} cleared
+  the minimum and still fell within the athlete's usual range.</p>
   <p class="body">Four conditions, all required: clear the tolerance, remove the athlete's own
   offset, beat {K:g} × their variation on that joint, beat the measurement band.</p>
 
-  <div class="tablewrap">
+  <div class="tablewrap" tabindex="0" role="region" aria-labelledby="findings-table">
     <table>
-      <caption>Published findings — Taegeuk 1 Jang</caption>
+      <caption id="findings-table">Published findings — Taegeuk 1 Jang</caption>
       <thead><tr><th>joint and moment</th><th class="r">remaining difference</th>
         <th class="r">gate for this athlete</th><th class="r">measurement band</th><th>result</th></tr></thead>
       <tbody>
@@ -454,9 +356,9 @@ def main() -> int:
     </table>
   </div>
 
-  <div class="tablewrap">
+  <div class="tablewrap" tabindex="0" role="region" aria-labelledby="refusal-table">
     <table>
-      <caption>Refused: past the floor, inside the athlete's own range</caption>
+      <caption id="refusal-table">Refused: past the floor, inside the athlete's own range</caption>
       <thead><tr><th>joint and moment</th><th class="r">remaining difference</th>
         <th class="r">floor</th><th class="r">gate</th><th>result</th></tr></thead>
       <tbody>
@@ -466,13 +368,14 @@ def main() -> int:
   </div>
   <p class="body">Each cleared its floor and still lost: {K:g} × the athlete's own variation there
   exceeds it, so that difference is their form.{blind_note}</p>
+  </div>
 </section>
 
-<section id="quiet">
-  <p class="s-label">03 · What it refuses</p>
-  <h2>Most of the work is deciding what not to say</h2>
-  <p class="body">Cases built to make it look careless, plus the rival approaches at the end. Each
-  refusal is a measurement, not a promise. A reading is one joint at one moment; the cut-off is the one defined in section 01.</p>
+<section class="evidence-section" id="quiet">
+  <div class="wrap">
+  <h2>When the coach withholds a verdict</h2>
+  <p class="body">These tests check when the coach stays quiet and how it compares with other approaches.
+  Each reading measures one joint at one moment against the <a href="#threshold">personal threshold</a>.</p>
   <ul>
     <li><b>Grading itself.</b> With the student as their own reference there is nothing to find:
       without a personal baseline {clean['old_gate_flags']} readings get flagged, with one
@@ -505,11 +408,12 @@ def main() -> int:
   <b>{eight_mean:.4f}</b> over {eight['n_performances']} performances, against {c1:.4f} for
   nearest-neighbour, {c2:.4f} on a single frame and {c3:.4f} on shuffled labels.
   <b>{sgn8(eight_mean - c1)}</b> over the simple baseline is the honest reading of that result.</p>
+  </div>
 </section>
 
-<section id="forms">
-  <p class="s-label">04 · The measurement on all eight forms</p>
-  <h2>The same mask on every form in the dataset</h2>
+<section class="evidence-section" id="forms">
+  <div class="wrap">
+  <h2>Measurement across all eight forms</h2>
   <p class="body">Each tile is that form's worst five seconds, through the identical measurement,
   against the dataset's own annotations. Grey frames are ones the estimator cannot see.</p>
 
@@ -517,9 +421,9 @@ def main() -> int:
     {form_figures}
   </div>
 
-  <div class="tablewrap">
+  <div class="tablewrap" tabindex="0" role="region" aria-labelledby="form-agreement-table">
     <table>
-      <caption>Agreement with the published annotation, frame by frame</caption>
+      <caption id="form-agreement-table">Agreement with the published annotation, frame by frame</caption>
       <thead><tr><th>form</th><th class="r">frames used</th><th class="r">frames excluded</th>
         <th class="r">typical</th><th class="r">worst 5 %</th><th class="r">worst window</th>
         <th>joint that broke first</th></tr></thead>
@@ -535,15 +439,16 @@ def main() -> int:
   Near a degree in the middle means the mask is on the right body — checked to 0.1–0.2% of the
   annotation on all eight — so these failures are arms, not the camera following the wrong
   person.</p>
+  </div>
 </section>
 
 
 
-<section id="check">
-  <p class="s-label">05 · Verify it yourself</p>
-  <h2>No dataset, models or network needed</h2>
-  <p class="body">The repository ships the files these numbers come from. Each command fails loudly
-  if this page and the files disagree.</p>
+<section class="evidence-section" id="check">
+  <div class="wrap">
+  <h2>Reproduce the results</h2>
+  <p class="body">The repository includes the artifacts used here. You can check the figures and
+  rebuild the page without downloading the source dataset or models.</p>
 <pre><span class="c"># every documented number, re-derived from out/*.json</span>
 python3 scripts/verify_claims.py
 <span class="out">91/91 documented claims re-derived</span>
@@ -577,17 +482,21 @@ python3 scripts/check_reproducible.py
         strictness. The middle one is a lower bound on the last, never a substitute for it.</dd></div>
     </dl>
   </details>
+  </div>
 </section>
 
+</main>
+
 <footer>
+  <div class="wrap">
   <p>Code MIT. Demo clips are derived from the CC BY 4.0 dual-view Taegeuk dataset
   (<a href="https://doi.org/10.17632/bjy7vr4xkt.1">10.17632/bjy7vr4xkt.1</a>) and attributed in
   <a href="{REPO}/blob/main/ATTRIBUTION.md">ATTRIBUTION</a>.</p>
   <p>The 94-player labelled dataset carries no upstream licence and is not redistributed here —
   only the numbers computed from it.</p>
   <p><a href="{REPO}">github.com/ahmadalzaro1/poomsae-coach</a></p>
+  </div>
 </footer>
-</div>
 </body>
 </html>
 """
@@ -602,6 +511,9 @@ python3 scripts/check_reproducible.py
         if not os.path.exists(src):
             sys.exit(f"build_site: missing media/{name}")
         shutil.copy2(src, os.path.join(SITE, "media", name))
+    shutil.copy2(os.path.join(ROOT, "site_assets", "site.css"), SITE)
+    shutil.copytree(os.path.join(ROOT, "site_assets", "fonts"), os.path.join(SITE, "fonts"),
+                    dirs_exist_ok=True)
     if "/Users/" in html:
         sys.exit("build_site: an absolute local path leaked into the page")
     with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8") as fh:
